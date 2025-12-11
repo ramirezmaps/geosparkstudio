@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía completa sobre los estándares de datos geoespaciales del SEA Chile. Aprende a cumplir con las normativas de entrega de información GIS.">
+    <title>Estándares de Datos Geoespaciales SEA: Guía Completa 2025 | Geo Spark Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        .blog-content h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .blog-content h3 {
+            color: #e2e8f0;
+            margin-top: 1.5rem;
+        }
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .blog-content ul, .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        .blog-content code {
+            background: #2d3748;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ffd700;
+        }
+        .blog-content pre {
+            background: #2d3748;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+        }
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .data-table th {
+            background: #334155;
+            color: #fff;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .data-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #334155;
+            color: #a0aec0;
+        }
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .cta-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#caracteristicas">Características</a></li>
+                    <li><a href="blog.html" style="color: #667eea;">Blog</a></li>
+                    <li><a href="index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="http://localhost:8501" class="btn-link">Ingresar</a>
+                    <a href="http://localhost:8501" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="blog-header">
+        <div class="container">
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 10 Diciembre 2025</span>
+                    <span>📖 12 min lectura</span>
+                    <span>🏷️ SEA, Normativas, GIS</span>
+                </div>
+                <h1 class="blog-title">Estándares de Datos Geoespaciales SEA: Guía Completa 2025</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Todo lo que necesitas saber sobre la estructura, campos requeridos y mejores prácticas 
+                    para entregar información geoespacial al Sistema de Evaluación Ambiental de Chile.
+                </p>
+                <img src="img/blog_sea_standards.png" alt="Estándares SEA" class="blog-header-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="blog-content">
+        <h2>🎯 ¿Qué son los Estándares SEA?</h2>
+        <p>
+            El <strong>Sistema de Evaluación Ambiental (SEA)</strong> de Chile establece formatos específicos 
+            para la entrega de información geoespacial en estudios y declaraciones de impacto ambiental. 
+            Estos estándares garantizan la interoperabilidad, calidad y consistencia de los datos entre 
+            diferentes proyectos y organismos.
+        </p>
+
+        <div class="info-box">
+            <p><strong>💡 Dato importante:</strong> Actualmente existen más de 137 estándares diferentes 
+            definidos por el SEA, cada uno con campos específicos según el tipo de componente ambiental.</p>
+        </div>
+
+        <h2>📋 Estructura General de un Estándar SEA</h2>
+        <p>
+            Cada estándar SEA define una estructura de datos que incluye campos obligatorios y opcionales. 
+            La estructura típica contiene:
+        </p>
+
+        <ul>
+            <li><strong>Campos de identificación:</strong> OBJECTID, NOMBRE, CODIGO</li>
+            <li><strong>Campos de ubicación:</strong> REGION, COMUNA, LOCALIDAD</li>
+            <li><strong>Campos específicos del componente:</strong> Varían según el tipo de estudio</li>
+            <li><strong>Campos temporales:</strong> FECHA_INI, FECHA_FIN, MES, ESTACION</li>
+            <li><strong>Campos de observación:</strong> FUENTE, OBSERVAC, DESCRIPCION</li>
+        </ul>
+
+        <h2>🗂️ Categorías de Estándares</h2>
+
+        <h3>🌿 Medio Biológico</h3>
+        <p>Incluye estándares para flora, fauna, ecosistemas y biodiversidad:</p>
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Estándar</th>
+                        <th>Tipo Geometría</th>
+                        <th>Campos Clave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Estaciones de muestreo flora</td>
+                        <td>Punto</td>
+                        <td>ESPECIE, ABUNDANCIA, CCV</td>
+                    </tr>
+                    <tr>
+                        <td>Transectos de fauna</td>
+                        <td>Línea</td>
+                        <td>LONGITUD_M, ESPECIE, METODO</td>
+                    </tr>
+                    <tr>
+                        <td>Áreas de vegetación</td>
+                        <td>Polígono</td>
+                        <td>FORMACION, COBERTURA, HECTAREAS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>💧 Medio Físico</h3>
+        <p>Cubre hidrología, geología, suelos y clima:</p>
+        <ul>
+            <li><strong>Puntos de monitoreo de agua:</strong> Calidad, caudal, parámetros físico-químicos</li>
+            <li><strong>Geología local:</strong> Formaciones, tipos de roca, edad geológica</li>
+            <li><strong>Estaciones meteorológicas:</strong> Temperatura, precipitación, viento</li>
+        </ul>
+
+        <h3>👥 Medio Humano</h3>
+        <p>Aspectos sociales, culturales y arqueológicos:</p>
+        <ul>
+            <li><strong>Patrimonio arqueológico:</strong> Sitios, hallazgos, cronología</li>
+            <li><strong>Rutas antropológicas:</strong> Senderos, usos tradicionales</li>
+            <li><strong>Asentamientos humanos:</strong> Comunidades, población, servicios</li>
+        </ul>
+
+        <h2>⚙️ Campos Obligatorios Comunes</h2>
+        <p>
+            La mayoría de los estándares SEA comparten campos obligatorios que deben estar presentes 
+            en toda entrega:
+        </p>
+
+        <pre><code>{
+  "REGION": "Región de ubicación",
+  "COMUNA": "Comuna específica",
+  "NOMBRE": "Nombre del elemento",
+  "FUENTE": "Origen de los datos",
+  "DATUM": "Sistema de referencia (WGS84)"
+}</code></pre>
+
+        <h2>📐 Sistemas de Coordenadas</h2>
+        <p>
+            El SEA requiere que toda información geoespacial se entregue en el sistema de coordenadas 
+            <strong>WGS84 (EPSG:4326)</strong>. Sin embargo, para cálculos de área y distancia, 
+            se recomienda usar proyecciones locales como UTM.
+        </p>
+
+        <div class="info-box">
+            <p><strong>🔄 Consejo:</strong> Geo Spark Studio convierte automáticamente tus datos 
+            a WGS84 y puede trabajar con más de 6,000 sistemas de coordenadas EPSG diferentes.</p>
+        </div>
+
+        <h2>✅ Validación de Datos</h2>
+        <p>
+            Antes de entregar información al SEA, es crucial validar:
+        </p>
+
+        <ol>
+            <li><strong>Completitud:</strong> Todos los campos obligatorios tienen valores</li>
+            <li><strong>Formato:</strong> Fechas en formato correcto, números válidos</li>
+            <li><strong>Topología:</strong> Geometrías válidas sin auto-intersecciones</li>
+            <li><strong>Proyección:</strong> Coordenadas en WGS84</li>
+            <li><strong>Encoding:</strong> Caracteres especiales correctamente codificados (UTF-8)</li>
+        </ol>
+
+        <h2>🚀 Automatiza tu Proceso con Geo Spark Studio</h2>
+        <p>
+            Preparar datos para el SEA manualmente puede tomar horas. Con Geo Spark Studio, 
+            puedes automatizar todo el proceso:
+        </p>
+
+        <ul>
+            <li>✅ Carga datos en cualquier formato (SHP, KML, KMZ, CSV, Excel)</li>
+            <li>✅ Selecciona el estándar SEA correspondiente entre 137 opciones</li>
+            <li>✅ Mapea campos automáticamente con asistencia inteligente</li>
+            <li>✅ Valida y corrige errores en tiempo real</li>
+            <li>✅ Exporta en formato listo para entregar</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>¿Listo para simplificar tu trabajo?</h3>
+            <p>Automatiza la estandarización de tus datos geoespaciales en minutos, no en horas.</p>
+            <a href="http://localhost:8501" class="btn btn-primary btn-large">Probar Gratis →</a>
+        </div>
+
+        <h2>📚 Recursos Adicionales</h2>
+        <ul>
+            <li><a href="https://sea.gob.cl" target="_blank" style="color: #667eea;">Sitio oficial del SEA</a></li>
+            <li><a href="blog-etl-automation.html" style="color: #667eea;">Automatización ETL para datos GIS</a></li>
+            <li><a href="blog-topology-validation.html" style="color: #667eea;">Validación topológica de geometrías</a></li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <em>¿Tienes preguntas sobre estándares SEA? Contáctanos en 
+            <a href="mailto:contacto@geotools.cl" style="color: #667eea;">contacto@geotools.cl</a></em>
+        </p>
+    </article>
+
+    <!-- Related Articles -->
+    <section style="background: #1e293b; padding: 4rem 0;">
+        <div class="container">
+            <h2 style="text-align: center; color: #fff; margin-bottom: 2rem;">Artículos Relacionados</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+                <a href="blog-etl-automation.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem; transition: transform 0.2s;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">🔄 Automatización ETL</h3>
+                        <p style="color: #a0aec0;">Cómo optimizar tus flujos de trabajo con ETL automático.</p>
+                    </div>
+                </a>
+                <a href="blog-topology-validation.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem; transition: transform 0.2s;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">✅ Validación Topológica</h3>
+                        <p style="color: #a0aec0;">Detecta y corrige errores geométricos automáticamente.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🗺️</span>
+                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#caracteristicas">Características</a></li>
+                        <li><a href="index.html#precios">Precios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contacto@geotools.cl">contacto@geotools.cl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
