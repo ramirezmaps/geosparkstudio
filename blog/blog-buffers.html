@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Guía completa sobre buffers en GIS. Aprende a crear zonas de influencia para análisis espacial profesional.">
+    <title>Buffers en GIS: Zonas de Influencia para Análisis Espacial | Geo Spark Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .blog-content h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
+            color: #e2e8f0;
+            margin-top: 1.5rem;
+        }
+
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-content code {
+            background: #2d3748;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ffd700;
+        }
+
+        .blog-content pre {
+            background: #2d3748;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box p {
+            color: #fcd34d;
+            margin: 0;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .use-case-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.25rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .use-case-card h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .use-case-card p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#inicio">Inicio</a></li>
+                    <li><a href="../index.html#caracteristicas">Características</a></li>
+                    <li><a href="./" style="color: #667eea;">Blog</a></li>
+                    <li><a href="../index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="blog-header">
+        <div class="container">
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 11 Diciembre 2025</span>
+                    <span>📖 9 min lectura</span>
+                    <span>🏷️ Buffers, Análisis Espacial, GIS</span>
+                </div>
+                <h1 class="blog-title">Buffers en GIS: Zonas de Influencia para Análisis Espacial Profesional</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Todo lo que necesitas saber sobre la creación de buffers: desde conceptos básicos
+                    hasta técnicas avanzadas para estudios ambientales y urbanísticos.
+                </p>
+                <img src="../assets/images/blog_buffers.png" alt="Buffers y Zonas de Influencia GIS" class="blog-header-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="blog-content">
+        <h2>🎯 ¿Qué es un Buffer en GIS?</h2>
+        <p>
+            Un <strong>buffer</strong> es una zona de influencia creada alrededor de una geometría
+            (punto, línea o polígono) a una distancia específica. Es una de las operaciones más
+            fundamentales y utilizadas en análisis espacial.
+        </p>
+        <p>
+            Imagina que necesitas saber qué viviendas están a menos de 500 metros de una carretera
+            contaminante, o qué área proteger alrededor de un humedal. Los buffers son la respuesta.
+        </p>
+
+        <div class="info-box">
+            <p><strong>💡 Dato:</strong> Los buffers son esenciales en más del 80% de los
+                estudios de impacto ambiental, ya que permiten definir áreas de influencia directa
+                e indirecta de proyectos.</p>
+        </div>
+
+        <h2>📐 Tipos de Buffers</h2>
+
+        <h3>Buffer Simple (Equidistante)</h3>
+        <p>
+            La misma distancia en todas las direcciones. Perfecto para análisis de proximidad básicos.
+        </p>
+        <pre><code># Python con GeoPandas
+buffer_500m = geometria.buffer(500)  # 500 metros</code></pre>
+
+        <h3>Buffer con Múltiples Distancias</h3>
+        <p>
+            Anillos concéntricos para análisis de zonas de influencia graduales:
+        </p>
+        <pre><code># Crear anillos de 100, 500 y 1000 metros
+buffer_100 = geom.buffer(100)
+buffer_500 = geom.buffer(500)
+buffer_1000 = geom.buffer(1000)
+
+# Anillo entre 100 y 500m
+anillo = buffer_500.difference(buffer_100)</code></pre>
+
+        <h3>Buffer Asimétrico (Izquierda/Derecha)</h3>
+        <p>
+            Para líneas donde la influencia es distinta en cada lado (ej: ríos, carreteras):
+        </p>
+        <pre><code># Buffer solo a un lado de la línea
+buffer_izq = linea.buffer(100, single_sided=True)</code></pre>
+
+        <h2>🏗️ Casos de Uso Reales</h2>
+
+        <div class="use-case-grid">
+            <div class="use-case-card">
+                <h4>🌳 Áreas Protegidas</h4>
+                <p>Zonas de amortiguación alrededor de parques nacionales y humedales.</p>
+            </div>
+            <div class="use-case-card">
+                <h4>🏥 Cobertura de Servicios</h4>
+                <p>Radio de atención de hospitales, bomberos, escuelas.</p>
+            </div>
+            <div class="use-case-card">
+                <h4>🚧 Impacto de Obras</h4>
+                <p>Área de influencia de construcciones, minería, energía.</p>
+            </div>
+            <div class="use-case-card">
+                <h4>📡 Cobertura de Señal</h4>
+                <p>Alcance de antenas, WiFi, redes de telecomunicaciones.</p>
+            </div>
+            <div class="use-case-card">
+                <h4>🛣️ Franjas de Servidumbre</h4>
+                <p>Áreas de restricción junto a carreteras, líneas eléctricas.</p>
+            </div>
+            <div class="use-case-card">
+                <h4>🌊 Zonas de Inundación</h4>
+                <p>Franjas de riesgo alrededor de ríos y quebradas.</p>
+            </div>
+        </div>
+
+        <h2>⚠️ Consideraciones Importantes</h2>
+
+        <div class="warning-box">
+            <p><strong>⚠️ Sistema de Coordenadas:</strong> Los buffers deben crearse en un
+                sistema de coordenadas proyectado (metros), no geográfico (grados). Un buffer de
+                "0.01 grados" no tiene sentido y sus resultados serán incorrectos.</p>
+        </div>
+
+        <h3>Proyección Correcta</h3>
+        <pre><code># Convertir a UTM antes del buffer
+gdf_utm = gdf.to_crs(epsg=32719)  # UTM Zona 19S (Chile)
+buffer = gdf_utm.buffer(1000)  # 1000 metros
+
+# Volver a WGS84 si es necesario
+buffer_wgs84 = buffer.to_crs(epsg=4326)</code></pre>
+
+        <h3>Dissolve para Buffers Superpuestos</h3>
+        <p>
+            Cuando tienes múltiples geometrías y quieres una zona de influencia unificada:
+        </p>
+        <pre><code># Crear buffers individuales
+buffers = gdf.buffer(500)
+
+# Unir todos en uno solo
+buffer_unido = buffers.unary_union</code></pre>
+
+        <h2>📊 Parámetros Avanzados</h2>
+
+        <h3>Resolución (cap_style y join_style)</h3>
+        <ul>
+            <li><strong>cap_style:</strong> Forma de los extremos (round, flat, square)</li>
+            <li><strong>join_style:</strong> Forma de las esquinas (round, mitre, bevel)</li>
+            <li><strong>resolution:</strong> Número de segmentos para curvas (más = más suave)</li>
+        </ul>
+
+        <pre><code>from shapely.geometry import CAP_STYLE, JOIN_STYLE
+
+buffer = geom.buffer(
+    100,
+    cap_style=CAP_STYLE.flat,
+    join_style=JOIN_STYLE.mitre,
+    resolution=16
+)</code></pre>
+
+        <h2>🚀 Buffers con Geo Spark Studio</h2>
+        <p>
+            Nuestra herramienta de <strong>Generador de Buffers</strong> simplifica todo el proceso:
+        </p>
+        <ol>
+            <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ, GeoJSON</li>
+            <li><strong>Define la distancia:</strong> En metros o kilómetros</li>
+            <li><strong>Opciones avanzadas:</strong> Dissolve, múltiples anillos</li>
+            <li><strong>Preview en mapa:</strong> Visualiza antes de exportar</li>
+            <li><strong>Exporta:</strong> En cualquier formato</li>
+        </ol>
+
+        <div class="info-box">
+            <p><strong>✨ Bonus:</strong> La herramienta detecta automáticamente el sistema
+                de coordenadas y reproyecta si es necesario, evitando errores comunes.</p>
+        </div>
+
+        <div class="cta-box">
+            <h3>¿Necesitas crear buffers para tu proyecto?</h3>
+            <p>Genera zonas de influencia profesionales en segundos, sin código.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Crear Buffers
+                Gratis →</a>
+        </div>
+
+        <h2>📚 Recursos Adicionales</h2>
+        <ul>
+            <li><a href="blog-coordinate-systems.html" style="color: #667eea;">Sistemas de Coordenadas Explicados</a>
+            </li>
+            <li><a href="blog-topology-validation.html" style="color: #667eea;">Validación Topológica para Buffers</a>
+            </li>
+            <li><a href="blog-spatial-join.html" style="color: #667eea;">Spatial Join: Uniendo Datos por Ubicación</a>
+            </li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <em>¿Necesitas ayuda con buffers para tu estudio ambiental?
+                <a href="mailto:contacto@geotools.cl" style="color: #667eea;">Contáctanos</a></em>
+        </p>
+    </article>
+
+    <!-- Related Articles -->
+    <section style="background: #1e293b; padding: 4rem 0;">
+        <div class="container">
+            <h2 style="text-align: center; color: #fff; margin-bottom: 2rem;">Artículos Relacionados</h2>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+                <a href="blog-coordinate-systems.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">🌍 Sistemas de Coordenadas</h3>
+                        <p style="color: #a0aec0;">Entiende WGS84, UTM y proyecciones.</p>
+                    </div>
+                </a>
+                <a href="blog-spatial-join.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">🔗 Spatial Join</h3>
+                        <p style="color: #a0aec0;">Une datos basándote en ubicación.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🗺️</span>
+                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html#caracteristicas">Características</a></li>
+                        <li><a href="../index.html#precios">Precios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="./">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contacto@geotools.cl">contacto@geotools.cl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/56956578733?text=Hola!%20Estoy%20interesado%20en%20Geo%20Spark%20Studio" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
+            <path d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z"/>
+        </svg>
+        <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
+    </a>
+    <style>.whatsapp-float{position:fixed;width:60px;height:60px;bottom:30px;right:30px;background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);color:#fff;border-radius:50%;text-align:center;font-size:28px;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s ease;animation:whatsapp-pulse 2s infinite}.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,0.6);animation:none}.whatsapp-float:hover .whatsapp-tooltip{opacity:1;visibility:visible;transform:translateX(-10px)}.whatsapp-tooltip{position:absolute;right:70px;background:#1e293b;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;white-space:nowrap;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.2)}.whatsapp-tooltip::after{content:'';position:absolute;right:-8px;top:50%;transform:translateY(-50%);border-width:8px 0 8px 8px;border-style:solid;border-color:transparent transparent transparent #1e293b}@keyframes whatsapp-pulse{0%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.7)}100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}}@media(max-width:768px){.whatsapp-float{width:55px;height:55px;bottom:20px;right:20px}.whatsapp-tooltip{display:none}}</style>
+</body>
+
+</html>
+

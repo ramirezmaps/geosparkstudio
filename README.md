@@ -32,9 +32,40 @@ Acento dorado: #feca57
 
 ```
 landing_page/
-├── index.html          # Estructura HTML completa
-├── styles.css          # Estilos CSS premium
-└── README.md           # Este archivo
+├── index.html              # Página principal
+├── README.md               # Este archivo
+│
+├── assets/                 # Recursos estáticos
+│   ├── css/
+│   │   └── styles.css      # Estilos CSS premium
+│   ├── js/
+│   │   └── config.js       # Configuración JavaScript
+│   └── images/             # Imágenes del sitio
+│       ├── hero_dashboard.png
+│       ├── feature_*.png
+│       └── blog_*.png
+│
+├── blog/                   # Sección de blog
+│   ├── index.html          # Lista de artículos
+│   ├── blog-etl-automation.html
+│   ├── blog-topology-validation.html
+│   ├── blog-streamlit-gis.html
+│   ├── blog-buffers.html
+│   ├── blog-spatial-join.html
+│   ├── blog-sea-standards.html
+│   └── blog-coordinate-systems.html
+│
+├── pages/                  # Páginas adicionales
+│   ├── documentacion.html
+│   └── proximamente.html
+│
+├── docs/                   # Documentación del proyecto
+│   ├── DEPLOYMENT_GUIDE.md
+│   ├── GUIA_PRECIOS.md
+│   └── GUIA_WHATSAPP.md
+│
+└── scripts/                # Scripts de utilidad
+    └── update_links.ps1
 ```
 
 ## 🚀 Cómo Usar

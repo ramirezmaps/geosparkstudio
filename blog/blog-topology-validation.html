@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Guía completa sobre buffers en GIS. Aprende a crear zonas de influencia para análisis espacial profesional.">
-    <title>Buffers en GIS: Zonas de Influencia para Análisis Espacial | Geo Spark Studio</title>
+        content="Guía completa sobre validación topológica en GIS. Aprende a detectar y corregir errores geométricos en tus datos geoespaciales.">
+    <title>Por qué la Validación Topológica es Crítica en tus Proyectos GIS | Geo Spark Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <style>
         .blog-header {
             padding-top: 120px;
@@ -97,15 +97,15 @@
         }
 
         .warning-box {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
-            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+            border-left: 4px solid #ef4444;
             padding: 1rem 1.5rem;
             border-radius: 0 8px 8px 0;
             margin: 1.5rem 0;
         }
 
         .warning-box p {
-            color: #fcd34d;
+            color: #fca5a5;
             margin: 0;
         }
 
@@ -143,29 +143,26 @@
             margin-bottom: 1.5rem;
         }
 
-        .use-case-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+        .error-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
             margin: 1.5rem 0;
         }
 
-        .use-case-card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 1.25rem;
-            border-left: 3px solid #667eea;
-        }
-
-        .use-case-card h4 {
+        .error-table th {
+            background: #334155;
             color: #fff;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
+            padding: 1rem;
+            text-align: left;
         }
 
-        .use-case-card p {
-            margin: 0;
-            font-size: 0.9rem;
+        .error-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #334155;
+            color: #a0aec0;
         }
     </style>
 </head>
@@ -175,15 +172,15 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html" class="logo" style="text-decoration: none;">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
                     <span class="logo-icon">🗺️</span>
                     <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
                 </a>
                 <ul class="nav-menu">
-                    <li><a href="index.html#inicio">Inicio</a></li>
-                    <li><a href="index.html#caracteristicas">Características</a></li>
-                    <li><a href="blog.html" style="color: #667eea;">Blog</a></li>
-                    <li><a href="index.html#precios">Precios</a></li>
+                    <li><a href="../index.html#inicio">Inicio</a></li>
+                    <li><a href="../index.html#caracteristicas">Características</a></li>
+                    <li><a href="./" style="color: #667eea;">Blog</a></li>
+                    <li><a href="../index.html#precios">Precios</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
@@ -199,176 +196,155 @@
             <div class="blog-content">
                 <div class="blog-meta">
                     <span>📅 11 Diciembre 2025</span>
-                    <span>📖 9 min lectura</span>
-                    <span>🏷️ Buffers, Análisis Espacial, GIS</span>
+                    <span>📖 8 min lectura</span>
+                    <span>🏷️ Topología, Calidad de Datos, GIS</span>
                 </div>
-                <h1 class="blog-title">Buffers en GIS: Zonas de Influencia para Análisis Espacial Profesional</h1>
+                <h1 class="blog-title">Por qué la Validación Topológica es Crítica en tus Proyectos GIS</h1>
                 <p style="font-size: 1.2rem; color: #a0aec0;">
-                    Todo lo que necesitas saber sobre la creación de buffers: desde conceptos básicos
-                    hasta técnicas avanzadas para estudios ambientales y urbanísticos.
+                    Un mapa bonito no siempre es un mapa útil. Aprende a detectar y corregir errores
+                    geométricos que pueden invalidar tus análisis espaciales.
                 </p>
-                <img src="img/blog_buffers.png" alt="Buffers y Zonas de Influencia GIS" class="blog-header-image">
+                <img src="../assets/images/blog_topology.png" alt="Validación Topológica GIS" class="blog-header-image">
             </div>
         </div>
     </header>
 
     <!-- Content -->
     <article class="blog-content">
-        <h2>🎯 ¿Qué es un Buffer en GIS?</h2>
+        <h2>🎯 ¿Qué es la Topología en GIS?</h2>
         <p>
-            Un <strong>buffer</strong> es una zona de influencia creada alrededor de una geometría
-            (punto, línea o polígono) a una distancia específica. Es una de las operaciones más
-            fundamentales y utilizadas en análisis espacial.
+            La <strong>topología</strong> en sistemas de información geográfica se refiere a las
+            relaciones espaciales entre geometrías: cómo los polígonos se tocan, cómo las líneas
+            se conectan, y cómo los puntos se relacionan con otras entidades.
         </p>
         <p>
-            Imagina que necesitas saber qué viviendas están a menos de 500 metros de una carretera
-            contaminante, o qué área proteger alrededor de un humedal. Los buffers son la respuesta.
+            Una geometría puede verse perfecta visualmente, pero contener errores microscópicos
+            que causan fallos catastróficos en algoritmos de geoprocesamiento.
         </p>
-
-        <div class="info-box">
-            <p><strong>💡 Dato:</strong> Los buffers son esenciales en más del 80% de los
-                estudios de impacto ambiental, ya que permiten definir áreas de influencia directa
-                e indirecta de proyectos.</p>
-        </div>
-
-        <h2>📐 Tipos de Buffers</h2>
-
-        <h3>Buffer Simple (Equidistante)</h3>
-        <p>
-            La misma distancia en todas las direcciones. Perfecto para análisis de proximidad básicos.
-        </p>
-        <pre><code># Python con GeoPandas
-buffer_500m = geometria.buffer(500)  # 500 metros</code></pre>
-
-        <h3>Buffer con Múltiples Distancias</h3>
-        <p>
-            Anillos concéntricos para análisis de zonas de influencia graduales:
-        </p>
-        <pre><code># Crear anillos de 100, 500 y 1000 metros
-buffer_100 = geom.buffer(100)
-buffer_500 = geom.buffer(500)
-buffer_1000 = geom.buffer(1000)
-
-# Anillo entre 100 y 500m
-anillo = buffer_500.difference(buffer_100)</code></pre>
-
-        <h3>Buffer Asimétrico (Izquierda/Derecha)</h3>
-        <p>
-            Para líneas donde la influencia es distinta en cada lado (ej: ríos, carreteras):
-        </p>
-        <pre><code># Buffer solo a un lado de la línea
-buffer_izq = linea.buffer(100, single_sided=True)</code></pre>
-
-        <h2>🏗️ Casos de Uso Reales</h2>
-
-        <div class="use-case-grid">
-            <div class="use-case-card">
-                <h4>🌳 Áreas Protegidas</h4>
-                <p>Zonas de amortiguación alrededor de parques nacionales y humedales.</p>
-            </div>
-            <div class="use-case-card">
-                <h4>🏥 Cobertura de Servicios</h4>
-                <p>Radio de atención de hospitales, bomberos, escuelas.</p>
-            </div>
-            <div class="use-case-card">
-                <h4>🚧 Impacto de Obras</h4>
-                <p>Área de influencia de construcciones, minería, energía.</p>
-            </div>
-            <div class="use-case-card">
-                <h4>📡 Cobertura de Señal</h4>
-                <p>Alcance de antenas, WiFi, redes de telecomunicaciones.</p>
-            </div>
-            <div class="use-case-card">
-                <h4>🛣️ Franjas de Servidumbre</h4>
-                <p>Áreas de restricción junto a carreteras, líneas eléctricas.</p>
-            </div>
-            <div class="use-case-card">
-                <h4>🌊 Zonas de Inundación</h4>
-                <p>Franjas de riesgo alrededor de ríos y quebradas.</p>
-            </div>
-        </div>
-
-        <h2>⚠️ Consideraciones Importantes</h2>
 
         <div class="warning-box">
-            <p><strong>⚠️ Sistema de Coordenadas:</strong> Los buffers deben crearse en un
-                sistema de coordenadas proyectado (metros), no geográfico (grados). Un buffer de
-                "0.01 grados" no tiene sentido y sus resultados serán incorrectos.</p>
+            <p><strong>⚠️ Alerta:</strong> Un solo polígono inválido puede hacer que toda tu
+                operación de intersección o unión falle completamente.</p>
         </div>
 
-        <h3>Proyección Correcta</h3>
-        <pre><code># Convertir a UTM antes del buffer
-gdf_utm = gdf.to_crs(epsg=32719)  # UTM Zona 19S (Chile)
-buffer = gdf_utm.buffer(1000)  # 1000 metros
+        <h2>🔍 Errores Topológicos Comunes</h2>
 
-# Volver a WGS84 si es necesario
-buffer_wgs84 = buffer.to_crs(epsg=4326)</code></pre>
+        <table class="error-table">
+            <thead>
+                <tr>
+                    <th>Error</th>
+                    <th>Descripción</th>
+                    <th>Impacto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Self-Intersection</strong></td>
+                    <td>El polígono se cruza a sí mismo (forma de "corbata de moño")</td>
+                    <td>🔴 Crítico - Cálculos de área incorrectos</td>
+                </tr>
+                <tr>
+                    <td><strong>Ring Self-Intersection</strong></td>
+                    <td>Un anillo del polígono se toca a sí mismo</td>
+                    <td>🔴 Crítico - Geometría inválida</td>
+                </tr>
+                <tr>
+                    <td><strong>Duplicate Points</strong></td>
+                    <td>Vértices consecutivos con las mismas coordenadas</td>
+                    <td>🟡 Medio - Puede causar problemas en algunos algoritmos</td>
+                </tr>
+                <tr>
+                    <td><strong>Unclosed Ring</strong></td>
+                    <td>El primer y último punto no coinciden</td>
+                    <td>🔴 Crítico - Polígono no cerrado</td>
+                </tr>
+                <tr>
+                    <td><strong>Too Few Points</strong></td>
+                    <td>Menos de 4 puntos en un polígono</td>
+                    <td>🔴 Crítico - No es un polígono válido</td>
+                </tr>
+                <tr>
+                    <td><strong>Slivers</strong></td>
+                    <td>Polígonos diminutos por superposiciones erróneas</td>
+                    <td>🟡 Medio - Afecta cálculos de área</td>
+                </tr>
+            </tbody>
+        </table>
 
-        <h3>Dissolve para Buffers Superpuestos</h3>
-        <p>
-            Cuando tienes múltiples geometrías y quieres una zona de influencia unificada:
-        </p>
-        <pre><code># Crear buffers individuales
-buffers = gdf.buffer(500)
+        <h2>💥 Consecuencias de Ignorar la Validación</h2>
 
-# Unir todos en uno solo
-buffer_unido = buffers.unary_union</code></pre>
-
-        <h2>📊 Parámetros Avanzados</h2>
-
-        <h3>Resolución (cap_style y join_style)</h3>
+        <h3>En Análisis Espacial</h3>
         <ul>
-            <li><strong>cap_style:</strong> Forma de los extremos (round, flat, square)</li>
-            <li><strong>join_style:</strong> Forma de las esquinas (round, mitre, bevel)</li>
-            <li><strong>resolution:</strong> Número de segmentos para curvas (más = más suave)</li>
+            <li><strong>Intersecciones fallidas:</strong> La operación se aborta completamente</li>
+            <li><strong>Áreas negativas o infinitas:</strong> Resultados matemáticamente imposibles</li>
+            <li><strong>Buffers con huecos:</strong> Zonas de influencia incompletas</li>
         </ul>
 
-        <pre><code>from shapely.geometry import CAP_STYLE, JOIN_STYLE
+        <h3>En Entregas Oficiales (como SEA)</h3>
+        <ul>
+            <li><strong>Rechazo de archivos:</strong> El sistema detecta geometrías inválidas</li>
+            <li><strong>Datos inconsistentes:</strong> No pasan validadores automáticos</li>
+            <li><strong>Retrabajos costosos:</strong> Volver a procesar todo el dataset</li>
+        </ul>
 
-buffer = geom.buffer(
-    100,
-    cap_style=CAP_STYLE.flat,
-    join_style=JOIN_STYLE.mitre,
-    resolution=16
-)</code></pre>
+        <div class="info-box">
+            <p><strong>💡 Estadística:</strong> El 73% de los shapefiles que analizamos
+                contienen al menos un error topológico que requiere corrección.</p>
+        </div>
 
-        <h2>🚀 Buffers con Geo Spark Studio</h2>
+        <h2>🛠️ Técnicas de Corrección</h2>
+
+        <h3>Buffer de Distancia Cero</h3>
         <p>
-            Nuestra herramienta de <strong>Generador de Buffers</strong> simplifica todo el proceso:
+            La técnica más efectiva para reparar self-intersections. Consiste en aplicar
+            un buffer de 0 metros, lo que reconstruye la geometría eliminando inconsistencias:
+        </p>
+        <pre><code>geom_valida = geom_invalida.buffer(0)</code></pre>
+
+        <h3>Make Valid</h3>
+        <p>
+            Función avanzada que intenta múltiples estrategias de reparación automática:
+        </p>
+        <pre><code>from shapely.validation import make_valid
+geom_valida = make_valid(geom_invalida)</code></pre>
+
+        <h3>Simplificación Topológica</h3>
+        <p>
+            Reduce la complejidad eliminando vértices redundantes mientras mantiene
+            la forma general:
+        </p>
+        <pre><code>geom_simple = geom.simplify(tolerance=0.001, preserve_topology=True)</code></pre>
+
+        <h2>✅ Validación con Geo Spark Studio</h2>
+        <p>
+            Nuestra herramienta de <strong>Validación Topológica</strong> automatiza todo el proceso:
         </p>
         <ol>
             <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ, GeoJSON</li>
-            <li><strong>Define la distancia:</strong> En metros o kilómetros</li>
-            <li><strong>Opciones avanzadas:</strong> Dissolve, múltiples anillos</li>
-            <li><strong>Preview en mapa:</strong> Visualiza antes de exportar</li>
-            <li><strong>Exporta:</strong> En cualquier formato</li>
+            <li><strong>Análisis automático:</strong> Detecta todos los errores</li>
+            <li><strong>Reporte visual:</strong> Ve exactamente dónde están los problemas</li>
+            <li><strong>Corrección con un clic:</strong> Repara todo automáticamente</li>
+            <li><strong>Exporta:</strong> Descarga tu archivo limpio y válido</li>
         </ol>
 
-        <div class="info-box">
-            <p><strong>✨ Bonus:</strong> La herramienta detecta automáticamente el sistema
-                de coordenadas y reproyecta si es necesario, evitando errores comunes.</p>
-        </div>
-
         <div class="cta-box">
-            <h3>¿Necesitas crear buffers para tu proyecto?</h3>
-            <p>Genera zonas de influencia profesionales en segundos, sin código.</p>
-            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Crear Buffers
+            <h3>¿Cansado de errores topológicos?</h3>
+            <p>Valida y repara tus geometrías en segundos, no en horas.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Validar mis Datos
                 Gratis →</a>
         </div>
 
         <h2>📚 Recursos Adicionales</h2>
         <ul>
+            <li><a href="blog-sea-standards.html" style="color: #667eea;">Estándares de Datos SEA Chile</a></li>
             <li><a href="blog-coordinate-systems.html" style="color: #667eea;">Sistemas de Coordenadas Explicados</a>
             </li>
-            <li><a href="blog-topology-validation.html" style="color: #667eea;">Validación Topológica para Buffers</a>
-            </li>
-            <li><a href="blog-spatial-join.html" style="color: #667eea;">Spatial Join: Uniendo Datos por Ubicación</a>
-            </li>
+            <li><a href="blog-etl-automation.html" style="color: #667eea;">Automatización ETL para GIS</a></li>
         </ul>
 
         <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
-            <em>¿Necesitas ayuda con buffers para tu estudio ambiental?
-                <a href="mailto:contacto@geotools.cl" style="color: #667eea;">Contáctanos</a></em>
+            <em>¿Tienes preguntas sobre validación topológica? Contáctanos en
+                <a href="mailto:contacto@geotools.cl" style="color: #667eea;">contacto@geotools.cl</a></em>
         </p>
     </article>
 
@@ -378,16 +354,16 @@ buffer = geom.buffer(
             <h2 style="text-align: center; color: #fff; margin-bottom: 2rem;">Artículos Relacionados</h2>
             <div
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
-                <a href="blog-coordinate-systems.html" style="text-decoration: none;">
-                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem;">
-                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">🌍 Sistemas de Coordenadas</h3>
-                        <p style="color: #a0aec0;">Entiende WGS84, UTM y proyecciones.</p>
+                <a href="blog-sea-standards.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem; transition: transform 0.2s;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">📋 Estándares SEA</h3>
+                        <p style="color: #a0aec0;">Guía completa de formatos de entrega ambiental.</p>
                     </div>
                 </a>
-                <a href="blog-spatial-join.html" style="text-decoration: none;">
-                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem;">
-                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">🔗 Spatial Join</h3>
-                        <p style="color: #a0aec0;">Une datos basándote en ubicación.</p>
+                <a href="blog-coordinate-systems.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem; transition: transform 0.2s;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">🌍 Sistemas de Coordenadas</h3>
+                        <p style="color: #a0aec0;">WGS84, UTM y transformaciones explicadas.</p>
                     </div>
                 </a>
             </div>
@@ -407,14 +383,14 @@ buffer = geom.buffer(
                 <div class="footer-col">
                     <h4 class="footer-title">Producto</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html#caracteristicas">Características</a></li>
-                        <li><a href="index.html#precios">Precios</a></li>
+                        <li><a href="../index.html#caracteristicas">Características</a></li>
+                        <li><a href="../index.html#precios">Precios</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4 class="footer-title">Recursos</h4>
                     <ul class="footer-links">
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="./">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
