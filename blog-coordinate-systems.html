@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Guía completa sobre sistemas de coordenadas geográficas: WGS84, UTM, proyecciones locales. Aprende a transformar coordenadas correctamente.">
+    <title>Sistemas de Coordenadas: Guía WGS84, UTM y Proyecciones | Geo Spark Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .blog-content h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
+            color: #e2e8f0;
+            margin-top: 1.5rem;
+        }
+
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-content code {
+            background: #2d3748;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ffd700;
+        }
+
+        .blog-content pre {
+            background: #2d3748;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box p {
+            color: #fcd34d;
+            margin: 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: #334155;
+            color: #fff;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #334155;
+            color: #a0aec0;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .crs-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .crs-card.wgs84 {
+            border-color: #10b981;
+        }
+
+        .crs-card.utm {
+            border-color: #3b82f6;
+        }
+
+        .crs-card.local {
+            border-color: #f59e0b;
+        }
+
+        .crs-card h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .crs-card p {
+            color: #a0aec0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .crs-card code {
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#caracteristicas">Características</a></li>
+                    <li><a href="blog.html" style="color: #667eea;">Blog</a></li>
+                    <li><a href="index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="blog-header">
+        <div class="container">
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 10 Diciembre 2025</span>
+                    <span>📖 15 min lectura</span>
+                    <span>🏷️ CRS, Proyecciones, Tutorial</span>
+                </div>
+                <h1 class="blog-title">Sistemas de Coordenadas: Guía Completa WGS84, UTM y Proyecciones</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Domina los conceptos fundamentales de sistemas de referencia de coordenadas.
+                    Aprende cuándo usar cada sistema y cómo transformar entre ellos sin perder precisión.
+                </p>
+                <img src="img/blog_coordinate_systems.png" alt="Sistemas de Coordenadas" class="blog-header-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="blog-content">
+        <h2>🌍 ¿Qué es un Sistema de Coordenadas?</h2>
+        <p>
+            Un <strong>Sistema de Referencia de Coordenadas (CRS)</strong> es un método para identificar
+            ubicaciones en la superficie de la Tierra. Piensa en él como un "idioma" que define cómo
+            expresamos la posición de un punto geográfico.
+        </p>
+
+        <p>
+            Existen dos tipos principales:
+        </p>
+
+        <ul>
+            <li><strong>Sistemas Geográficos:</strong> Usan latitud y longitud (grados)</li>
+            <li><strong>Sistemas Proyectados:</strong> Usan coordenadas X, Y (metros)</li>
+        </ul>
+
+        <h2>📍 WGS84 (EPSG:4326)</h2>
+
+        <div class="crs-card wgs84">
+            <h4>🌐 World Geodetic System 1984</h4>
+            <p>El estándar global usado por GPS, Google Maps y la mayoría de aplicaciones web.</p>
+            <code>EPSG:4326 | Unidades: Grados decimales</code>
+        </div>
+
+        <p>
+            <strong>WGS84</strong> es el sistema de coordenadas más utilizado en el mundo.
+            Cuando tu GPS muestra coordenadas como <code>-33.4489, -70.6693</code>, está usando WGS84.
+        </p>
+
+        <h3>✅ Ventajas de WGS84</h3>
+        <ul>
+            <li>Estándar universal, compatible con casi todo</li>
+            <li>Perfecto para intercambio de datos</li>
+            <li>Requerido por el SEA de Chile</li>
+            <li>Funciona en cualquier parte del mundo</li>
+        </ul>
+
+        <h3>⚠️ Limitaciones de WGS84</h3>
+        <ul>
+            <li>No es ideal para calcular distancias o áreas</li>
+            <li>Las unidades (grados) no son intuitivas</li>
+            <li>Distorsión en cálculos métricos</li>
+        </ul>
+
+        <div class="warning-box">
+            <p><strong>⚠️ Error común:</strong> Calcular áreas directamente en WGS84 produce resultados
+                incorrectos. Siempre reproyecta a un sistema métrico (como UTM) antes de calcular áreas o distancias.
+            </p>
+        </div>
+
+        <h2>📐 UTM (Universal Transverse Mercator)</h2>
+
+        <div class="crs-card utm">
+            <h4>📏 Sistema de Proyección UTM</h4>
+            <p>Divide el mundo en 60 zonas, cada una con su propia proyección optimizada.</p>
+            <code>EPSG:32718 (Chile Zona 18S) | Unidades: Metros</code>
+        </div>
+
+        <p>
+            UTM es ideal para trabajos que requieren <strong>precisión métrica</strong>.
+            Chile se encuentra principalmente en las zonas UTM 18S y 19S.
+        </p>
+
+        <h3>Zonas UTM de Chile</h3>
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Zona</th>
+                        <th>EPSG</th>
+                        <th>Cobertura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UTM 18S</td>
+                        <td>EPSG:32718</td>
+                        <td>Chile Central y Sur (desde O'Higgins)</td>
+                    </tr>
+                    <tr>
+                        <td>UTM 19S</td>
+                        <td>EPSG:32719</td>
+                        <td>Norte Grande y Norte Chico</td>
+                    </tr>
+                    <tr>
+                        <td>UTM 12S</td>
+                        <td>EPSG:32712</td>
+                        <td>Isla de Pascua</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>✅ Cuándo usar UTM</h3>
+        <ul>
+            <li>Cálculo de áreas en hectáreas o m²</li>
+            <li>Medición de distancias precisas</li>
+            <li>Generación de buffers</li>
+            <li>Análisis espacial local</li>
+        </ul>
+
+        <h2>🔄 Transformación de Coordenadas</h2>
+        <p>
+            La transformación entre sistemas de coordenadas es una operación matemática compleja
+            que puede introducir errores si no se hace correctamente.
+        </p>
+
+        <h3>Ejemplo de transformación</h3>
+        <pre><code># WGS84 (grados decimales)
+Latitud: -33.4489
+Longitud: -70.6693
+
+# UTM 19S (metros)
+Este: 344,899
+Norte: 6,297,515</code></pre>
+
+        <div class="info-box">
+            <p><strong>💡 Consejo:</strong> Geo Spark Studio soporta más de 6,000 sistemas EPSG y
+                realiza transformaciones automáticas con alta precisión. Solo selecciona el CRS de origen
+                y destino.</p>
+        </div>
+
+        <h2>🇨🇱 Sistemas Locales de Chile</h2>
+
+        <div class="crs-card local">
+            <h4>🏛️ SIRGAS Chile / PSAD56</h4>
+            <p>Sistemas históricos y oficiales usados en cartografía nacional.</p>
+            <code>EPSG:5360 (SIRGAS-Chile) | EPSG:24879 (PSAD56)</code>
+        </div>
+
+        <p>
+            Aunque WGS84 es el estándar actual, muchos datos históricos en Chile están en:
+        </p>
+
+        <ul>
+            <li><strong>PSAD56:</strong> Sistema Provisional Sudamericano 1956 (datos antiguos del IGM)</li>
+            <li><strong>SAD69:</strong> South American Datum 1969</li>
+            <li><strong>SIRGAS:</strong> Sistema de Referencia Geocéntrico para las Américas (moderno)</li>
+        </ul>
+
+        <h2>🛠️ Flujo de Trabajo Recomendado</h2>
+
+        <ol>
+            <li>
+                <strong>Recepción de datos:</strong> Identifica el CRS original del archivo
+            </li>
+            <li>
+                <strong>Procesamiento local:</strong> Reproyecta a UTM para cálculos métricos
+            </li>
+            <li>
+                <strong>Análisis:</strong> Realiza buffers, cálculos de área, intersecciones
+            </li>
+            <li>
+                <strong>Entrega:</strong> Reproyecta a WGS84 para cumplir con estándares SEA
+            </li>
+        </ol>
+
+        <h2>🔧 Herramientas para Transformación</h2>
+
+        <h3>Opciones Tradicionales</h3>
+        <ul>
+            <li><strong>QGIS:</strong> Gratuito, pero requiere conocimiento técnico</li>
+            <li><strong>ArcGIS:</strong> Muy completo, pero costoso</li>
+            <li><strong>GDAL/ogr2ogr:</strong> Línea de comandos, poder total</li>
+        </ul>
+
+        <h3>La Solución Moderna: Geo Spark Studio</h3>
+        <p>
+            Nuestra herramienta simplifica todo el proceso:
+        </p>
+
+        <ul>
+            <li>✅ Detecta automáticamente el CRS de tus archivos</li>
+            <li>✅ Más de 6,000 sistemas EPSG disponibles</li>
+            <li>✅ Transformación en batch de múltiples archivos</li>
+            <li>✅ Preview en mapa interactivo</li>
+            <li>✅ Exportación en cualquier formato</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>Transforma Coordenadas sin Complicaciones</h3>
+            <p>Reproyecta tus datos geoespaciales en segundos con nuestra herramienta intuitiva.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Probar Transformador CRS →</a>
+        </div>
+
+        <h2>❓ Preguntas Frecuentes</h2>
+
+        <h3>¿Qué sistema debo usar para entregar al SEA?</h3>
+        <p>
+            El SEA requiere datos en <strong>WGS84 (EPSG:4326)</strong>.
+            Geo Spark Studio exporta automáticamente en este formato.
+        </p>
+
+        <h3>¿Cómo sé en qué CRS están mis datos?</h3>
+        <p>
+            Los archivos Shapefile incluyen un archivo <code>.prj</code> que define el CRS.
+            Geo Spark Studio lee esta información automáticamente al cargar el archivo.
+        </p>
+
+        <h3>¿Puedo perder precisión al transformar?</h3>
+        <p>
+            Las transformaciones modernas son muy precisas (errores menores a 1 metro).
+            Sin embargo, transformaciones entre datums muy diferentes (como PSAD56 a WGS84)
+            pueden requerir parámetros específicos para máxima precisión.
+        </p>
+
+        <h2>📚 Recursos Adicionales</h2>
+        <ul>
+            <li><a href="https://epsg.io/" target="_blank" style="color: #667eea;">EPSG.io - Buscador de sistemas de
+                    coordenadas</a></li>
+            <li><a href="blog-sea-standards.html" style="color: #667eea;">Estándares de datos SEA Chile</a></li>
+            <li><a href="blog-topology-validation.html" style="color: #667eea;">Validación topológica de geometrías</a>
+            </li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <em>¿Necesitas ayuda con transformación de coordenadas? Contáctanos en
+                <a href="mailto:contacto@geotools.cl" style="color: #667eea;">contacto@geotools.cl</a></em>
+        </p>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🗺️</span>
+                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#caracteristicas">Características</a></li>
+                        <li><a href="index.html#precios">Precios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contacto@geotools.cl">contacto@geotools.cl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/56956578733?text=Hola!%20Estoy%20interesado%20en%20Geo%20Spark%20Studio" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
+            <path d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z"/>
+        </svg>
+        <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
+    </a>
+    <style>.whatsapp-float{position:fixed;width:60px;height:60px;bottom:30px;right:30px;background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);color:#fff;border-radius:50%;text-align:center;font-size:28px;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s ease;animation:whatsapp-pulse 2s infinite}.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,0.6);animation:none}.whatsapp-float:hover .whatsapp-tooltip{opacity:1;visibility:visible;transform:translateX(-10px)}.whatsapp-tooltip{position:absolute;right:70px;background:#1e293b;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;white-space:nowrap;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.2)}.whatsapp-tooltip::after{content:'';position:absolute;right:-8px;top:50%;transform:translateY(-50%);border-width:8px 0 8px 8px;border-style:solid;border-color:transparent transparent transparent #1e293b}@keyframes whatsapp-pulse{0%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.7)}100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}}@media(max-width:768px){.whatsapp-float{width:55px;height:55px;bottom:20px;right:20px}.whatsapp-tooltip{display:none}}</style>
+</body>
+
+</html>
+
+

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario - Geo Spark Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+        }
+
+        body {
+            background: #0a0f1c;
+        }
+
+        .docs-layout {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .docs-sidebar {
+            width: var(--sidebar-width);
+            position: fixed;
+            left: 0;
+            top: 80px;
+            bottom: 0;
+            background: #111827;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+        }
+
+        .docs-sidebar h3 {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .docs-sidebar h3:first-child {
+            margin-top: 0;
+        }
+
+        .docs-sidebar a {
+            display: block;
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .docs-sidebar a:hover,
+        .docs-sidebar a.active {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+        }
+
+        .docs-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: 900px;
+        }
+
+        .docs-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .docs-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .docs-section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .docs-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 2rem 0 1rem;
+        }
+
+        .docs-section p {
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .docs-section ul,
+        .docs-section ol {
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .docs-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .docs-section code {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .code-block code {
+            background: transparent;
+            color: #e2e8f0;
+            display: block;
+            font-family: 'Consolas', monospace;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box.warning {
+            border-left-color: #f59e0b;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+        }
+
+        .info-box.success {
+            border-left-color: #10b981;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+        }
+
+        .step-card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-item {
+            background: #1e293b;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+        }
+
+        .faq-q {
+            padding: 1.25rem 1.5rem;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #3b82f6;
+        }
+
+        .faq-a {
+            padding: 0 1.5rem 1.25rem;
+            color: #94a3b8;
+            display: none;
+        }
+
+        .faq-item.open .faq-a {
+            display: block;
+        }
+
+        .faq-item.open .faq-q::after {
+            content: '−';
+        }
+
+        @media (max-width: 900px) {
+            .docs-sidebar {
+                display: none;
+            }
+
+            .docs-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content"><a href="index.html" class="logo"><span class="logo-icon">🗺️</span><span
+                        class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span></a><a
+                    href="index.html" class="btn btn-outline" style="margin-left:auto;">← Volver</a></div>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <h3>Introducción</h3>
+            <a href="#overview" class="active">¿Qué es Geo Spark Studio?</a>
+            <a href="#why-use">¿Por qué usarlo?</a>
+            <h3>Inicio Rápido</h3>
+            <a href="#getting-started">Guía de Inicio</a>
+            <a href="#first-steps">Primeros Pasos</a>
+            <a href="#hello-world">Tu Primer Proceso</a>
+            <h3>Tutoriales</h3>
+            <a href="#tutorial-etl">ETL Básico</a>
+            <a href="#tutorial-crs">Transformar Coordenadas</a>
+            <a href="#tutorial-buffer">Crear Buffers</a>
+            <h3>Referencia</h3>
+            <a href="#onboarding">Crear Cuenta</a>
+            <a href="#upgrade">Actualizar a Pro</a>
+            <h3>Ayuda</h3>
+            <a href="#faq">FAQ</a>
+            <a href="#support">Soporte</a>
+        </aside>
+
+        <main class="docs-content">
+            <section class="docs-section" id="overview">
+                <h1>📚 Manual de Usuario</h1>
+                <h2>¿Qué es Geo Spark Studio?</h2>
+                <p><strong>Geo Spark Studio</strong> es una plataforma profesional de herramientas GIS en la nube que
+                    permite transformar, estandarizar y procesar datos geoespaciales de manera rápida y eficiente.</p>
+                <div class="info-box success">
+                    <strong>✨ Características principales:</strong>
+                    <ul style="margin:0.5rem 0 0;padding-left:1.25rem;">
+                        <li>Estandarización ETL con 137 estándares SEA predefinidos</li>
+                        <li>Transformación de coordenadas (6,000+ sistemas EPSG)</li>
+                        <li>Generador de buffers para puntos, líneas y polígonos</li>
+                        <li>Validador topológico con reparación automática</li>
+                        <li>Calculadora geométrica de áreas y perímetros</li>
+                        <li>Cruce espacial (Spatial Join)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="docs-section" id="why-use">
+                <h2>¿Por qué usar Geo Spark Studio?</h2>
+                <ul>
+                    <li><strong>Ahorra tiempo:</strong> Procesos que tomaban horas ahora toman minutos</li>
+                    <li><strong>Sin instalación:</strong> Funciona 100% en la nube desde tu navegador</li>
+                    <li><strong>Estándares chilenos:</strong> Cumple con normativas SEA de Chile</li>
+                    <li><strong>Múltiples formatos:</strong> Soporta SHP, KML, KMZ, CSV, Excel</li>
+                    <li><strong>Resultados precisos:</strong> Algoritmos profesionales de alta precisión</li>
+                </ul>
+            </section>
+
+            <section class="docs-section" id="getting-started">
+                <h2>🚀 Guía de Inicio Rápido</h2>
+                <p>Comienza a usar Geo Spark Studio en menos de 5 minutos siguiendo estos pasos:</p>
+
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Accede a la aplicación</h4>
+                        <p>Visita <a href="https://geosparkstudio.streamlit.app"
+                                style="color:#3b82f6;">geosparkstudio.streamlit.app</a> desde tu navegador.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Crea una cuenta gratuita</h4>
+                        <p>Haz clic en "Registrarse" e ingresa tu email y contraseña.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Sube tu primer archivo</h4>
+                        <p>Arrastra y suelta un archivo SHP, KML, KMZ, CSV o Excel.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Selecciona el proceso</h4>
+                        <p>Elige entre ETL, transformación CRS, buffers, etc.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Descarga los resultados</h4>
+                        <p>Exporta en el formato que necesites (SHP, KML, GeoJSON).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="docs-section" id="first-steps">
+                <h2>Primeros Pasos (Onboarding)</h2>
+                <h3>Crear una cuenta</h3>
+                <ol>
+                    <li>Accede a la aplicación en <code>geosparkstudio.streamlit.app</code></li>
+                    <li>Haz clic en el botón <strong>"Registrarse"</strong></li>
+                    <li>Ingresa tu correo electrónico válido</li>
+                    <li>Crea una contraseña segura (mínimo 8 caracteres)</li>
+                    <li>Confirma tu correo si es requerido</li>
+                </ol>
+                <h3>Configurar tu perfil</h3>
+                <p>Una vez dentro, puedes personalizar tu experiencia:</p>
+                <ul>
+                    <li>Accede a <strong>Configuración</strong> desde el menú lateral</li>
+                    <li>Actualiza tu nombre y organización</li>
+                    <li>Configura las preferencias de exportación por defecto</li>
+                </ul>
+            </section>
+
+            <section class="docs-section" id="hello-world">
+                <h2>Tu Primer Proceso ("Hola Mundo")</h2>
+                <div class="info-box">
+                    <strong>💡 Ejercicio práctico:</strong> Vamos a estandarizar un archivo de prueba en menos de 2
+                    minutos.
+                </div>
+                <ol>
+                    <li>Descarga el <a href="#" style="color:#3b82f6;">archivo de ejemplo</a> (CSV con coordenadas)</li>
+                    <li>En la app, selecciona <strong>"ETL Estandarización"</strong></li>
+                    <li>Arrastra el archivo CSV al área de carga</li>
+                    <li>Mapea las columnas de coordenadas (ESTE/NORTE o X/Y)</li>
+                    <li>Selecciona el estándar SEA deseado</li>
+                    <li>Haz clic en <strong>"Procesar"</strong></li>
+                    <li>¡Descarga tu Shapefile estandarizado!</li>
+                </ol>
+            </section>
+
+            <section class="docs-section" id="tutorial-etl">
+                <h2>📖 Tutorial: ETL Básico</h2>
+                <p>El módulo ETL permite convertir y estandarizar datos a formatos compatibles con SEA.</p>
+                <h3>Formatos de entrada soportados</h3>
+                <ul>
+                    <li><strong>Shapefile (.shp):</strong> Incluye .shp, .dbf, .shx, .prj</li>
+                    <li><strong>KML/KMZ:</strong> Archivos de Google Earth</li>
+                    <li><strong>CSV/Excel:</strong> Con columnas de coordenadas</li>
+                </ul>
+                <h3>Proceso paso a paso</h3>
+                <ol>
+                    <li>Selecciona el módulo <strong>ETL Estandarización</strong></li>
+                    <li>Carga tu archivo fuente</li>
+                    <li>Revisa la previsualización de datos</li>
+                    <li>Selecciona el estándar SEA de destino (ej: "l_vialidad")</li>
+                    <li>Mapea los campos: arrastra campos origen a campos destino</li>
+                    <li>Configura el sistema de coordenadas de salida</li>
+                    <li>Ejecuta el proceso y descarga</li>
+                </ol>
+            </section>
+
+            <section class="docs-section" id="tutorial-crs">
+                <h2>📖 Tutorial: Transformar Coordenadas</h2>
+                <p>Convierte datos entre diferentes sistemas de referencia espacial.</p>
+                <h3>Sistemas más comunes en Chile</h3>
+                <div class="code-block"><code>EPSG:4326 - WGS84 (Latitud/Longitud)
+EPSG:32718 - UTM Zona 18S
+EPSG:32719 - UTM Zona 19S
+EPSG:5361 - SIRGAS Chile 2002</code></div>
+                <h3>Cómo transformar</h3>
+                <ol>
+                    <li>Carga tu archivo geoespacial</li>
+                    <li>Selecciona el CRS de origen (o usa detección automática)</li>
+                    <li>Elige el CRS de destino</li>
+                    <li>Visualiza la transformación en el mapa</li>
+                    <li>Exporta el resultado</li>
+                </ol>
+            </section>
+
+            <section class="docs-section" id="tutorial-buffer">
+                <h2>📖 Tutorial: Crear Buffers</h2>
+                <p>Genera zonas de influencia alrededor de geometrías.</p>
+                <ol>
+                    <li>Carga un archivo con puntos, líneas o polígonos</li>
+                    <li>Ingresa la distancia del buffer (ej: 100 metros)</li>
+                    <li>Selecciona las unidades (metros, kilómetros)</li>
+                    <li>Previsualiza el resultado en el mapa interactivo</li>
+                    <li>Exporta como Shapefile o GeoJSON</li>
+                </ol>
+                <div class="info-box warning">
+                    <strong>⚠️ Importante:</strong> Para buffers precisos en metros, asegúrate de que tus datos estén en
+                    un sistema proyectado (UTM) y no en coordenadas geográficas.
+                </div>
+            </section>
+
+            <section class="docs-section" id="onboarding">
+                <h2>Crear Cuenta y Configurar Perfil</h2>
+                <h3>Registro</h3>
+                <p>El registro es gratuito y te da acceso a:</p>
+                <ul>
+                    <li>5 archivos procesados por día</li>
+                    <li>ETL estandarización básica</li>
+                    <li>Exportación a SHP, KML, KMZ</li>
+                    <li>Soporte por comunidad</li>
+                </ul>
+                <h3>Actualizar a Plan Pro</h3>
+                <p>El Plan Pro ($8.990/mes) incluye:</p>
+                <ul>
+                    <li>Archivos ilimitados</li>
+                    <li>Todas las herramientas avanzadas</li>
+                    <li>Soporte prioritario 24/7</li>
+                    <li>Acceso a API</li>
+                </ul>
+            </section>
+
+            <section class="docs-section" id="upgrade">
+                <h2>Actualizar a Plan Pro</h2>
+                <ol>
+                    <li>Inicia sesión en tu cuenta</li>
+                    <li>Ve a <strong>Configuración → Plan</strong></li>
+                    <li>Selecciona <strong>"Actualizar a Pro"</strong></li>
+                    <li>Completa el pago con tarjeta o transferencia</li>
+                    <li>¡Disfruta de todas las funciones!</li>
+                </ol>
+            </section>
+
+            <section class="docs-section" id="faq">
+                <h2>❓ Preguntas Frecuentes (FAQ)</h2>
+
+                <div class="faq-item open">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué formatos de archivo
+                        soporta la plataforma?</div>
+                    <div class="faq-a">Soportamos Shapefile (.shp), KML, KMZ, CSV, y Excel (.xlsx, .xls). Para
+                        Shapefiles, asegúrate de subir todos los archivos componentes (.shp, .dbf, .shx, .prj).</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Mis datos están seguros?
+                    </div>
+                    <div class="faq-a">Sí. Los archivos se procesan de forma segura y se eliminan automáticamente
+                        después de la sesión. No almacenamos datos permanentemente sin tu consentimiento.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuántos archivos puedo
+                        procesar gratis?</div>
+                    <div class="faq-a">El plan gratuito permite procesar hasta 5 archivos por día. Para uso ilimitado,
+                        considera el Plan Pro.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo usar la herramienta
+                        offline?</div>
+                    <div class="faq-a">No, Geo Spark Studio es una aplicación web que requiere conexión a internet. Esto
+                        garantiza que siempre tengas la versión más actualizada.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cómo obtengo soporte
+                        técnico?</div>
+                    <div class="faq-a">Puedes contactarnos por <a href="mailto:contacto@geospark.cl"
+                            style="color:#3b82f6;">contacto@geospark.cl</a> o WhatsApp al +56 9 5657 8733. Los usuarios
+                        Pro tienen soporte prioritario 24/7.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué son los estándares
+                        SEA?</div>
+                    <div class="faq-a">Son las especificaciones técnicas del Servicio de Evaluación Ambiental de Chile
+                        para la entrega de información geoespacial en proyectos ambientales. Tenemos 137 estándares
+                        predefinidos.</div>
+                </div>
+            </section>
+
+            <section class="docs-section" id="support">
+                <h2>📞 Soporte</h2>
+                <p>¿Necesitas ayuda adicional? Contáctanos:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:contacto@geospark.cl"
+                            style="color:#3b82f6;">contacto@geospark.cl</a></li>
+                    <li><strong>WhatsApp:</strong> <a href="https://wa.me/56956578733" style="color:#3b82f6;">+56 9 5657
+                            8733</a></li>
+                    <li><strong>Horario:</strong> Lunes a Viernes, 9:00 - 18:00 (Chile)</li>
+                </ul>
+                <div class="info-box success">
+                    <strong>🎓 Recursos adicionales:</strong>
+                    <ul style="margin:0.5rem 0 0;padding-left:1.25rem;">
+                        <li><a href="blog.html" style="color:#10b981;">Blog con tutoriales</a></li>
+                        <li><a href="https://geosparkstudio.streamlit.app" style="color:#10b981;">Probar la
+                                aplicación</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
