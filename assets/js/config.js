@@ -5,7 +5,7 @@
 // en el panel de administración de Streamlit
 // =====================================================
 
-const PRECIO_PRO = "$8.990";  // ← CAMBIA ESTE VALOR
+const PRECIO_PRO = "$10.990";  // ← CAMBIA ESTE VALOR
 
 // =====================================================
 // NO MODIFICAR DEBAJO DE ESTA LÍNEA
