@@ -5,8 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Guía completa sobre sistemas de coordenadas geográficas: WGS84, UTM, proyecciones locales. Aprende a transformar coordenadas correctamente.">
+        content="Guía completa sobre sistemas de coordenadas geográficas: WGS84, UTM, proyecciones locales de Chile. Aprende a transformar coordenadas correctamente con ejemplos prácticos.">
+    <meta name="keywords"
+        content="sistemas coordenadas, WGS84, UTM, EPSG, proyecciones GIS, Chile, SIRGAS, transformación CRS">
+    <meta name="author" content="Geo Spark Studio">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ramirezmaps.github.io/geosparkstudio/blog/blog-coordinate-systems.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ramirezmaps.github.io/geosparkstudio/blog/blog-coordinate-systems.html">
+    <meta property="og:title" content="Sistemas de Coordenadas: Guía Completa WGS84, UTM y Proyecciones">
+    <meta property="og:description"
+        content="Domina los conceptos de CRS. Aprende cuándo usar WGS84, UTM o proyecciones locales y cómo transformar sin perder precisión.">
+    <meta property="og:image"
+        content="https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_coordinate_systems.png">
+    <meta property="og:locale" content="es_CL">
+    <meta property="article:published_time" content="2025-12-10">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sistemas de Coordenadas: WGS84, UTM y Proyecciones">
+    <meta name="twitter:description"
+        content="Guía completa para entender y transformar sistemas de coordenadas geográficas.">
+    <meta name="twitter:image"
+        content="https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_coordinate_systems.png">
+
     <title>Sistemas de Coordenadas: Guía WGS84, UTM y Proyecciones | Geo Spark Studio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -245,7 +277,8 @@
                     Domina los conceptos fundamentales de sistemas de referencia de coordenadas.
                     Aprende cuándo usar cada sistema y cómo transformar entre ellos sin perder precisión.
                 </p>
-                <img src="../assets/images/blog_coordinate_systems.png" alt="Sistemas de Coordenadas" class="blog-header-image">
+                <img src="../assets/images/blog_coordinate_systems.png" alt="Sistemas de Coordenadas"
+                    class="blog-header-image">
             </div>
         </div>
     </header>
@@ -434,7 +467,8 @@ Norte: 6,297,515</code></pre>
         <div class="cta-box">
             <h3>Transforma Coordenadas sin Complicaciones</h3>
             <p>Reproyecta tus datos geoespaciales en segundos con nuestra herramienta intuitiva.</p>
-            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Probar Transformador CRS →</a>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Probar Transformador CRS
+                →</a>
         </div>
 
         <h2>❓ Preguntas Frecuentes</h2>
@@ -510,19 +544,101 @@ Norte: 6,297,515</code></pre>
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/56956578733?text=Hola!%20Estoy%20interesado%20en%20Geo%20Spark%20Studio" 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/56956578733?text=Hola!%20Estoy%20interesado%20en%20Geo%20Spark%20Studio"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
-            <path d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z"/>
+            <path
+                d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z" />
         </svg>
         <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
     </a>
-    <style>.whatsapp-float{position:fixed;width:60px;height:60px;bottom:30px;right:30px;background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);color:#fff;border-radius:50%;text-align:center;font-size:28px;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s ease;animation:whatsapp-pulse 2s infinite}.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,0.6);animation:none}.whatsapp-float:hover .whatsapp-tooltip{opacity:1;visibility:visible;transform:translateX(-10px)}.whatsapp-tooltip{position:absolute;right:70px;background:#1e293b;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;white-space:nowrap;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.2)}.whatsapp-tooltip::after{content:'';position:absolute;right:-8px;top:50%;transform:translateY(-50%);border-width:8px 0 8px 8px;border-style:solid;border-color:transparent transparent transparent #1e293b}@keyframes whatsapp-pulse{0%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.7)}100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}}@media(max-width:768px){.whatsapp-float{width:55px;height:55px;bottom:20px;right:20px}.whatsapp-tooltip{display:none}}</style>
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: whatsapp-pulse 2s infinite
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            animation: none
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10px)
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #1e293b;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2)
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 0 8px 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent #1e293b
+        }
+
+        @keyframes whatsapp-pulse {
+            0% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4)
+            }
+
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7)
+            }
+
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4)
+            }
+        }
+
+        @media(max-width:768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px
+            }
+
+            .whatsapp-tooltip {
+                display: none
+            }
+        }
+    </style>
 </body>
 
 </html>
-
-

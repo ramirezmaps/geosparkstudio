@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Conoce a Geo Spark Studio: empresa chilena especializada en herramientas GIS profesionales para la automatización de procesos geoespaciales y cumplimiento de estándares SEA.">
+    <meta name="keywords"
+        content="Geo Spark Studio, empresa GIS Chile, sobre nosotros, equipo geoespacial, tecnología GIS">
+    <meta name="author" content="Geo Spark Studio">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ramirezmaps.github.io/geosparkstudio/pages/sobre-nosotros.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ramirezmaps.github.io/geosparkstudio/pages/sobre-nosotros.html">
+    <meta property="og:title" content="Sobre Nosotros - Geo Spark Studio">
+    <meta property="og:description"
+        content="Conoce al equipo detrás de Geo Spark Studio y nuestra misión de democratizar las herramientas GIS profesionales.">
+    <meta property="og:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png">
+    <meta property="og:locale" content="es_CL">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sobre Nosotros - Geo Spark Studio">
+    <meta name="twitter:description" content="Conoce al equipo detrás de Geo Spark Studio.">
+    <meta name="twitter:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png">
+
+    <title>Sobre Nosotros - Geo Spark Studio | Equipo y Misión</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Geo Spark Studio",
+        "url": "https://ramirezmaps.github.io/geosparkstudio/",
+        "logo": "https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png",
+        "description": "Herramientas profesionales de GIS en la nube para transformar y estandarizar datos geoespaciales",
+        "foundingDate": "2024",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Santiago",
+            "addressRegion": "Región Metropolitana",
+            "addressCountry": "CL"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+56-9-5657-8733",
+            "contactType": "customer service",
+            "email": "contacto@geospark.cl",
+            "availableLanguage": ["Spanish"]
+        },
+        "sameAs": [
+            "https://geosparkstudio.streamlit.app"
+        ],
+        "knowsAbout": [
+            "GIS",
+            "Sistemas de Información Geográfica",
+            "ETL Geoespacial",
+            "Estándares SEA Chile",
+            "Python",
+            "GeoPandas"
+        ]
+    }
+    </script>
+
+    <style>
+        body {
+            background: #0a0f1c;
+        }
+
+        .about-hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a1f36 100%);
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #fa709a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-hero p {
+            color: #a0aec0;
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mission-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-card h3 {
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .mission-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .values-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(250, 112, 154, 0.05) 100%);
+            padding: 4rem 0;
+        }
+
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .value-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .value-content h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-content p {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .expertise-section {
+            padding: 4rem 0;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .expertise-badge {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .expertise-badge span {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .expertise-badge p {
+            color: #e2e8f0;
+            font-weight: 600;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .contact-cta h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-list {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <a href="../index.html" class="btn btn-outline" style="margin-left:auto;">← Volver</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="about-hero">
+        <div class="container">
+            <h1>Sobre Geo Spark Studio</h1>
+            <p>
+                Somos una empresa chilena dedicada a democratizar el acceso a herramientas GIS profesionales.
+                Nuestra misión es simplificar procesos geoespaciales complejos para que cualquier profesional
+                pueda trabajar con datos geográficos de manera eficiente.
+            </p>
+        </div>
+    </header>
+
+    <!-- Mission Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2>Nuestra Misión</h2>
+            <p>
+                Creemos que las herramientas GIS profesionales no deberían requerir licencias costosas
+                ni curvas de aprendizaje interminables. Por eso desarrollamos soluciones en la nube que
+                automatizan tareas repetitivas y permiten a los profesionales enfocarse en lo que realmente importa:
+                el análisis y la toma de decisiones.
+            </p>
+
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Simplificar</h3>
+                    <p>Convertimos procesos GIS complejos en flujos de trabajo intuitivos de pocos clics.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">⚡</div>
+                    <h3>Automatizar</h3>
+                    <p>Reducimos horas de trabajo manual a minutos con procesamiento inteligente.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">✅</div>
+                    <h3>Estandarizar</h3>
+                    <p>Garantizamos cumplimiento con normativas como el SEA de Chile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2>Nuestros Valores</h2>
+            <div class="values-list">
+                <div class="value-item">
+                    <span class="value-icon">🔬</span>
+                    <div class="value-content">
+                        <h4>Precisión Técnica</h4>
+                        <p>Cada algoritmo es probado exhaustivamente para garantizar resultados confiables en proyectos
+                            reales.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🤝</span>
+                    <div class="value-content">
+                        <h4>Cercanía con el Usuario</h4>
+                        <p>Desarrollamos basándonos en feedback real de profesionales GIS chilenos y latinoamericanos.
+                        </p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🌱</span>
+                    <div class="value-content">
+                        <h4>Mejora Continua</h4>
+                        <p>Cada semana agregamos nuevas funcionalidades y optimizamos las existentes.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🔐</span>
+                    <div class="value-content">
+                        <h4>Seguridad de Datos</h4>
+                        <p>Tus archivos se procesan de forma segura y se eliminan automáticamente después de cada
+                            sesión.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise-section">
+        <div class="container">
+            <h2>Nuestra Experiencia</h2>
+            <p>
+                Combinamos conocimiento profundo en sistemas de información geográfica con desarrollo de software
+                moderno.
+                Nuestro stack tecnológico incluye Python, GeoPandas, Shapely, Streamlit y más.
+            </p>
+
+            <div class="expertise-grid">
+                <div class="expertise-badge">
+                    <span>🗺️</span>
+                    <p>Sistemas GIS</p>
+                </div>
+                <div class="expertise-badge">
+                    <span>🐍</span>
+                    <p>Python</p>
+                </div>
+                <div class="expertise-badge">
+                    <span>📊</span>
+                    <p>Análisis Espacial</p>
+                </div>
+                <div class="expertise-badge">
+                    <span>🏛️</span>
+                    <p>Normativas SEA</p>
+                </div>
+                <div class="expertise-badge">
+                    <span>☁️</span>
+                    <p>Cloud Computing</p>
+                </div>
+                <div class="expertise-badge">
+                    <span>🔄</span>
+                    <p>ETL de Datos</p>
+                </div>
+                <div class="expertise-badge">
+                    <span>📐</span>
+                    <p>Topología</p>
+                </div>
+                <div class="expertise-badge">
+                    <span>🌍</span>
+                    <p>Proyecciones CRS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="container">
+        <div class="contact-cta">
+            <h2>¿Tienes un proyecto GIS?</h2>
+            <p>Estamos aquí para ayudarte. Contáctanos para consultas, soporte o proyectos personalizados.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large"
+                style="background: #fff; color: #667eea;">
+                Probar Geo Spark Studio
+            </a>
+            <div class="contact-info">
+                <a href="mailto:contacto@geospark.cl">📧 contacto@geospark.cl</a>
+                <a href="tel:+56956578733">📞 +56 9 5657 8733</a>
+                <a href="https://wa.me/56956578733" target="_blank" rel="noopener">💬 WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="terminos.html">Términos de Servicio</a>
+                    <a href="privacidad.html">Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -5,25 +5,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Geo Spark Studio - Herramientas profesionales de GIS en la nube. Transforma, estandariza y procesa datos geoespaciales en minutos.">
-    <meta name="keywords" content="GIS, SIG, ETL, datos geoespaciales, transformación coordenadas, buffer, mapas">
+        content="Geo Spark Studio - Herramientas profesionales de GIS en la nube. Transforma, estandariza y procesa datos geoespaciales en minutos. ETL automático, transformación de coordenadas, buffers y más.">
+    <meta name="keywords"
+        content="GIS, SIG, ETL, datos geoespaciales, transformación coordenadas, buffer, mapas, SEA, Chile, shapefile, KML">
     <meta name="author" content="Geo Spark Studio">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ramirezmaps.github.io/geosparkstudio/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Geo Spark Studio - Herramientas GIS Profesionales">
-    <meta property="og:description" content="Transforma datos geoespaciales con inteligencia y precisión">
+    <meta property="og:url" content="https://ramirezmaps.github.io/geosparkstudio/">
+    <meta property="og:title" content="Geo Spark Studio - Herramientas GIS Profesionales en la Nube">
+    <meta property="og:description"
+        content="Transforma, estandariza y procesa datos geoespaciales en minutos. Suite completa de herramientas GIS profesionales: ETL automático, transformación CRS, buffers y más.">
+    <meta property="og:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_CL">
+    <meta property="og:site_name" content="Geo Spark Studio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Geo Spark Studio - Herramientas GIS Profesionales">
+    <meta name="twitter:description"
+        content="Transforma datos geoespaciales con inteligencia y precisión. ETL automático, transformación CRS, buffers y validación topológica.">
+    <meta name="twitter:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png">
 
     <title>Geo Spark Studio - Herramientas GIS Profesionales en la Nube</title>
 
-    <!-- Google Fonts -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" as="image" href="assets/images/hero_dashboard.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts with display swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="assets/js/config.js" defer></script>
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Geo Spark Studio",
+        "url": "https://ramirezmaps.github.io/geosparkstudio/",
+        "logo": "https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png",
+        "description": "Herramientas profesionales de GIS en la nube para transformar y estandarizar datos geoespaciales",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Santiago",
+            "addressCountry": "CL"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+56-9-5657-8733",
+            "contactType": "customer service",
+            "email": "contacto@geospark.cl",
+            "availableLanguage": ["Spanish"]
+        },
+        "sameAs": [
+            "https://geosparkstudio.streamlit.app"
+        ]
+    }
+    </script>
+
+    <!-- Structured Data - SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Geo Spark Studio",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "GIS Software",
+        "operatingSystem": "Web Browser",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Plan Gratuito",
+                "price": "0",
+                "priceCurrency": "CLP",
+                "description": "5 archivos por día, ETL básico"
+            },
+            {
+                "@type": "Offer",
+                "name": "Plan Pro",
+                "price": "10990",
+                "priceCurrency": "CLP",
+                "description": "Archivos ilimitados, todas las herramientas"
+            }
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1000",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "featureList": [
+            "Estandarización ETL automática",
+            "Transformación de coordenadas (6000+ EPSG)",
+            "Generador de buffers",
+            "Validador topológico",
+            "Calculadora geométrica",
+            "Cruce espacial (Spatial Join)"
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -35,13 +133,28 @@
                     <span class="logo-icon">🗺️</span>
                     <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
                 </div>
-                <ul class="nav-menu">
+
+                <!-- Mobile Menu Toggle -->
+                <div class="nav-toggle" id="navToggle" aria-label="Menú de navegación" role="button" tabindex="0">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#caracteristicas">Características</a></li>
                     <li><a href="blog/">Blog</a></li>
                     <li><a href="#precios">Precios</a></li>
                     <li><a href="#contacto">Contacto</a></li>
+                    <!-- Mobile Actions (inside menu) -->
+                    <div class="nav-actions mobile">
+                        <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                        <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                    </div>
                 </ul>
+
+                <!-- Desktop Actions -->
                 <div class="nav-actions">
                     <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
                     <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
@@ -49,6 +162,38 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function () {
+                    navToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close menu when clicking on a link
+                navMenu.querySelectorAll('a').forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        navToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+
+                // Close menu on escape key
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                        navToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
@@ -75,7 +220,9 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="assets/images/hero_dashboard.png" alt="Geo Spark Studio Dashboard" style="
+                    <img src="assets/images/hero_dashboard.png"
+                        alt="Panel de control de Geo Spark Studio mostrando herramientas GIS profesionales para estandarización ETL, transformación de coordenadas y generación de buffers"
+                        width="600" height="400" fetchpriority="high" decoding="async" style="
                         width: 100%;
                         max-width: 600px;
                         border-radius: 16px;
@@ -411,9 +558,11 @@
                         y estandarizar datos geoespaciales.
                     </p>
                     <div class="social-links">
-                        <a href="pages/proximamente.html" class="social-link" title="Integraciones - Próximamente">🔗</a>
+                        <a href="pages/proximamente.html" class="social-link"
+                            title="Integraciones - Próximamente">🔗</a>
                         <a href="pages/proximamente.html" class="social-link" title="Newsletter - Próximamente">📧</a>
-                        <a href="pages/proximamente.html" class="social-link" title="Redes Sociales - Próximamente">🐦</a>
+                        <a href="pages/proximamente.html" class="social-link"
+                            title="Redes Sociales - Próximamente">🐦</a>
                     </div>
                 </div>
 
@@ -445,8 +594,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
                 <div class="footer-legal">
-                    <a href="https://geosparkstudio.streamlit.app">Términos de Servicio</a>
-                    <a href="https://geosparkstudio.streamlit.app">Privacidad</a>
+                    <a href="pages/sobre-nosotros.html">Sobre Nosotros</a>
+                    <a href="pages/terminos.html">Términos de Servicio</a>
+                    <a href="pages/privacidad.html">Privacidad</a>
                 </div>
             </div>
         </div>

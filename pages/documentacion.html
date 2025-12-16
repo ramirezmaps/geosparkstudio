@@ -4,11 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual de Usuario - Geo Spark Studio</title>
+    <meta name="description"
+        content="Manual de usuario completo de Geo Spark Studio. Aprende a usar ETL automático, transformación de coordenadas, buffers, validación topológica y más herramientas GIS profesionales.">
+    <meta name="keywords"
+        content="manual GIS, tutorial Geo Spark, documentación geoespacial, guía ETL, SEA Chile, transformación coordenadas">
+    <meta name="author" content="Geo Spark Studio">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ramirezmaps.github.io/geosparkstudio/pages/documentacion.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ramirezmaps.github.io/geosparkstudio/pages/documentacion.html">
+    <meta property="og:title" content="Manual de Usuario - Geo Spark Studio">
+    <meta property="og:description"
+        content="Guía completa para usar Geo Spark Studio. Tutoriales de ETL, transformación CRS, buffers y validación topológica.">
+    <meta property="og:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png">
+    <meta property="og:locale" content="es_CL">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual de Usuario - Geo Spark Studio">
+    <meta name="twitter:description"
+        content="Guía completa para usar Geo Spark Studio. Tutoriales de ETL, transformación CRS y más.">
+    <meta name="twitter:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png">
+
+    <title>Manual de Usuario - Geo Spark Studio | Documentación GIS</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <!-- Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Qué formatos de archivo soporta la plataforma?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Soportamos Shapefile (.shp), KML, KMZ, CSV, y Excel (.xlsx, .xls). Para Shapefiles, asegúrate de subir todos los archivos componentes (.shp, .dbf, .shx, .prj)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Mis datos están seguros?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí. Los archivos se procesan de forma segura y se eliminan automáticamente después de la sesión. No almacenamos datos permanentemente sin tu consentimiento."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cuántos archivos puedo procesar gratis?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "El plan gratuito permite procesar hasta 5 archivos por día. Para uso ilimitado, considera el Plan Pro."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Puedo usar la herramienta offline?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, Geo Spark Studio es una aplicación web que requiere conexión a internet. Esto garantiza que siempre tengas la versión más actualizada."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cómo obtengo soporte técnico?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puedes contactarnos por contacto@geospark.cl o WhatsApp al +56 9 5657 8733. Los usuarios Pro tienen soporte prioritario 24/7."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué son los estándares SEA?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Son las especificaciones técnicas del Servicio de Evaluación Ambiental de Chile para la entrega de información geoespacial en proyectos ambientales. Tenemos 137 estándares predefinidos."
+                }
+            }
+        ]
+    }
+    </script>
     <style>
         :root {
             --sidebar-width: 280px;
@@ -82,6 +171,7 @@
             font-weight: 800;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
         }
@@ -374,7 +464,9 @@
                     minutos.
                 </div>
                 <ol>
-                    <li>Descarga el <a href="#" style="color:#3b82f6;">archivo de ejemplo</a> (CSV con coordenadas)</li>
+                    <li>Prepara un archivo CSV con coordenadas <span style="color:#3b82f6; cursor:help;"
+                            title="Cualquier CSV con columnas de coordenadas X/Y o ESTE/NORTE">(cualquier archivo con
+                            coordenadas)</span></li>
                     <li>En la app, selecciona <strong>"ETL Estandarización"</strong></li>
                     <li>Arrastra el archivo CSV al área de carga</li>
                     <li>Mapea las columnas de coordenadas (ESTE/NORTE o X/Y)</li>
