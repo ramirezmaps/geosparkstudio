@@ -843,6 +843,15 @@ body {
     }
 }
 
+/* ===== NAV TOGGLE & MOBILE (Desktop hidden by default) ===== */
+.nav-toggle {
+    display: none;
+}
+
+.nav-actions.mobile {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
@@ -884,7 +893,7 @@ body {
     }
 
     .nav-toggle {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         gap: 5px;
         cursor: pointer;
@@ -914,11 +923,11 @@ body {
     }
 
     .nav-actions {
-        display: none;
+        display: none !important;
     }
 
     .nav-actions.mobile {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         gap: var(--spacing-sm);
         margin-top: var(--spacing-md);
@@ -945,14 +954,4 @@ body {
         gap: var(--spacing-md);
         text-align: center;
     }
-}
-
-/* ===== NAV TOGGLE (Desktop hidden) ===== */
-.nav-toggle {
-    display: none;
-}
-
-/* ===== MOBILE NAV ACTIONS (Desktop hidden) ===== */
-.nav-actions.mobile {
-    display: none;
 }
