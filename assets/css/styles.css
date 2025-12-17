@@ -844,12 +844,9 @@ body {
 }
 
 /* ===== NAV TOGGLE & MOBILE (Desktop hidden by default) ===== */
-.nav-toggle {
-    display: none;
-}
-
+.nav-toggle,
 .nav-actions.mobile {
-    display: none;
+    display: none !important;
 }
 
 @media (max-width: 768px) {
