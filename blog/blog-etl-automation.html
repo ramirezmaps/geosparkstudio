@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Automatización ETL en GIS: Descubre cómo ahorrar horas de trabajo manual con estandarización automática de datos geoespaciales usando Geo Spark Studio.">
+    <meta name="keywords"
+        content="ETL GIS, automatización datos geoespaciales, estandarización SEA, Geo Spark Studio, shapefiles">
+    <meta name="author" content="Estanislao Ramirez">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ramirezmaps.github.io/geosparkstudio/blog/blog-etl-automation.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ramirezmaps.github.io/geosparkstudio/blog/blog-etl-automation.html">
+    <meta property="og:title" content="Automatización ETL en GIS: Ahorrando horas de trabajo manual">
+    <meta property="og:description"
+        content="Descubre cómo la estandarización automática de datos geoespaciales puede reducir tiempos de procesamiento de horas a minutos.">
+    <meta property="og:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_etl_header.png">
+    <meta property="og:locale" content="es_CL">
+    <meta property="article:author" content="Estanislao Ramirez">
+    <meta property="article:published_time" content="2025-12-09">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Automatización ETL en GIS">
+    <meta name="twitter:description"
+        content="Ahorra horas de trabajo con estandarización automática de datos geoespaciales.">
+    <meta name="twitter:image" content="https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_etl_header.png">
+
+    <title>Automatización ETL en GIS: Ahorrando horas de trabajo | Geo Spark Studio Blog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <!-- Structured Data - Article -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Automatización ETL en GIS: Ahorrando horas de trabajo manual",
+        "description": "Descubre cómo la estandarización automática de datos geoespaciales puede reducir tiempos de procesamiento de horas a minutos, eliminando errores humanos.",
+        "image": "https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_etl_header.png",
+        "author": {
+            "@type": "Person",
+            "name": "Estanislao Ramirez"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Geo Spark Studio",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png"
+            }
+        },
+        "datePublished": "2025-12-09",
+        "dateModified": "2025-12-09",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ramirezmaps.github.io/geosparkstudio/blog/blog-etl-automation.html"
+        }
+    }
+    </script>
+    <style>
+        .article-header {
+            padding: var(--spacing-xxl) 0;
+            background: var(--bg-main);
+            text-align: center;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-xxl) var(--spacing-md);
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .article-meta {
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            font-size: 0.9rem;
+        }
+
+        .article-body {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-dark);
+        }
+
+        .article-body p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .article-body ul {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .share-links {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#inicio">Inicio</a></li>
+                    <li><a href="../index.html#caracteristicas">Características</a></li>
+                    <li><a href="./" style="color: #667eea;">Blog</a></li>
+                    <li><a href="../index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container">
+            <h1 class="hero-title" style="font-size: 2.5rem;">Automatización ETL en GIS: Ahorrando horas de trabajo
+                manual</h1>
+            <div class="article-meta">
+                <span>📅 09 Dic 2025</span>
+                <span>👤 Estanislao Ramirez</span>
+                <span>⏱️ 5 min lectura</span>
+            </div>
+            <img src="../assets/images/blog_etl_header.png"
+                alt="Automatización ETL en GIS - Flujo de trabajo de estandarización de datos geoespaciales"
+                loading="lazy" decoding="async" width="800" height="400"
+                style="max-width: 100%; border-radius: 12px; margin-top: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <div class="article-body">
+            <p>
+                En el mundo de los Sistemas de Información Geográfica (GIS), la preparación de datos suele consumir
+                hasta el <strong>80% del tiempo de un proyecto</strong>. Nombres de campos inconsistentes, proyecciones
+                incorrectas y errores de topología son el pan de cada día para los analistas geoespaciales.
+            </p>
+
+            <h2>El Problema de la Estandarización Manual</h2>
+            <p>
+                Imagina que recibes shapefiles de 10 fuentes diferentes. Algunos usan "Longitud", otros "LONG", otros
+                "X". Unificar esto manualmente no solo es tedioso, sino propenso a errores humanos que pueden costar
+                caro en la etapa de análisis.
+            </p>
+            <p>
+                Los desafíos más comunes incluyen:
+            </p>
+            <ul>
+                <li>Inconsistencia en nombres y tipos de atributos.</li>
+                <li>Geometrías inválidas (self-intersections).</li>
+                <li>Sistemas de Coordenadas (CRS) mezclados.</li>
+            </ul>
+
+            <h2>La Solución: ETL Automatizado</h2>
+            <p>
+                Con herramientas como <strong>Geo Spark Studio</strong>, el proceso de Extract, Transform, Load (ETL) se
+                vuelve transparente. Nuestra plataforma permite definir un esquema maestro (como el estándar SEA) y
+                automáticamente mapear, corregir y validar cualquier archivo de entrada (SHP, KML, Excel) contra ese
+                estándar.
+            </p>
+
+            <h2>Resultados Reales</h2>
+            <p>
+                Nuestros usuarios reportan una reducción del tiempo de procesamiento de 4 horas a menos de 5 minutos por
+                lote de archivos. Esto permite a los profesionales GIS enfocarse en lo que realmente importa: <strong>el
+                    análisis espacial y la toma de decisiones</strong>.
+            </p>
+        </div>
+
+        <div class="share-links">
+            <strong>Compartir:</strong>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog/blog-etl-automation.html"
+                target="_blank" rel="noopener noreferrer" class="btn-link">LinkedIn</a>
+            <a href="https://twitter.com/intent/tweet?url=https://ramirezmaps.github.io/geosparkstudio/blog/blog-etl-automation.html&text=Automatización%20ETL%20en%20GIS"
+                target="_blank" rel="noopener noreferrer" class="btn-link">Twitter</a>
+            <a href="./" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🗺️</span>
+                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html#caracteristicas">Características</a></li>
+                        <li><a href="../index.html#precios">Precios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="./">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contacto@geotools.cl">contacto@geotools.cl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/56956578733?text=Hola!%20Estoy%20interesado%20en%20Geo%20Spark%20Studio"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
+            <path
+                d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z" />
+        </svg>
+        <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
+    </a>
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: whatsapp-pulse 2s infinite
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            animation: none
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10px)
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #1e293b;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2)
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 0 8px 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent #1e293b
+        }
+
+        @keyframes whatsapp-pulse {
+            0% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4)
+            }
+
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7)
+            }
+
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4)
+            }
+        }
+
+        @media(max-width:768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px
+            }
+
+            .whatsapp-tooltip {
+                display: none
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+# robots.txt - Geo Spark Studio
+# https://geosparkstudio.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Bloquear directorios no públicos
+Disallow: /scripts/
+Disallow: /docs/
+
+# Bloquear páginas en desarrollo
+Disallow: /pages/proximamente.html
+
+# Sitemap
+Sitemap: https://ramirezmaps.github.io/geosparkstudio/sitemap.xml
+
+# Crawl-delay (opcional, para ser amable con el servidor)
+Crawl-delay: 1

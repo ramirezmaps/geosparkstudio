@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Guía completa sobre Spatial Join en GIS. Aprende a unir datos basándote en relaciones espaciales como intersects, contains y within con GeoPandas.">
+    <meta name="keywords" content="Spatial Join, GeoPandas, unión espacial, GIS, análisis espacial, Python, sjoin">
+    <meta name="author" content="Geo Spark Studio">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://ramirezmaps.github.io/geosparkstudio/blog/blog-spatial-join.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ramirezmaps.github.io/geosparkstudio/blog/blog-spatial-join.html">
+    <meta property="og:title" content="Spatial Join: Une Datos por Ubicación Geográfica">
+    <meta property="og:description"
+        content="Domina la técnica más poderosa para combinar datasets GIS basándote en relaciones espaciales.">
+    <meta property="og:image"
+        content="https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_spatial_join.png">
+    <meta property="og:locale" content="es_CL">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Spatial Join: Unión Espacial en GIS">
+    <meta name="twitter:description" content="Aprende a combinar datasets basándote en ubicación geográfica.">
+    <meta name="twitter:image"
+        content="https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_spatial_join.png">
+
+    <title>Spatial Join: Une Datos por Ubicación Geográfica | Geo Spark Studio</title>
+
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .blog-content h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
+            color: #e2e8f0;
+            margin-top: 1.5rem;
+        }
+
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-content code {
+            background: #2d3748;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ffd700;
+        }
+
+        .blog-content pre {
+            background: #2d3748;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .predicate-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .predicate-table th {
+            background: #334155;
+            color: #fff;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .predicate-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #334155;
+            color: #a0aec0;
+        }
+
+        .example-diagram {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .example-diagram h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .diagram-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .dataset {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+
+        .dataset h5 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .dataset p {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: #10b981;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#inicio">Inicio</a></li>
+                    <li><a href="../index.html#caracteristicas">Características</a></li>
+                    <li><a href="./" style="color: #667eea;">Blog</a></li>
+                    <li><a href="../index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="blog-header">
+        <div class="container">
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 11 Diciembre 2025</span>
+                    <span>📖 10 min lectura</span>
+                    <span>🏷️ Spatial Join, Análisis Espacial, Python</span>
+                </div>
+                <h1 class="blog-title">Spatial Join: Une Datos por Ubicación Geográfica</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Domina la técnica más poderosa para combinar datasets GIS.
+                    Aprende a transferir atributos basándote en relaciones espaciales.
+                </p>
+                <img src="../assets/images/blog_spatial_join.png" alt="Spatial Join GIS" class="blog-header-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="blog-content">
+        <h2>🎯 ¿Qué es un Spatial Join?</h2>
+        <p>
+            Un <strong>Spatial Join</strong> (unión espacial) es una operación que combina dos
+            capas GIS basándose en su relación geográfica en lugar de un campo común. Es como
+            un JOIN de SQL, pero usando la ubicación como criterio de unión.
+        </p>
+
+        <div class="example-diagram">
+            <h4>Ejemplo: ¿En qué comuna está cada punto de muestreo?</h4>
+            <div class="diagram-visual">
+                <div class="dataset">
+                    <h5>📍 Puntos</h5>
+                    <p>ID: 1, Especie: X</p>
+                    <p>ID: 2, Especie: Y</p>
+                    <p>ID: 3, Especie: Z</p>
+                </div>
+                <span class="arrow">+</span>
+                <div class="dataset">
+                    <h5>🗺️ Comunas</h5>
+                    <p>Santiago</p>
+                    <p>Providencia</p>
+                    <p>Las Condes</p>
+                </div>
+                <span class="arrow">→</span>
+                <div class="dataset" style="border: 2px solid #10b981;">
+                    <h5>✅ Resultado</h5>
+                    <p>ID: 1, Especie: X, <strong>Santiago</strong></p>
+                    <p>ID: 2, Especie: Y, <strong>Providencia</strong></p>
+                    <p>ID: 3, Especie: Z, <strong>Las Condes</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <h2>🔗 Tipos de Relaciones Espaciales (Predicados)</h2>
+
+        <table class="predicate-table">
+            <thead>
+                <tr>
+                    <th>Predicado</th>
+                    <th>Significado</th>
+                    <th>Uso Común</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>intersects</strong></td>
+                    <td>Las geometrías se tocan o superponen</td>
+                    <td>El más común y versátil</td>
+                </tr>
+                <tr>
+                    <td><strong>contains</strong></td>
+                    <td>A contiene completamente a B</td>
+                    <td>Puntos dentro de polígonos</td>
+                </tr>
+                <tr>
+                    <td><strong>within</strong></td>
+                    <td>A está completamente dentro de B</td>
+                    <td>Inverso de contains</td>
+                </tr>
+                <tr>
+                    <td><strong>touches</strong></td>
+                    <td>Las geometrías se tocan en el borde</td>
+                    <td>Parcelas adyacentes</td>
+                </tr>
+                <tr>
+                    <td><strong>crosses</strong></td>
+                    <td>Las geometrías se cruzan</td>
+                    <td>Ríos que cruzan comunas</td>
+                </tr>
+                <tr>
+                    <td><strong>overlaps</strong></td>
+                    <td>Superposición parcial</td>
+                    <td>Zonas de conflicto</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>💻 Implementación en Python</h2>
+
+        <h3>Spatial Join Básico con GeoPandas</h3>
+        <pre><code>import geopandas as gpd
+
+# Cargar datos
+puntos = gpd.read_file("muestreos.shp")
+comunas = gpd.read_file("comunas.shp")
+
+# Spatial Join: ¿En qué comuna está cada punto?
+resultado = gpd.sjoin(
+    puntos,           # Capa izquierda (la que recibe atributos)
+    comunas,          # Capa derecha (la que aporta atributos)
+    how="left",       # Tipo de join
+    predicate="intersects"  # Relación espacial
+)
+
+print(resultado.columns)
+# ['id', 'especie', 'geometry', 'NOM_COMUNA', 'REGION', ...]</code></pre>
+
+        <h3>Tipos de How (Método de Unión)</h3>
+        <ul>
+            <li><strong>left:</strong> Mantiene todas las geometrías de la izquierda (como LEFT JOIN)</li>
+            <li><strong>right:</strong> Mantiene todas las geometrías de la derecha</li>
+            <li><strong>inner:</strong> Solo geometrías que tienen match (intersección)</li>
+        </ul>
+
+        <div class="info-box">
+            <p><strong>💡 Tip:</strong> Si un punto cae exactamente en el límite entre dos
+                polígonos, puede aparecer duplicado. Usa <code>how="left"</code> y luego
+                <code>drop_duplicates()</code> para manejarlo.
+            </p>
+        </div>
+
+        <h2>📊 Casos de Uso Reales</h2>
+
+        <h3>🌿 Estudios Ambientales</h3>
+        <ul>
+            <li>Asignar puntos de muestreo a unidades vegetacionales</li>
+            <li>Determinar en qué área protegida está cada observación</li>
+            <li>Identificar qué especies se encuentran en zonas de proyecto</li>
+        </ul>
+
+        <h3>🏙️ Urbanismo</h3>
+        <ul>
+            <li>Calcular cuántos habitantes hay por zona censal</li>
+            <li>Asignar permisos de construcción a barrios</li>
+            <li>Analizar cobertura de servicios por sector</li>
+        </ul>
+
+        <h3>📈 Análisis de Negocio</h3>
+        <ul>
+            <li>Asignar clientes a zonas de venta</li>
+            <li>Determinar qué tienda está más cerca de cada dirección</li>
+            <li>Análisis de mercado por territorio</li>
+        </ul>
+
+        <h2>⚡ Optimización de Rendimiento</h2>
+
+        <h3>Índice Espacial</h3>
+        <p>
+            GeoPandas usa índices R-tree automáticamente, pero para datasets muy grandes
+            puedes optimizar:
+        </p>
+        <pre><code># Asegurar que ambos GeoDataFrames tengan el mismo CRS
+puntos = puntos.to_crs(comunas.crs)
+
+# El spatial join usará índice automáticamente
+resultado = gpd.sjoin(puntos, comunas, predicate="within")</code></pre>
+
+        <h3>Chunk Processing para Big Data</h3>
+        <pre><code>import pandas as pd
+
+# Procesar en lotes para datasets grandes
+chunks = np.array_split(puntos, 10)
+results = []
+
+for chunk in chunks:
+    joined = gpd.sjoin(chunk, comunas, predicate="intersects")
+    results.append(joined)
+
+resultado_final = pd.concat(results)</code></pre>
+
+        <h2>🛠️ Spatial Join Nearest (Vecino más Cercano)</h2>
+        <p>
+            Cuando no hay intersección pero quieres asignar al polígono más cercano:
+        </p>
+        <pre><code># Disponible en GeoPandas 0.10+
+resultado = gpd.sjoin_nearest(
+    puntos,
+    comunas,
+    how="left",
+    max_distance=1000  # Máximo 1km
+)</code></pre>
+
+        <h2>✅ Spatial Join con Geo Spark Studio</h2>
+        <p>
+            Nuestra herramienta de <strong>Cruce Espacial</strong> hace todo esto sin código:
+        </p>
+        <ol>
+            <li><strong>Carga dos archivos:</strong> El que recibe y el que aporta datos</li>
+            <li><strong>Selecciona el predicado:</strong> intersects, contains, within...</li>
+            <li><strong>Elige los campos:</strong> Qué atributos transferir</li>
+            <li><strong>Preview:</strong> Verifica el resultado antes de exportar</li>
+            <li><strong>Exporta:</strong> En cualquier formato</li>
+        </ol>
+
+        <div class="cta-box">
+            <h3>¿Necesitas combinar datasets GIS?</h3>
+            <p>Realiza Spatial Joins profesionales sin escribir código.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Probar Cruce
+                Espacial →</a>
+        </div>
+
+        <h2>📚 Recursos Adicionales</h2>
+        <ul>
+            <li><a href="blog-buffers.html" style="color: #667eea;">Buffers: Zonas de Influencia</a></li>
+            <li><a href="blog-coordinate-systems.html" style="color: #667eea;">Sistemas de Coordenadas Explicados</a>
+            </li>
+            <li><a href="blog-topology-validation.html" style="color: #667eea;">Validación Topológica</a></li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <em>¿Tienes preguntas sobre Spatial Join?
+                <a href="mailto:contacto@geotools.cl" style="color: #667eea;">Contáctanos</a></em>
+        </p>
+    </article>
+
+    <!-- Related Articles -->
+    <section style="background: #1e293b; padding: 4rem 0;">
+        <div class="container">
+            <h2 style="text-align: center; color: #fff; margin-bottom: 2rem;">Artículos Relacionados</h2>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+                <a href="blog-buffers.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">📏 Buffers GIS</h3>
+                        <p style="color: #a0aec0;">Crea zonas de influencia profesionales.</p>
+                    </div>
+                </a>
+                <a href="blog-sea-standards.html" style="text-decoration: none;">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem;">
+                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">📋 Estándares SEA</h3>
+                        <p style="color: #a0aec0;">Formatos de entrega ambiental Chile.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🗺️</span>
+                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html#caracteristicas">Características</a></li>
+                        <li><a href="../index.html#precios">Precios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="./">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contacto@geotools.cl">contacto@geotools.cl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/56956578733?text=Hola!%20Estoy%20interesado%20en%20Geo%20Spark%20Studio"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
+            <path
+                d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z" />
+        </svg>
+        <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
+    </a>
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: whatsapp-pulse 2s infinite
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            animation: none
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10px)
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #1e293b;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2)
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 0 8px 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent #1e293b
+        }
+
+        @keyframes whatsapp-pulse {
+            0% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4)
+            }
+
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7)
+            }
+
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4)
+            }
+        }
+
+        @media(max-width:768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px
+            }
+
+            .whatsapp-tooltip {
+                display: none
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Página Principal -->
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/hero_dashboard.png</image:loc>
+      <image:title>Geo Spark Studio Dashboard</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Documentación -->
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/pages/documentacion.html</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Blog Hub -->
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/</loc>
+    <lastmod>2025-12-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Artículos del Blog -->
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/blog-sea-standards.html</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_sea_standards.png</image:loc>
+      <image:title>Estándares SEA para datos geoespaciales</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/blog-coordinate-systems.html</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_coordinate_systems.png</image:loc>
+      <image:title>Sistemas de Coordenadas WGS84 y UTM</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/blog-etl-automation.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_etl_header.png</image:loc>
+      <image:title>Automatización ETL en GIS</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/blog-topology-validation.html</loc>
+    <lastmod>2025-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_topology.png</image:loc>
+      <image:title>Validación Topológica GIS</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/blog-streamlit-gis.html</loc>
+    <lastmod>2025-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_streamlit_gis.png</image:loc>
+      <image:title>Streamlit y GIS</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/blog-buffers.html</loc>
+    <lastmod>2025-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_buffers.png</image:loc>
+      <image:title>Buffers y Zonas de Influencia GIS</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/blog/blog-spatial-join.html</loc>
+    <lastmod>2025-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ramirezmaps.github.io/geosparkstudio/assets/images/blog_spatial_join.png</image:loc>
+      <image:title>Spatial Join en GIS</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Páginas Legales -->
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/pages/sobre-nosotros.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/pages/terminos.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://ramirezmaps.github.io/geosparkstudio/pages/privacidad.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+</urlset>
