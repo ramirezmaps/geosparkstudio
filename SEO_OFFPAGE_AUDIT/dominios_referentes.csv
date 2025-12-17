@@ -1,0 +1,32 @@
+# TRACKING DE DOMINIOS REFERENTES
+# Sitio: ramirezmaps.github.io/geosparkstudio
+# Fecha de inicio: 2024-12-17
+#
+# Instrucciones:
+# - Exportar datos desde Ahrefs/SEMrush y mapear a estas columnas
+# - Actualizar mensualmente
+# - Destacar dominios de alta autoridad para proteger
+#
+dominio,domain_rating,domain_authority,trust_flow,total_backlinks,dofollow,nofollow,primera_deteccion,ultima_verificacion,tipo_sitio,relevancia_tematica,ubicacion_geografica,idioma,pagina_enlace,anchor_text_principal,contexto_enlace,estado,notas
+# Ejemplo de entrada:
+# github.com,94,95,86,2,2,0,2024-12-17,2024-12-17,repositorio,alta,global,multi,README.md,Geo Spark Studio,recurso,activo,Link desde repo relacionado
+#
+# CAMPOS EXPLICADOS:
+# - dominio: Dominio raíz que enlaza
+# - domain_rating: DR de Ahrefs (0-100)
+# - domain_authority: DA de Moz (0-100)
+# - trust_flow: TF de Majestic (0-100)
+# - total_backlinks: Número de enlaces desde este dominio
+# - dofollow: Enlaces dofollow
+# - nofollow: Enlaces nofollow
+# - primera_deteccion: Fecha cuando se detectó el enlace
+# - ultima_verificacion: Última vez que se verificó activo
+# - tipo_sitio: blog, noticias, directorio, foro, institucional, comercial, etc.
+# - relevancia_tematica: alta, media, baja
+# - ubicacion_geografica: país o región del dominio
+# - idioma: idioma principal del sitio
+# - pagina_enlace: URL específica donde está el enlace
+# - anchor_text_principal: Texto de ancla más común
+# - contexto_enlace: editorial, recurso, comentario, perfil, sidebar, footer
+# - estado: activo, perdido, roto
+# - notas: Observaciones adicionales

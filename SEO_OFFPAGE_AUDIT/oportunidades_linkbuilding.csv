@@ -1,0 +1,52 @@
+# OPORTUNIDADES DE LINK BUILDING
+# Sitio: ramirezmaps.github.io/geosparkstudio
+# Fecha de inicio: 2024-12-17
+#
+# Instrucciones:
+# - Identificar oportunidades de diferentes fuentes
+# - Priorizar por potencial de éxito y valor SEO
+# - Hacer seguimiento del proceso de outreach
+#
+sitio_objetivo,url_contacto,domain_authority,tipo_oportunidad,relevancia_tematica,dificultad_estimada,valor_potencial,contacto,email,fecha_identificacion,fecha_outreach,estado_outreach,seguimiento,resultado,url_enlace_obtenido,notas
+#
+# === DIRECTORIOS DE SOFTWARE GIS ===
+esri.com/arcgis-marketplace,marketplace.esri.com,89,directorio,alta,alta,muy_alto,Partner Program,partners@esri.com,2024-12-17,,,pendiente,,,Registrar como partner/herramienta complementaria
+gisgeography.com/gis-software,gisgeography.com/contact,65,listado,alta,media,alto,Editor,contact@gisgeography.com,2024-12-17,,,pendiente,,,Solicitar inclusión en lista de herramientas GIS
+alternativeto.net,alternativeto.net/software/geo-spark-studio,58,directorio,media,baja,medio,User Submit,N/A,2024-12-17,,,pendiente,,,Auto-submit de software
+capterra.com,capterra.com/vendors,72,directorio,media,baja,alto,Vendor Portal,vendors@capterra.com,2024-12-17,,,pendiente,,,Registro como vendor de software
+g2.com,g2.com/products,68,directorio,media,baja,alto,Product Listing,listing@g2.com,2024-12-17,,,pendiente,,,Crear página de producto
+#
+# === BLOGS Y PUBLICACIONES GIS ===
+gislounge.com,gislounge.com/write-for-us,55,guest_post,alta,media,alto,Editor,editor@gislounge.com,2024-12-17,,,pendiente,,,Guest post sobre ETL geoespacial
+geospatialworld.net,geospatialworld.net/contributor,62,guest_post,alta,media,alto,Content Team,content@geospatialworld.net,2024-12-17,,,pendiente,,,Artículo sobre herramientas cloud GIS
+thinkgeo.com/blog,thinkgeo.com/contact,48,mencion,alta,media,medio,Blog Editor,blog@thinkgeo.com,2024-12-17,,,pendiente,,,Proponer colaboración de contenido
+mapscaping.com,mapscaping.com/contact,52,podcast,alta,media,alto,Host,daniel@mapscaping.com,2024-12-17,,,pendiente,,,Participación en podcast GIS
+#
+# === COMUNIDADES Y FOROS ===
+gis.stackexchange.com,gis.stackexchange.com,75,participacion,alta,baja,medio,Comunidad,N/A,2024-12-17,,,pendiente,,,Responder preguntas, perfilar
+reddit.com/r/gis,reddit.com/r/gis,92,participacion,alta,baja,medio,Comunidad,N/A,2024-12-17,,,pendiente,,,Participación genuina, compartir recursos
+#
+# === INSTITUCIONES Y EDUCACIÓN ===
+ide.cl,ide.cl/contacto,55,partnership,alta,alta,muy_alto,Coordinador,contacto@ide.cl,2024-12-17,,,pendiente,,,Proponer integración/colaboración
+mma.gob.cl,mma.gob.cl/contacto,68,recurso,alta,muy_alta,muy_alto,SEA,sea@mma.gob.cl,2024-12-17,,,pendiente,,,Posicionar como herramienta para cumplimiento SEA
+#
+# === ASOCIACIONES PROFESIONALES ===
+aag.org,aag.org/resources,62,recurso,alta,alta,alto,Resources Editor,resources@aag.org,2024-12-17,,,pendiente,,,Inclusión en recursos para profesionales
+#
+# CAMPOS EXPLICADOS:
+# - sitio_objetivo: Dominio del sitio objetivo
+# - url_contacto: URL de la página de contacto o submission
+# - domain_authority: DA del sitio objetivo
+# - tipo_oportunidad: directorio, guest_post, mencion, partnership, recurso, participacion, podcast
+# - relevancia_tematica: alta, media, baja
+# - dificultad_estimada: baja, media, alta, muy_alta
+# - valor_potencial: bajo, medio, alto, muy_alto
+# - contacto: Nombre o rol del contacto
+# - email: Email de contacto
+# - fecha_identificacion: Cuándo se identificó la oportunidad
+# - fecha_outreach: Fecha del primer contacto
+# - estado_outreach: pendiente, contactado, en_negociacion, aceptado, rechazado
+# - seguimiento: Notas de seguimiento
+# - resultado: Resultado final
+# - url_enlace_obtenido: URL donde quedó el enlace (si se obtuvo)
+# - notas: Información adicional

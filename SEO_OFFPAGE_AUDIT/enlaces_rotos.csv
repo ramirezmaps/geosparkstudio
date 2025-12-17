@@ -1,0 +1,34 @@
+# TRACKING DE ENLACES ROTOS PARA RECUPERACIÓN
+# Sitio: ramirezmaps.github.io/geosparkstudio
+# Fecha de inicio: 2024-12-17
+#
+# Instrucciones:
+# - Monitorear regularmente con herramientas de backlinks
+# - Priorizar recuperación por autoridad del dominio
+# - Documentar intentos de contacto
+#
+url_destino,url_origen,dominio_origen,domain_authority,codigo_error,tipo_error,fecha_deteccion,anchor_text,contexto,contacto_webmaster,fecha_contacto,respuesta,estado_recuperacion,accion_tomada,notas
+# Ejemplo de entrada:
+# /old-page,https://blog.example.com/post,blog.example.com,45,404,not_found,2024-12-17,herramientas GIS,editorial,admin@example.com,2024-12-18,pendiente,en_proceso,redirección creada,Contenido movido a nueva URL
+#
+# CAMPOS EXPLICADOS:
+# - url_destino: URL del sitio que ya no funciona
+# - url_origen: URL completa de la página que enlaza
+# - dominio_origen: Dominio raíz de la página que enlaza
+# - domain_authority: DA del dominio de origen
+# - codigo_error: 404, 410, 500, 503, timeout, etc.
+# - tipo_error: not_found, gone, server_error, timeout
+# - fecha_deteccion: Cuándo se detectó el enlace roto
+# - anchor_text: Texto de ancla del enlace
+# - contexto: Contexto del enlace (editorial, lista, etc.)
+# - contacto_webmaster: Email del webmaster del sitio origen
+# - fecha_contacto: Fecha de intento de contacto
+# - respuesta: pendiente, sin_respuesta, positiva, negativa
+# - estado_recuperacion: pendiente, en_proceso, recuperado, descartado
+# - accion_tomada: Descripción de la acción (redirección, nuevo contenido, etc.)
+# - notas: Información adicional
+#
+# PRIORIDADES DE RECUPERACIÓN:
+# 1. Alta: DA > 50, contexto editorial
+# 2. Media: DA 30-50, cualquier contexto
+# 3. Baja: DA < 30

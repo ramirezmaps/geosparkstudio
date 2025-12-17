@@ -1,0 +1,65 @@
+# ============================================================
+# ARCHIVO DISAVOW - GEO SPARK STUDIO
+# ============================================================
+# Sitio: https://ramirezmaps.github.io/geosparkstudio/
+# Fecha de creación: 2024-12-17
+# Última actualización: 2024-12-17
+# ============================================================
+#
+# INSTRUCCIONES DE USO:
+# 1. Este archivo está listo para subir a Google Search Console
+# 2. Ir a: https://search.google.com/search-console/disavow-links
+# 3. Seleccionar la propiedad del sitio
+# 4. Subir este archivo
+#
+# FORMATO:
+# - Líneas que comienzan con # son comentarios
+# - Para desautorizar un dominio completo: domain:ejemplo.com
+# - Para desautorizar una URL específica: https://ejemplo.com/pagina
+#
+# ADVERTENCIA:
+# - Usar con precaución, puede afectar rankings
+# - Solo agregar dominios confirmados como spam/tóxicos
+# - Revisar regularmente y actualizar según sea necesario
+#
+# ============================================================
+# DOMINIOS CRÍTICOS - DESAUTORIZAR INMEDIATAMENTE
+# ============================================================
+# Agregar aquí dominios confirmados como link farms o PBNs
+# Ejemplo:
+# domain:spam-farm-example.com
+# domain:pbn-network-example.net
+
+# ============================================================
+# DOMINIOS DE ALTO RIESGO - SPAM CONFIRMADO
+# ============================================================
+# Agregar aquí dominios con alto spam score (>60) verificado
+# Ejemplo:
+# domain:low-quality-spam.org
+# domain:scraped-content-site.info
+
+# ============================================================
+# URLs ESPECÍFICAS - ENLACES TÓXICOS INDIVIDUALES
+# ============================================================
+# Agregar aquí URLs específicas en lugar de dominios completos
+# cuando solo algunas páginas son problemáticas
+# Ejemplo:
+# https://legitimate-site.com/spammy-page-with-bad-link
+
+# ============================================================
+# DOMINIOS EN OBSERVACIÓN - REVISAR EN PRÓXIMA AUDITORÍA
+# ============================================================
+# (Comentados hasta confirmar que deben desautorizarse)
+# Ejemplo:
+# # domain:suspicious-but-unconfirmed.com
+
+# ============================================================
+# NOTAS DE AUDITORÍA
+# ============================================================
+# [2024-12-17] Archivo creado - Perfil limpio, sin dominios
+#              tóxicos identificados en análisis inicial.
+#              Requiere verificación con Ahrefs/SEMrush.
+#
+# [YYYY-MM-DD] Agregar notas de futuras actualizaciones aquí
+#
+# ============================================================

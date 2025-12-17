@@ -1,0 +1,30 @@
+# LISTA DE DOMINIOS SPAM PARA DESAUTORIZAR
+# Sitio: ramirezmaps.github.io/geosparkstudio
+# Fecha de generación: 2024-12-17
+# NOTA: Esta lista requiere actualización con datos de herramientas profesionales
+#
+# Instrucciones:
+# 1. Ejecutar análisis en Ahrefs/SEMrush para identificar dominios tóxicos
+# 2. Agregar dominios con Spam Score > 60 o Toxic Score alto
+# 3. Revisar manualmente antes de agregar al archivo disavow.txt
+# 4. Priorizar por nivel de toxicidad (Crítico > Alto > Medio)
+#
+dominio,spam_score,toxic_score,tipo_toxicidad,nivel_riesgo,referencing_pages,fecha_deteccion,accion_recomendada,notas
+# === DOMINIOS CRÍTICOS (Desautorizar inmediatamente) ===
+# Agregar aquí dominios con spam_score > 80 o evidencia de PBN/Link Farm
+# Ejemplo: spam-directory.com,95,98,link_farm,critico,15,2024-12-17,disavow,Confirmado como link farm
+#
+# === DOMINIOS ALTO RIESGO (Revisar y desautorizar) ===
+# Agregar aquí dominios con spam_score 60-80
+# Ejemplo: low-quality-blog.net,72,75,contenido_spam,alto,3,2024-12-17,disavow,Contenido duplicado detectado
+#
+# === DOMINIOS MEDIO RIESGO (Monitorear) ===
+# Agregar aquí dominios con spam_score 40-60
+# Ejemplo: questionable-site.org,55,48,calidad_baja,medio,1,2024-12-17,monitorear,Verificar evolución
+#
+# === DOMINIOS BAJO RIESGO (Mantener observación) ===
+# Agregar aquí dominios con spam_score 20-40 que requieren seguimiento
+# Ejemplo: new-site.info,35,30,nuevo,bajo,1,2024-12-17,observar,Sitio nuevo sin historial
+#
+# === PLANTILLA PARA NUEVAS ENTRADAS ===
+# dominio.com,score,toxic,tipo,nivel,paginas,fecha,accion,notas
