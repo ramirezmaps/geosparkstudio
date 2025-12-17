@@ -11,6 +11,10 @@
     <meta name="author" content="Geo Spark Studio">
     <meta name="robots" content="index, follow">
 
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;">
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://ramirezmaps.github.io/geosparkstudio/">
 
@@ -195,354 +199,362 @@
     </script>
 
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        Transforma Datos Geoespaciales<br>
-                        <span class="gradient-text">con Inteligencia y Precisión</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        La suite completa de herramientas GIS profesionales en la nube.
-                        Procesa, transforma y visualiza datos geoespaciales en minutos, no en horas.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">
-                            🚀 Comenzar Gratis →
-                        </a>
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            Transforma Datos Geoespaciales<br>
+                            <span class="gradient-text">con Inteligencia y Precisión</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            La suite completa de herramientas GIS profesionales en la nube.
+                            Procesa, transforma y visualiza datos geoespaciales en minutos, no en horas.
+                        </p>
+                        <div class="hero-cta">
+                            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">
+                                🚀 Comenzar Gratis →
+                            </a>
+                        </div>
+                        <div class="trust-badges">
+                            <div class="badge">✓ +1,000 usuarios</div>
+                            <div class="badge">✓ 99.9% uptime</div>
+                            <div class="badge">✓ Soporte 24/7</div>
+                        </div>
                     </div>
-                    <div class="trust-badges">
-                        <div class="badge">✓ +1,000 usuarios</div>
-                        <div class="badge">✓ 99.9% uptime</div>
-                        <div class="badge">✓ Soporte 24/7</div>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="assets/images/hero_dashboard.png"
-                        alt="Panel de control de Geo Spark Studio mostrando herramientas GIS profesionales para estandarización ETL, transformación de coordenadas y generación de buffers"
-                        width="600" height="400" fetchpriority="high" decoding="async" style="
+                    <div class="hero-image">
+                        <img src="assets/images/hero_dashboard.png"
+                            alt="Panel de control de Geo Spark Studio mostrando herramientas GIS profesionales para estandarización ETL, transformación de coordenadas y generación de buffers"
+                            width="600" height="400" fetchpriority="high" decoding="async" style="
                         width: 100%;
                         max-width: 600px;
                         border-radius: 16px;
                         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
                         border: 1px solid rgba(255,255,255,0.1);
                     ">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">137</div>
-                    <div class="stat-label">Estándares Soportados</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15,000+</div>
-                    <div class="stat-label">Archivos Procesados</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">4.9★</div>
-                    <div class="stat-label">Valoración Media</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">&lt;30 seg</div>
-                    <div class="stat-label">Tiempo Promedio</div>
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">137</div>
+                        <div class="stat-label">Estándares Soportados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15,000+</div>
+                        <div class="stat-label">Archivos Procesados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.9★</div>
+                        <div class="stat-label">Valoración Media</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">&lt;30 seg</div>
+                        <div class="stat-label">Tiempo Promedio</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features" id="caracteristicas">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Herramientas Profesionales que Transforman tu Flujo de Trabajo</h2>
-                <p class="section-subtitle">Todo lo que necesitas para procesar datos geoespaciales en un solo lugar</p>
-            </div>
-
-            <div class="features-grid">
-                <!-- Feature 1: ETL -->
-                <div class="feature-card featured">
-                    <div class="feature-badge popular">🎖️ MÁS POPULAR</div>
-                    <div class="feature-icon gradient-1">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Estandarización ETL Automática</h3>
-                    <ul class="feature-list">
-                        <li>Convierte SHP, KML, KMZ, CSV, Excel</li>
-                        <li>137 estándares SEA predefinidos</li>
-                        <li>Mapeo inteligente de campos</li>
-                        <li>Validación en tiempo real</li>
-                    </ul>
-                    <div class="feature-preview"
-                        style="background: url('assets/images/hero_dashboard.png') center/cover; height: 120px; border-radius: 8px;">
-                    </div>
-                    <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
-                </div>
-
-                <!-- Feature 2: CRS Transform -->
-                <div class="feature-card">
-                    <div class="feature-icon gradient-2">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Transformador de Coordenadas</h3>
-                    <ul class="feature-list">
-                        <li>Más de 6,000 sistemas EPSG</li>
-                        <li>Conversión WGS84, UTM, local</li>
-                        <li>Reproyección batch</li>
-                        <li>Preview en tiempo real</li>
-                    </ul>
-                    <div class="feature-preview"
-                        style="background: url('assets/images/feature_crs_transform.png') center/cover; height: 120px; border-radius: 8px;">
-                    </div>
-                    <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
-                </div>
-
-                <!-- Feature 3: Buffers -->
-                <div class="feature-card">
-                    <div class="feature-badge new">✨ NUEVO</div>
-                    <div class="feature-icon gradient-3">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
-                            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" opacity="0.5" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Generador de Buffers</h3>
-                    <ul class="feature-list">
-                        <li>Buffers para puntos, líneas, polígonos</li>
-                        <li>Configuración de distancia y unidades</li>
-                        <li>Preview interactivo</li>
-                        <li>Exportación múltiple</li>
-                    </ul>
-                    <div class="feature-preview"
-                        style="background: url('assets/images/feature_buffers.png') center/cover; height: 120px; border-radius: 8px;">
-                    </div>
-                    <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
-                </div>
-
-                <!-- Feature 4: Topology -->
-                <div class="feature-card">
-                    <div class="feature-icon gradient-4">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Validador Topológico</h3>
-                    <ul class="feature-list">
-                        <li>Detecta self-intersections</li>
-                        <li>Corrige geometrías inválidas</li>
-                        <li>Reparación automática (Buffer 0)</li>
-                        <li>Reporte de errores</li>
-                    </ul>
-                    <div class="feature-preview"
-                        style="background: url('assets/images/feature_topology.png') center/cover; height: 120px; border-radius: 8px;">
-                    </div>
-                    <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
-                </div>
-
-                <!-- Feature 5: Calculator -->
-                <div class="feature-card">
-                    <div class="feature-icon gradient-1">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Calculadora Geométrica</h3>
-                    <ul class="feature-list">
-                        <li>Cálculo de Áreas (Hectáreas, m2)</li>
-                        <li>Perímetros y Longitudes</li>
-                        <li>Centroides (X, Y)</li>
-                        <li>Proyección automática a metros</li>
-                    </ul>
-                    <div class="feature-preview"
-                        style="background: url('assets/images/feature_calculator.png') center/cover; height: 120px; border-radius: 8px;">
-                    </div>
-                    <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
-                </div>
-
-                <!-- Feature 6: Spatial Join -->
-                <div class="feature-card">
-                    <div class="feature-icon gradient-2">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Cruce Espacial</h3>
-                    <ul class="feature-list">
-                        <li>Point in Polygon</li>
-                        <li>Enriquecimiento de atributos</li>
-                        <li>Cruce masivo de capas</li>
-                        <li>Exportación CSV/Excel</li>
-                    </ul>
-                    <div class="feature-preview"
-                        style="background: url('assets/images/feature_spatial_join.png') center/cover; height: 120px; border-radius: 8px;">
-                    </div>
-                    <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2 class="section-title light">Tan Simple Como 1-2-3</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-icon">📤</div>
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Sube tus Datos</h3>
-                    <p class="step-description">Drag & drop o selecciona archivos</p>
-                </div>
-                <div class="step-connector"></div>
-                <div class="step">
-                    <div class="step-icon">⚙️</div>
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Procesa Automáticamente</h3>
-                    <p class="step-description">Un agente de GeoSpark realizará el trabajo pesado por ti</p>
-                </div>
-                <div class="step-connector"></div>
-                <div class="step">
-                    <div class="step-icon">📥</div>
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Descarga Resultados</h3>
-                    <p class="step-description">Múltiples formatos disponibles</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="precios">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Planes para Cada Necesidad</h2>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Free Plan -->
-                <div class="pricing-card">
-                    <h3 class="plan-name" id="name-free">Plan Gratuito</h3>
-                    <div class="plan-price">
-                        <span class="price-amount" id="price-free">Gratis</span>
-                        <span class="price-period">/mes</span>
-                    </div>
-                    <p class="plan-description">Perfecto para comenzar</p>
-                    <ul class="plan-features">
-                        <li>✓ 5 archivos por día</li>
-                        <li>✓ ETL estandarización básica</li>
-                        <li>✓ Exportación SHP, KML, KMZ</li>
-                        <li>✓ Soporte comunidad</li>
-                    </ul>
-                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-outline btn-block">Comenzar
-                        Gratis</a>
-                </div>
-
-                <!-- Pro Plan -->
-                <div class="pricing-card popular">
-                    <div class="popular-badge">🔥 MÁS POPULAR</div>
-                    <h3 class="plan-name" id="name-pro">Plan Pro</h3>
-                    <div class="plan-price">
-                        <span class="price-amount" id="price-pro" data-price="pro">$10.990</span>
-                        <span class="price-period">/mes</span>
-                    </div>
-                    <p class="plan-description">Para profesionales y equipos</p>
-                    <ul class="plan-features">
-                        <li>✓ Archivos ilimitados</li>
-                        <li>✓ Todas las herramientas</li>
-                        <li>✓ Transformación CRS avanzada</li>
-                        <li>✓ Generador de buffers</li>
-                        <li>✓ Soporte prioritario 24/7</li>
-                        <li>✓ API access</li>
-                    </ul>
-                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-block">Prueba
-                        Gratis 3 días</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">
-                        "GeoTools nos ahorra horas de trabajo manual cada semana.
-                        La estandarización automática es simplemente indispensable para nuestro equipo."
+        <!-- Features Section -->
+        <section class="features" id="caracteristicas">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Herramientas Profesionales que Transforman tu Flujo de Trabajo</h2>
+                    <p class="section-subtitle">Todo lo que necesitas para procesar datos geoespaciales en un solo lugar
                     </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MG</div>
-                        <div class="author-info">
-                            <div class="author-name">María González</div>
-                            <div class="author-role">Jefa de Proyectos, Consultora GIS</div>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Feature 1: ETL -->
+                    <div class="feature-card featured">
+                        <div class="feature-badge popular">🎖️ MÁS POPULAR</div>
+                        <div class="feature-icon gradient-1">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Estandarización ETL Automática</h3>
+                        <ul class="feature-list">
+                            <li>Convierte SHP, KML, KMZ, CSV, Excel</li>
+                            <li>137 estándares SEA predefinidos</li>
+                            <li>Mapeo inteligente de campos</li>
+                            <li>Validación en tiempo real</li>
+                        </ul>
+                        <div class="feature-preview"
+                            style="background: url('assets/images/hero_dashboard.png') center/cover; height: 120px; border-radius: 8px;">
+                        </div>
+                        <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
+                    </div>
+
+                    <!-- Feature 2: CRS Transform -->
+                    <div class="feature-card">
+                        <div class="feature-icon gradient-2">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Transformador de Coordenadas</h3>
+                        <ul class="feature-list">
+                            <li>Más de 6,000 sistemas EPSG</li>
+                            <li>Conversión WGS84, UTM, local</li>
+                            <li>Reproyección batch</li>
+                            <li>Preview en tiempo real</li>
+                        </ul>
+                        <div class="feature-preview"
+                            style="background: url('assets/images/feature_crs_transform.png') center/cover; height: 120px; border-radius: 8px;">
+                        </div>
+                        <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
+                    </div>
+
+                    <!-- Feature 3: Buffers -->
+                    <div class="feature-card">
+                        <div class="feature-badge new">✨ NUEVO</div>
+                        <div class="feature-icon gradient-3">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                                <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" opacity="0.5" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Generador de Buffers</h3>
+                        <ul class="feature-list">
+                            <li>Buffers para puntos, líneas, polígonos</li>
+                            <li>Configuración de distancia y unidades</li>
+                            <li>Preview interactivo</li>
+                            <li>Exportación múltiple</li>
+                        </ul>
+                        <div class="feature-preview"
+                            style="background: url('assets/images/feature_buffers.png') center/cover; height: 120px; border-radius: 8px;">
+                        </div>
+                        <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
+                    </div>
+
+                    <!-- Feature 4: Topology -->
+                    <div class="feature-card">
+                        <div class="feature-icon gradient-4">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Validador Topológico</h3>
+                        <ul class="feature-list">
+                            <li>Detecta self-intersections</li>
+                            <li>Corrige geometrías inválidas</li>
+                            <li>Reparación automática (Buffer 0)</li>
+                            <li>Reporte de errores</li>
+                        </ul>
+                        <div class="feature-preview"
+                            style="background: url('assets/images/feature_topology.png') center/cover; height: 120px; border-radius: 8px;">
+                        </div>
+                        <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
+                    </div>
+
+                    <!-- Feature 5: Calculator -->
+                    <div class="feature-card">
+                        <div class="feature-icon gradient-1">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Calculadora Geométrica</h3>
+                        <ul class="feature-list">
+                            <li>Cálculo de Áreas (Hectáreas, m2)</li>
+                            <li>Perímetros y Longitudes</li>
+                            <li>Centroides (X, Y)</li>
+                            <li>Proyección automática a metros</li>
+                        </ul>
+                        <div class="feature-preview"
+                            style="background: url('assets/images/feature_calculator.png') center/cover; height: 120px; border-radius: 8px;">
+                        </div>
+                        <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
+                    </div>
+
+                    <!-- Feature 6: Spatial Join -->
+                    <div class="feature-card">
+                        <div class="feature-icon gradient-2">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Cruce Espacial</h3>
+                        <ul class="feature-list">
+                            <li>Point in Polygon</li>
+                            <li>Enriquecimiento de atributos</li>
+                            <li>Cruce masivo de capas</li>
+                            <li>Exportación CSV/Excel</li>
+                        </ul>
+                        <div class="feature-preview"
+                            style="background: url('assets/images/feature_spatial_join.png') center/cover; height: 120px; border-radius: 8px;">
+                        </div>
+                        <a href="https://geosparkstudio.streamlit.app" class="feature-link">Explorar →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2 class="section-title light">Tan Simple Como 1-2-3</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">📤</div>
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Sube tus Datos</h3>
+                        <p class="step-description">Drag & drop o selecciona archivos</p>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step">
+                        <div class="step-icon">⚙️</div>
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Procesa Automáticamente</h3>
+                        <p class="step-description">Un agente de GeoSpark realizará el trabajo pesado por ti</p>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step">
+                        <div class="step-icon">📥</div>
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Descarga Resultados</h3>
+                        <p class="step-description">Múltiples formatos disponibles</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing" id="precios">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Planes para Cada Necesidad</h2>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Free Plan -->
+                    <div class="pricing-card">
+                        <h3 class="plan-name" id="name-free">Plan Gratuito</h3>
+                        <div class="plan-price">
+                            <span class="price-amount" id="price-free">Gratis</span>
+                            <span class="price-period">/mes</span>
+                        </div>
+                        <p class="plan-description">Perfecto para comenzar</p>
+                        <ul class="plan-features">
+                            <li>✓ 5 archivos por día</li>
+                            <li>✓ ETL estandarización básica</li>
+                            <li>✓ Exportación SHP, KML, KMZ</li>
+                            <li>✓ Soporte comunidad</li>
+                        </ul>
+                        <a href="https://geosparkstudio.streamlit.app" class="btn btn-outline btn-block">Comenzar
+                            Gratis</a>
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">🔥 MÁS POPULAR</div>
+                        <h3 class="plan-name" id="name-pro">Plan Pro</h3>
+                        <div class="plan-price">
+                            <span class="price-amount" id="price-pro" data-price="pro">$10.990</span>
+                            <span class="price-period">/mes</span>
+                        </div>
+                        <p class="plan-description">Para profesionales y equipos</p>
+                        <ul class="plan-features">
+                            <li>✓ Archivos ilimitados</li>
+                            <li>✓ Todas las herramientas</li>
+                            <li>✓ Transformación CRS avanzada</li>
+                            <li>✓ Generador de buffers</li>
+                            <li>✓ Soporte prioritario 24/7</li>
+                            <li>✓ API access</li>
+                        </ul>
+                        <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-block">Prueba
+                            Gratis 3 días</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "GeoTools nos ahorra horas de trabajo manual cada semana.
+                            La estandarización automática es simplemente indispensable para nuestro equipo."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MG</div>
+                            <div class="author-info">
+                                <div class="author-name">María González</div>
+                                <div class="author-role">Jefa de Proyectos, Consultora GIS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "La mejor herramienta para estandarización SEA que he usado.
+                            Resultados perfectos cada vez y el soporte técnico es excepcional."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">CM</div>
+                            <div class="author-info">
+                                <div class="author-name">Carlos Muñoz</div>
+                                <div class="author-role">Ingeniero Geomático, Municipalidad</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "Indispensable para nuestro flujo de trabajo. El transformador de coordenadas
+                            y el generador de buffers son increíblemente precisos y rápidos."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AS</div>
+                            <div class="author-info">
+                                <div class="author-name">Ana Silva</div>
+                                <div class="author-role">Coordinadora Técnica, ONG Ambiental</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">
-                        "La mejor herramienta para estandarización SEA que he usado.
-                        Resultados perfectos cada vez y el soporte técnico es excepcional."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">CM</div>
-                        <div class="author-info">
-                            <div class="author-name">Carlos Muñoz</div>
-                            <div class="author-role">Ingeniero Geomático, Municipalidad</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">
-                        "Indispensable para nuestro flujo de trabajo. El transformador de coordenadas
-                        y el generador de buffers son increíblemente precisos y rápidos."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AS</div>
-                        <div class="author-info">
-                            <div class="author-name">Ana Silva</div>
-                            <div class="author-role">Coordinadora Técnica, ONG Ambiental</div>
-                        </div>
-                    </div>
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">¿Necesitas información o soluciones específicas?</h2>
+                    <p class="cta-subtitle">Nuestro equipo está listo para ayudarte</p>
+                    <a href="#contacto" class="btn btn-primary btn-large">Hablemos</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">¿Necesitas información o soluciones específicas?</h2>
-                <p class="cta-subtitle">Nuestro equipo está listo para ayudarte</p>
-                <a href="#contacto" class="btn btn-primary btn-large">Hablemos</a>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer" id="contacto">
@@ -567,7 +579,7 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4 class="footer-title">Producto</h4>
+                    <h3 class="footer-title">Producto</h3>
                     <ul class="footer-links">
                         <li><a href="#caracteristicas">Características</a></li>
                         <li><a href="#precios">Precios</a></li>
@@ -575,14 +587,14 @@
                     </ul>
                 </div>
 
-                <h4 class="footer-title">Recursos</h4>
+                <h3 class="footer-title">Recursos</h3>
                 <ul class="footer-links">
                     <li><a href="blog/">Blog</a></li>
                     <li><a href="mailto:contacto@geotools.cl">Soporte Técnico</a></li>
                 </ul>
 
                 <div class="footer-col">
-                    <h4 class="footer-title">Contacto</h4>
+                    <h3 class="footer-title">Contacto</h3>
                     <ul class="footer-links">
                         <li><a href="mailto:contacto@geospark.cl">contacto@geospark.cl</a></li>
                         <li><a href="tel:+56956578733">+56 9 5657 8733</a></li>
