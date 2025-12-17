@@ -5,165 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Descubre cómo Streamlit está revolucionando el desarrollo de aplicaciones GIS. Python, mapas interactivos y despliegue fácil.">
-    <title>Streamlit + GIS: El Futuro de las Aplicaciones Geoespaciales | Geo Spark Studio</title>
+        content="Streamlit + GIS: El futuro de las aplicaciones geoespaciales en la nube - Geo Spark Studio Blog.">
+    <title>Streamlit y GIS - Geo Spark Studio Blog</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .blog-header {
-            padding-top: 120px;
-            padding-bottom: 60px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        .article-header {
+            padding: var(--spacing-xxl) 0;
+            background: var(--bg-main);
+            text-align: center;
         }
 
-        .blog-header-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-        }
-
-        .blog-content {
+        .article-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 3rem 1.5rem;
+            padding: var(--spacing-xxl) var(--spacing-md);
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
         }
 
-        .blog-content h2 {
-            color: #667eea;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .blog-content h3 {
-            color: #e2e8f0;
-            margin-top: 1.5rem;
-        }
-
-        .blog-content p {
-            color: #a0aec0;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .blog-content ul,
-        .blog-content ol {
-            color: #a0aec0;
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-
-        .blog-content li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
-
-        .blog-content code {
-            background: #2d3748;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: monospace;
-            color: #ffd700;
-        }
-
-        .blog-content pre {
-            background: #2d3748;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-        }
-
-        .blog-content pre code {
-            background: none;
-            padding: 0;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            border-left: 4px solid #667eea;
-            padding: 1rem 1.5rem;
-            border-radius: 0 8px 8px 0;
-            margin: 1.5rem 0;
-        }
-
-        .info-box p {
-            color: #e2e8f0;
-            margin: 0;
-        }
-
-        .blog-meta {
+        .article-meta {
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-lg);
             display: flex;
-            gap: 1rem;
-            color: #718096;
+            justify-content: center;
+            gap: var(--spacing-md);
             font-size: 0.9rem;
-            margin-bottom: 1rem;
         }
 
-        .blog-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+        .article-body {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            line-height: 1.8;
         }
 
-        .cta-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            margin: 2rem 0;
+        .article-body h2 {
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-dark);
         }
 
-        .cta-box h3 {
-            color: #fff;
-            margin-bottom: 1rem;
+        .article-body p {
+            margin-bottom: var(--spacing-md);
         }
 
-        .cta-box p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
+        .article-body ul {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg);
         }
 
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .comparison-card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .comparison-card.bad {
-            border-left: 4px solid #ef4444;
-        }
-
-        .comparison-card.good {
-            border-left: 4px solid #10b981;
-        }
-
-        .comparison-card h4 {
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-badge {
-            display: inline-block;
-            background: #334155;
-            color: #a0aec0;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin: 0.25rem;
+        .share-links {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
         }
     </style>
 </head>
@@ -184,240 +90,64 @@
                     <li><a href="index.html#precios">Precios</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="https://ramirezdataorden-sea01.streamlit.app" class="btn-link">Ingresar</a>
-                    <a href="https://ramirezdataorden-sea01.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                    <a href="http://localhost:8501" class="btn-link">Ingresar</a>
+                    <a href="http://localhost:8501" class="btn btn-primary">Comenzar Gratis</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Header -->
-    <header class="blog-header">
+    <header class="article-header">
         <div class="container">
-            <div class="blog-content">
-                <div class="blog-meta">
-                    <span>📅 11 Diciembre 2025</span>
-                    <span>📖 10 min lectura</span>
-                    <span>🏷️ Streamlit, Python, GIS, Desarrollo</span>
-                </div>
-                <h1 class="blog-title">Streamlit + GIS: El Futuro de las Aplicaciones Geoespaciales</h1>
-                <p style="font-size: 1.2rem; color: #a0aec0;">
-                    Cómo Python y Streamlit están democratizando el desarrollo de herramientas GIS
-                    profesionales, permitiendo crear aplicaciones potentes en días, no meses.
-                </p>
-                <img src="img/blog_streamlit_gis.png" alt="Streamlit y GIS" class="blog-header-image">
+            <h1 class="hero-title" style="font-size: 2.5rem;">Streamlit + GIS: El futuro de las aplicaciones
+                geoespaciales</h1>
+            <div class="article-meta">
+                <span>📅 05 Dic 2025</span>
+                <span>👤 Estanislao Ramirez</span>
+                <span>⏱️ 6 min lectura</span>
             </div>
         </div>
     </header>
 
     <!-- Content -->
-    <article class="blog-content">
-        <h2>🚀 La Revolución del Desarrollo GIS</h2>
-        <p>
-            Durante décadas, crear aplicaciones GIS significaba dominar lenguajes complejos,
-            servidores dedicados, y meses de desarrollo. <strong>Streamlit</strong> ha cambiado
-            las reglas del juego, permitiendo que profesionales GIS conviertan scripts de Python
-            en aplicaciones web interactivas en cuestión de horas.
-        </p>
+    <article class="article-content">
+        <div class="article-body">
+            <p>
+                Tradicionalmente, el análisis GIS requería software de escritorio pesado como ArcGIS Pro o QGIS. Si bien
+                son herramientas potentes, compartir un proceso o un modelo con un cliente significaba enviar archivos
+                gigantes o generar reportes estáticos en PDF.
+            </p>
 
-        <div class="info-box">
-            <p><strong>💡 Dato:</strong> Geo Spark Studio fue construido completamente con
-                Streamlit y Python, demostrando que es posible crear herramientas profesionales de
-                grado empresarial con esta tecnología.</p>
+            <h2>La Revolución de Python en la Nube</h2>
+            <p>
+                <strong>Streamlit</strong> ha democratizado la creación de aplicaciones de datos. Al combinarlo con
+                librerías geoespaciales poderosas como <code>geopandas</code>, <code>fiona</code> y
+                <code>shapely</code>, podemos construir herramientas web interactivas en cuestión de horas.
+            </p>
+
+            <h2>Ventajas de las Web Apps GIS</h2>
+            <ul>
+                <li><strong>Accesibilidad:</strong> Accesible desde cualquier navegador, sin instalar nada.</li>
+                <li><strong>Interactividad:</strong> Los usuarios pueden subir sus propios archivos y ver resultados al
+                    instante.</li>
+                <li><strong>Mantenimiento Centralizado:</strong> Una actualización en el servidor mejora la herramienta
+                    para todos los usuarios.</li>
+            </ul>
+
+            <p>
+                En <strong>Geo Spark Studio</strong>, hemos apostado por esta arquitectura para ofrecer herramientas de
+                nivel profesional sin la barrera de entrada del software tradicional.
+            </p>
         </div>
 
-        <h2>🔄 Antes vs Después de Streamlit</h2>
-
-        <div class="comparison-grid">
-            <div class="comparison-card bad">
-                <h4>❌ Desarrollo Tradicional</h4>
-                <p style="color: #a0aec0; margin-bottom: 0.5rem;">
-                    • Frontend: HTML/CSS/JavaScript<br>
-                    • Backend: Django/Flask<br>
-                    • Base de datos: PostgreSQL/PostGIS<br>
-                    • Servidor: AWS/GCP configuración<br>
-                    • Tiempo: 3-6 meses
-                </p>
-            </div>
-            <div class="comparison-card good">
-                <h4>✅ Con Streamlit</h4>
-                <p style="color: #a0aec0; margin-bottom: 0.5rem;">
-                    • Todo en Python<br>
-                    • UI automática<br>
-                    • Estado manejado<br>
-                    • Deploy en 1 click<br>
-                    • Tiempo: 1-2 semanas
-                </p>
-            </div>
+        <div class="share-links">
+            <strong>Compartir:</strong>
+            <a href="#" class="btn-link">LinkedIn</a>
+            <a href="#" class="btn-link">Twitter</a>
+            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
         </div>
-
-        <h2>🛠️ Stack Tecnológico para GIS con Streamlit</h2>
-
-        <p>El ecosistema de Python ofrece todas las herramientas necesarias:</p>
-
-        <h3>📊 Procesamiento de Datos</h3>
-        <div style="margin-bottom: 1rem;">
-            <span class="tech-badge">GeoPandas</span>
-            <span class="tech-badge">Pandas</span>
-            <span class="tech-badge">NumPy</span>
-            <span class="tech-badge">Shapely</span>
-        </div>
-
-        <h3>🗺️ Visualización de Mapas</h3>
-        <div style="margin-bottom: 1rem;">
-            <span class="tech-badge">Folium</span>
-            <span class="tech-badge">Pydeck</span>
-            <span class="tech-badge">Plotly</span>
-            <span class="tech-badge">Kepler.gl</span>
-        </div>
-
-        <h3>📁 Formatos de Archivo</h3>
-        <div style="margin-bottom: 1rem;">
-            <span class="tech-badge">Fiona</span>
-            <span class="tech-badge">PyProj</span>
-            <span class="tech-badge">GDAL</span>
-            <span class="tech-badge">Rasterio</span>
-        </div>
-
-        <h2>💻 Ejemplo: App GIS en 30 Líneas</h2>
-        <p>
-            Mira lo simple que es crear una aplicación que carga y visualiza un shapefile:
-        </p>
-
-        <pre><code>import streamlit as st
-import geopandas as gpd
-import folium
-from streamlit_folium import st_folium
-
-st.title("🗺️ Visor de Shapefiles")
-
-# Upload
-uploaded = st.file_uploader("Sube tu archivo", type=['zip'])
-
-if uploaded:
-    # Leer shapefile
-    gdf = gpd.read_file(uploaded)
-    
-    # Info básica
-    st.write(f"📊 {len(gdf)} features encontradas")
-    st.write(f"📐 CRS: {gdf.crs}")
-    
-    # Crear mapa centrado
-    center = gdf.geometry.centroid.iloc[0]
-    m = folium.Map(location=[center.y, center.x], zoom_start=10)
-    
-    # Agregar geometrías
-    folium.GeoJson(gdf).add_to(m)
-    
-    # Mostrar
-    st_folium(m, width=700, height=500)</code></pre>
-
-        <h2>⚡ Ventajas de Streamlit para GIS</h2>
-
-        <ol>
-            <li><strong>Prototipado Rápido:</strong> Convierte notebooks en apps en minutos</li>
-            <li><strong>Sin Frontend:</strong> La UI se genera automáticamente desde Python</li>
-            <li><strong>Reactivo:</strong> Cambios en widgets actualizan todo automáticamente</li>
-            <li><strong>Caching:</strong> Operaciones costosas se cachean inteligentemente</li>
-            <li><strong>Deploy Gratuito:</strong> Streamlit Community Cloud es gratis</li>
-            <li><strong>Comunidad:</strong> Miles de componentes listos para usar</li>
-        </ol>
-
-        <h2>🎯 Casos de Uso Perfectos</h2>
-
-        <ul>
-            <li><strong>Dashboards de Monitoreo:</strong> Visualización de datos en tiempo real</li>
-            <li><strong>Herramientas de ETL:</strong> Transformación y estandarización de datos</li>
-            <li><strong>Análisis Exploratorio:</strong> Investigación interactiva de datasets</li>
-            <li><strong>Reportes Automáticos:</strong> Generación de informes con mapas</li>
-            <li><strong>Validadores:</strong> Verificación de calidad de datos</li>
-            <li><strong>Calculadoras:</strong> Herramientas de cálculo geométrico</li>
-        </ul>
-
-        <div class="info-box">
-            <p><strong>🔥 Pro Tip:</strong> Usa <code>@st.cache_data</code> para cachear
-                la lectura de archivos grandes. Una operación que toma 10 segundos la primera vez
-                será instantánea en las siguientes.</p>
-        </div>
-
-        <h2>🌐 Deploy: De Local a Producción</h2>
-
-        <p>
-            Streamlit Community Cloud hace que desplegar sea ridículamente simple:
-        </p>
-
-        <ol>
-            <li>Sube tu código a GitHub</li>
-            <li>Conecta tu repo en streamlit.io</li>
-            <li>Especifica el archivo principal</li>
-            <li>¡Listo! Tu app está online</li>
-        </ol>
-
-        <p>
-            Para apps más serias, puedes desplegar en:
-        </p>
-        <ul>
-            <li><strong>Streamlit Cloud:</strong> Gratis para proyectos públicos</li>
-            <li><strong>AWS/GCP/Azure:</strong> Con contenedores Docker</li>
-            <li><strong>Heroku:</strong> Fácil y económico</li>
-        </ul>
-
-        <h2>🏗️ Geo Spark Studio: Caso Real</h2>
-        <p>
-            Nuestro propio producto demuestra el poder de esta tecnología:
-        </p>
-        <ul>
-            <li>✅ 6 herramientas GIS completas</li>
-            <li>✅ Sistema de autenticación con planes</li>
-            <li>✅ Procesamiento de archivos masivo</li>
-            <li>✅ Persistencia con Supabase</li>
-            <li>✅ Deploy en Streamlit Cloud</li>
-            <li>✅ Todo en Python puro</li>
-        </ul>
-
-        <div class="cta-box">
-            <h3>¿Listo para experimentar Streamlit + GIS?</h3>
-            <p>Prueba Geo Spark Studio y ve cómo se siente una app GIS moderna.</p>
-            <a href="https://ramirezdataorden-sea01.streamlit.app" class="btn btn-primary btn-large">Probar Gratis →</a>
-        </div>
-
-        <h2>📚 Recursos para Aprender</h2>
-        <ul>
-            <li><a href="https://streamlit.io" target="_blank" style="color: #667eea;">Documentación oficial de
-                    Streamlit</a></li>
-            <li><a href="https://geopandas.org" target="_blank" style="color: #667eea;">GeoPandas Documentation</a></li>
-            <li><a href="blog-etl-automation.html" style="color: #667eea;">Automatización ETL para GIS</a></li>
-            <li><a href="blog-coordinate-systems.html" style="color: #667eea;">Sistemas de Coordenadas Explicados</a>
-            </li>
-        </ul>
-
-        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
-            <em>¿Quieres aprender más sobre desarrollo GIS con Python?
-                <a href="mailto:contacto@geotools.cl" style="color: #667eea;">Contáctanos</a></em>
-        </p>
     </article>
-
-    <!-- Related Articles -->
-    <section style="background: #1e293b; padding: 4rem 0;">
-        <div class="container">
-            <h2 style="text-align: center; color: #fff; margin-bottom: 2rem;">Artículos Relacionados</h2>
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
-                <a href="blog-etl-automation.html" style="text-decoration: none;">
-                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem; transition: transform 0.2s;">
-                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">🔄 Automatización ETL</h3>
-                        <p style="color: #a0aec0;">Optimiza tus flujos de trabajo con Python.</p>
-                    </div>
-                </a>
-                <a href="blog-topology-validation.html" style="text-decoration: none;">
-                    <div style="background: #0f172a; border-radius: 12px; padding: 1.5rem; transition: transform 0.2s;">
-                        <h3 style="color: #667eea; margin-bottom: 0.5rem;">✅ Validación Topológica</h3>
-                        <p style="color: #a0aec0;">Mantén tus datos GIS limpios y válidos.</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -454,20 +184,6 @@ if uploaded:
             </div>
         </div>
     </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/56956578733?text=Hola!%20Estoy%20interesado%20en%20Geo%20Spark%20Studio" 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       aria-label="Contactar por WhatsApp">
-        <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
-            <path d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z"/>
-        </svg>
-        <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
-    </a>
-    <style>.whatsapp-float{position:fixed;width:60px;height:60px;bottom:30px;right:30px;background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);color:#fff;border-radius:50%;text-align:center;font-size:28px;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s ease;animation:whatsapp-pulse 2s infinite}.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,0.6);animation:none}.whatsapp-float:hover .whatsapp-tooltip{opacity:1;visibility:visible;transform:translateX(-10px)}.whatsapp-tooltip{position:absolute;right:70px;background:#1e293b;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;white-space:nowrap;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.2)}.whatsapp-tooltip::after{content:'';position:absolute;right:-8px;top:50%;transform:translateY(-50%);border-width:8px 0 8px 8px;border-style:solid;border-color:transparent transparent transparent #1e293b}@keyframes whatsapp-pulse{0%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.7)}100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}}@media(max-width:768px){.whatsapp-float{width:55px;height:55px;bottom:20px;right:20px}.whatsapp-tooltip{display:none}}</style>
 </body>
 
 </html>
-
