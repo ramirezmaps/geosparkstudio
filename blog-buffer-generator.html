@@ -5,106 +5,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Cómo crear buffers y zonas de influencia alrededor de geometrías GIS. Tutorial completo del Generador de Buffers de Geo Spark Studio.">
-    <meta name="keywords"
-        content="buffer GIS, zonas influencia, análisis espacial, áreas de protección, geoespacial, Chile">
-    <meta name="author" content="Geo Spark Studio">
-    <title>Generador de Buffers: Zonas de Influencia para Análisis Espacial - Geo Spark Studio Blog</title>
-
-    <!-- Google Fonts -->
+        content="Cómo crear buffers y zonas de influencia alrededor de geometrías GIS. Tutorial completo del Generador de Buffers.">
+    <title>Generador de Buffers: Zonas de Influencia - Geo Spark Studio Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .article-header {
-            padding: var(--spacing-xxl) 0;
-            background: var(--bg-main);
-            text-align: center;
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
-        .article-content {
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-xxl) var(--spacing-md);
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
+            padding: 3rem 1.5rem;
         }
 
-        .article-meta {
-            color: var(--text-medium);
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-        }
-
-        .article-body {
-            font-size: 1.125rem;
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-        .article-body h2 {
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-dark);
-        }
-
-        .article-body p {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .article-body ul,
-        .article-body ol {
-            margin-bottom: var(--spacing-md);
-            padding-left: var(--spacing-lg);
-        }
-
-        .article-body li {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .article-image {
-            width: 100%;
-            border-radius: var(--radius-md);
-            margin: var(--spacing-lg) 0;
-            box-shadow: var(--shadow-md);
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(250, 112, 154, 0.1) 100%);
-            border-left: 4px solid #667eea;
-            padding: var(--spacing-md);
-            border-radius: var(--radius-sm);
-            margin: var(--spacing-md) 0;
-        }
-
-        .tag {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.1);
+        .blog-content h2 {
             color: #667eea;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .share-links {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
+        .blog-content h3 {
+            color: #e2e8f0;
+            margin-top: 1.5rem;
+        }
+
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
             display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box p {
+            color: #fcd34d;
+            margin: 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -133,109 +149,88 @@
     </nav>
 
     <!-- Header -->
-    <header class="article-header">
+    <header class="blog-header">
         <div class="container">
-            <div style="margin-bottom: 1rem;">
-                <span class="tag">⭕ Buffers</span>
-                <span class="tag">🗺️ GIS</span>
-                <span class="tag">📐 Análisis</span>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 17 Diciembre 2024</span>
+                    <span>📖 5 min lectura</span>
+                    <span>🏷️ Buffers, Análisis Espacial, GIS</span>
+                </div>
+                <h1 class="blog-title">Generador de Buffers: Crea Zonas de Influencia para Análisis Espacial</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Aprende a crear áreas de influencia alrededor de puntos, líneas y polígonos
+                    para estudios de impacto, planificación territorial y análisis ambiental.
+                </p>
+                <img src="images/blog-buffer-generator.png" alt="Generador de Buffers GIS" class="blog-header-image">
             </div>
-            <h1 class="hero-title" style="font-size: 2.5rem;">Generador de Buffers: Crea Zonas de Influencia para
-                Análisis Espacial</h1>
-            <div class="article-meta">
-                <span>📅 17 Dic 2024</span>
-                <span>👤 Ignacio Ramirez</span>
-                <span>⏱️ 5 min lectura</span>
-            </div>
-            <img src="images/blog-buffer-generator.png" alt="Generador de Buffers GIS"
-                style="max-width: 100%; border-radius: 12px; margin-top: 2rem; box-shadow: 0 8px 30px rgba(0,0,0,0.3);">
         </div>
     </header>
 
     <!-- Content -->
-    <article class="article-content">
-        <div class="article-body">
-            <p>
-                Los <strong>buffers</strong> o zonas de influencia son una de las operaciones más utilizadas en análisis
-                espacial. Permiten crear áreas alrededor de puntos, líneas o polígonos a una distancia determinada,
-                siendo esenciales para estudios de impacto, planificación territorial y análisis ambiental.
-            </p>
+    <article class="blog-content">
+        <h2>⭕ ¿Qué es un Buffer?</h2>
+        <p>
+            Los <strong>buffers</strong> o zonas de influencia son una de las operaciones más utilizadas en análisis
+            espacial. Permiten crear áreas alrededor de puntos, líneas o polígonos a una distancia determinada,
+            siendo esenciales para estudios de impacto, planificación territorial y análisis ambiental.
+        </p>
 
-            <div class="highlight-box">
-                <strong>💡 ¿Qué es un buffer?</strong> Es un área que rodea una geometría a una distancia específica.
+        <div class="info-box">
+            <p><strong>💡 Definición:</strong> Un buffer es un área que rodea una geometría a una distancia específica.
                 Por ejemplo, un buffer de 500 metros alrededor de un río crea un polígono que representa la "zona
-                de protección" del curso de agua.
-            </div>
+                de protección" del curso de agua.</p>
+        </div>
 
-            <h2>¿Cuándo Usar Buffers?</h2>
-            <ul>
-                <li><strong>Estudios ambientales:</strong> Zonas de influencia de proyectos, áreas de protección</li>
-                <li><strong>Planificación urbana:</strong> Radios de cobertura de servicios, equipamiento</li>
-                <li><strong>Análisis de riesgo:</strong> Zonas de seguridad alrededor de instalaciones</li>
-                <li><strong>Normativa SEA:</strong> Áreas de influencia requeridas en evaluación ambiental</li>
-            </ul>
+        <h2>🎯 ¿Cuándo Usar Buffers?</h2>
+        <ul>
+            <li><strong>Estudios ambientales:</strong> Zonas de influencia de proyectos, áreas de protección</li>
+            <li><strong>Planificación urbana:</strong> Radios de cobertura de servicios, equipamiento</li>
+            <li><strong>Análisis de riesgo:</strong> Zonas de seguridad alrededor de instalaciones</li>
+            <li><strong>Normativa SEA:</strong> Áreas de influencia requeridas en evaluación ambiental</li>
+        </ul>
 
-            <h2>Cómo Funciona el Generador de Buffers</h2>
-            <ol>
-                <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ o GeoJSON</li>
-                <li><strong>Define la distancia:</strong> En metros o kilómetros</li>
-                <li><strong>Previsualiza:</strong> Ve el resultado en el mapa interactivo</li>
-                <li><strong>Exporta:</strong> Descarga en Shapefile, GeoJSON o KMZ</li>
-            </ol>
+        <h2>🔧 Cómo Funciona el Generador</h2>
+        <ol>
+            <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ o GeoJSON</li>
+            <li><strong>Define la distancia:</strong> En metros o kilómetros</li>
+            <li><strong>Previsualiza:</strong> Ve el resultado en el mapa interactivo</li>
+            <li><strong>Exporta:</strong> Descarga en Shapefile, GeoJSON o KMZ</li>
+        </ol>
 
-            <h2>Tipos de Buffer</h2>
-            <p>El generador soporta buffers para diferentes tipos de geometría:</p>
-            <ul>
-                <li><strong>Puntos:</strong> Crea círculos alrededor de cada punto</li>
-                <li><strong>Líneas:</strong> Crea corredores a lo largo de la línea (ej: servidumbre de paso)</li>
-                <li><strong>Polígonos:</strong> Expande o contrae el límite del polígono</li>
-            </ul>
+        <h2>📐 Tipos de Buffer</h2>
+        <h3>Puntos</h3>
+        <p>Crea círculos alrededor de cada punto. Ideal para áreas de cobertura.</p>
 
-            <h2>Consideraciones Técnicas</h2>
-            <div class="highlight-box">
-                <strong>⚠️ Importante:</strong> Para que las distancias sean precisas en metros, los datos deben
+        <h3>Líneas</h3>
+        <p>Crea corredores a lo largo de la línea (ej: servidumbre de paso).</p>
+
+        <h3>Polígonos</h3>
+        <p>Expande o contrae el límite del polígono.</p>
+
+        <div class="warning-box">
+            <p><strong>⚠️ Importante:</strong> Para que las distancias sean precisas en metros, los datos deben
                 estar en un sistema de coordenadas proyectado (como UTM) y no en coordenadas geográficas (lat/lon).
-                El generador reproyecta automáticamente si es necesario.
-            </div>
-
-            <h2>Ejemplo Práctico</h2>
-            <p>
-                <strong>Caso:</strong> Necesitas crear una zona de influencia de 1 km alrededor de un proyecto minero
-                para el estudio de impacto ambiental.
-            </p>
-            <ol>
-                <li>Carga el polígono del área del proyecto (SHP o KML)</li>
-                <li>Ingresa 1000 metros (o 1 km) como distancia</li>
-                <li>Genera el buffer y visualiza en el mapa</li>
-                <li>Descarga el resultado en formato Shapefile para incluir en el informe SEA</li>
-            </ol>
-
-            <h2>Formatos de Exportación</h2>
-            <ul>
-                <li><strong>Shapefile (ZIP):</strong> Estándar para ArcGIS y QGIS</li>
-                <li><strong>GeoJSON:</strong> Formato web, ligero</li>
-                <li><strong>KMZ:</strong> Para Google Earth</li>
-            </ul>
+                El generador reproyecta automáticamente si es necesario.</p>
         </div>
 
-        <div class="share-links">
-            <strong>Compartir:</strong>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog-buffer-generator.html"
-                target="_blank" class="btn-link">LinkedIn</a>
-            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        <h2>📥 Formatos de Exportación</h2>
+        <ul>
+            <li><strong>Shapefile (ZIP):</strong> Estándar para ArcGIS y QGIS</li>
+            <li><strong>GeoJSON:</strong> Formato web, ligero</li>
+            <li><strong>KMZ:</strong> Para Google Earth</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>¿Necesitas crear zonas de influencia?</h3>
+            <p>Prueba el Generador de Buffers gratis.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
         </div>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <a href="blog.html" style="color: #667eea;">← Volver al Blog</a>
+        </p>
     </article>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">¿Necesitas crear zonas de influencia?</h2>
-                <p class="cta-subtitle">Prueba el Generador de Buffers gratis</p>
-                <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">

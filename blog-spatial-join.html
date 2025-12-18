@@ -5,115 +5,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Cómo realizar cruces espaciales (Spatial Join) para enriquecer datos GIS. Guía completa del Cruce Espacial de Geo Spark Studio.">
-    <meta name="keywords"
-        content="spatial join, cruce espacial, point in polygon, intersección, GIS, análisis espacial, Chile">
-    <meta name="author" content="Geo Spark Studio">
+        content="Cómo realizar cruces espaciales (Spatial Join) para enriquecer datos GIS. Guía completa del Cruce Espacial.">
     <title>Cruce Espacial: Point-in-Polygon y Enriquecimiento de Datos - Geo Spark Studio Blog</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .article-header {
-            padding: var(--spacing-xxl) 0;
-            background: var(--bg-main);
-            text-align: center;
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
-        .article-content {
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-xxl) var(--spacing-md);
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
+            padding: 3rem 1.5rem;
         }
 
-        .article-meta {
-            color: var(--text-medium);
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-        }
-
-        .article-body {
-            font-size: 1.125rem;
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-        .article-body h2 {
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-dark);
-        }
-
-        .article-body p {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .article-body ul,
-        .article-body ol {
-            margin-bottom: var(--spacing-md);
-            padding-left: var(--spacing-lg);
-        }
-
-        .article-body li {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(250, 112, 154, 0.1) 100%);
-            border-left: 4px solid #667eea;
-            padding: var(--spacing-md);
-            border-radius: var(--radius-sm);
-            margin: var(--spacing-md) 0;
-        }
-
-        .highlight-box.success {
-            border-left-color: #10b981;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
-        }
-
-        .tag {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.1);
+        .blog-content h2 {
             color: #667eea;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .share-links {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
+        .blog-content h3 {
+            color: #e2e8f0;
+            margin-top: 1.5rem;
+        }
+
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-content pre {
+            background: #2d3748;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .blog-meta {
             display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
         }
 
-        .code-block {
-            background: #1e293b;
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
             color: #e2e8f0;
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            margin: var(--spacing-md) 0;
+            margin: 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
+            border-left: 4px solid #10b981;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .success-box p {
+            color: #6ee7b7;
+            margin: 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -142,136 +160,103 @@
     </nav>
 
     <!-- Header -->
-    <header class="article-header">
+    <header class="blog-header">
         <div class="container">
-            <div style="margin-bottom: 1rem;">
-                <span class="tag">🔗 Spatial Join</span>
-                <span class="tag">🗺️ GIS</span>
-                <span class="tag">📊 Análisis</span>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 17 Diciembre 2024</span>
+                    <span>📖 5 min lectura</span>
+                    <span>🏷️ Spatial Join, Análisis, GIS</span>
+                </div>
+                <h1 class="blog-title">Cruce Espacial: Enriquece tus Datos con Análisis Point-in-Polygon</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Aprende a unir atributos entre capas geoespaciales basándote en su ubicación.
+                    El VLOOKUP del mundo GIS.
+                </p>
+                <img src="images/blog-spatial-join.png" alt="Cruce Espacial GIS" class="blog-header-image">
             </div>
-            <h1 class="hero-title" style="font-size: 2.5rem;">Cruce Espacial: Enriquece tus Datos con Análisis
-                Point-in-Polygon</h1>
-            <div class="article-meta">
-                <span>📅 17 Dic 2024</span>
-                <span>👤 Ignacio Ramirez</span>
-                <span>⏱️ 5 min lectura</span>
-            </div>
-            <img src="images/blog-spatial-join.png" alt="Cruce Espacial GIS"
-                style="max-width: 100%; border-radius: 12px; margin-top: 2rem; box-shadow: 0 8px 30px rgba(0,0,0,0.3);">
         </div>
     </header>
 
     <!-- Content -->
-    <article class="article-content">
-        <div class="article-body">
-            <p>
-                El <strong>Cruce Espacial</strong> (Spatial Join) es una operación que une atributos de una capa a otra
-                basándose en su relación espacial. Es una de las herramientas más poderosas del análisis GIS: permite
-                responder preguntas como "¿en qué comuna está cada punto?" o "¿qué predios cruza esta línea de
-                transmisión?".
-            </p>
+    <article class="blog-content">
+        <h2>🔗 ¿Qué es un Cruce Espacial?</h2>
+        <p>
+            El <strong>Cruce Espacial</strong> (Spatial Join) es una operación que une atributos de una capa a otra
+            basándose en su relación espacial. Es una de las herramientas más poderosas del análisis GIS: permite
+            responder preguntas como "¿en qué comuna está cada punto?" o "¿qué predios cruza esta línea de
+            transmisión?".
+        </p>
 
-            <div class="highlight-box">
-                <strong>💡 ¿Qué es un Spatial Join?</strong> Es como un VLOOKUP de Excel, pero en lugar de buscar por
+        <div class="info-box">
+            <p><strong>💡 Analogía:</strong> Es como un VLOOKUP de Excel, pero en lugar de buscar por
                 un valor de columna, busca por ubicación geográfica. Junta información de dos capas basándose en
-                dónde se intersectan o contienen.
-            </div>
+                dónde se intersectan o contienen.</p>
+        </div>
 
-            <h2>¿Cuándo Usar el Cruce Espacial?</h2>
-            <ul>
-                <li><strong>Asignar territorios:</strong> ¿En qué comuna/región está cada punto de muestreo?</li>
-                <li><strong>Enriquecer datos:</strong> Agregar información catastral a puntos GPS</li>
-                <li><strong>Análisis de cobertura:</strong> ¿Qué predios están dentro de la zona de influencia?</li>
-                <li><strong>Control de calidad:</strong> Verificar consistencia territorial de datos</li>
-            </ul>
+        <h2>🎯 ¿Cuándo Usar el Cruce Espacial?</h2>
+        <ul>
+            <li><strong>Asignar territorios:</strong> ¿En qué comuna/región está cada punto de muestreo?</li>
+            <li><strong>Enriquecer datos:</strong> Agregar información catastral a puntos GPS</li>
+            <li><strong>Análisis de cobertura:</strong> ¿Qué predios están dentro de la zona de influencia?</li>
+            <li><strong>Control de calidad:</strong> Verificar consistencia territorial de datos</li>
+        </ul>
 
-            <h2>Tipos de Relación Espacial</h2>
-            <p>El cruce espacial soporta diferentes tipos de relación:</p>
-            <ul>
-                <li><strong>Intersección:</strong> Features que se tocan o superponen en cualquier parte</li>
-                <li><strong>Contención (Within):</strong> Puntos que están DENTRO de polígonos</li>
-                <li><strong>Más cercano:</strong> Une con el feature más cercano (útil cuando no hay intersección)</li>
-            </ul>
+        <h2>🔧 Cómo Funciona</h2>
+        <ol>
+            <li><strong>Carga la capa base:</strong> Los features que quieres enriquecer (ej: puntos GPS)</li>
+            <li><strong>Carga la capa de cruce:</strong> La capa con atributos a transferir (ej: comunas)</li>
+            <li><strong>Selecciona la relación:</strong> Intersección, contención o más cercano</li>
+            <li><strong>Elige los campos:</strong> Qué atributos transferir de la capa de cruce</li>
+            <li><strong>Ejecuta y descarga:</strong> Obtén tu capa enriquecida</li>
+        </ol>
 
-            <h2>Cómo Funciona</h2>
-            <ol>
-                <li><strong>Carga la capa base:</strong> Los features que quieres enriquecer (ej: puntos GPS)</li>
-                <li><strong>Carga la capa de cruce:</strong> La capa con atributos a transferir (ej: comunas)</li>
-                <li><strong>Selecciona la relación:</strong> Intersección, contención o más cercano</li>
-                <li><strong>Elige los campos:</strong> Qué atributos transferir de la capa de cruce</li>
-                <li><strong>Ejecuta y descarga:</strong> Obtén tu capa enriquecida</li>
-            </ol>
-
-            <div class="highlight-box success">
-                <strong>✨ Ejemplo práctico:</strong> Tienes 500 puntos de muestreo de calidad de agua. Quieres saber
+        <div class="success-box">
+            <p><strong>✨ Ejemplo práctico:</strong> Tienes 500 puntos de muestreo de calidad de agua. Quieres saber
                 en qué comuna y cuenca hidrográfica está cada uno. Cargas tus puntos + capa de comunas + capa de
-                cuencas.
-                Ejecutas el cruce y descargas tus puntos ahora con columnas COMUNA y CUENCA.
-            </div>
-
-            <h2>Ejemplo de Resultado</h2>
-            <div class="code-block">
-                ANTES (puntos sin información territorial):
-                ID | X | Y | PH | CONDUCTIVIDAD
-                P1 | -70.65 | -33.45 | 7.2 | 450
-                P2 | -70.72 | -33.51 | 6.8 | 520
-
-                DESPUÉS (puntos enriquecidos con cruce espacial):
-                ID | X | Y | PH | CONDUCTIVIDAD | COMUNA | REGION | CUENCA
-                P1 | -70.65 | -33.45 | 7.2 | 450 | Santiago | Metropolitana | Maipo
-                P2 | -70.72 | -33.51 | 6.8 | 520 | Maipú | Metropolitana | Maipo
-            </div>
-
-            <h2>Casos de Uso Comunes</h2>
-
-            <h3>🌊 Estudios Ambientales</h3>
-            <p>
-                Asignar cada punto de monitoreo a su cuenca hidrográfica, área protegida o zona de influencia del
-                proyecto.
-            </p>
-
-            <h3>🏘️ Planificación Territorial</h3>
-            <p>
-                Determinar qué predios están afectos a una nueva zonificación o área de restricción.
-            </p>
-
-            <h3>📍 Georreferenciación</h3>
-            <p>
-                Agregar información administrativa (comuna, provincia, región) a puntos de interés.
-            </p>
-
-            <h2>Formatos de Exportación</h2>
-            <ul>
-                <li><strong>Shapefile (ZIP):</strong> Con todos los campos originales + campos del cruce</li>
-                <li><strong>GeoJSON:</strong> Formato web ligero</li>
-                <li><strong>CSV:</strong> Solo la tabla de atributos para Excel</li>
-                <li><strong>Excel:</strong> Tabla formateada lista para informes</li>
-            </ul>
-
-            <div class="highlight-box">
-                <strong>⚠️ Nota:</strong> Asegúrate de que ambas capas estén en el mismo sistema de coordenadas,
-                o el sistema las reproyectará automáticamente para hacer el cruce correctamente.
-            </div>
+                cuencas. Ejecutas el cruce y descargas tus puntos ahora con columnas COMUNA y CUENCA.</p>
         </div>
 
-        <div class="share-links">
-            <strong>Compartir:</strong>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog-spatial-join.html"
-                target="_blank" class="btn-link">LinkedIn</a>
-            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        <h2>📋 Ejemplo de Resultado</h2>
+        <pre>ANTES (puntos sin información territorial):
+ID | X       | Y       | PH  | CONDUCTIVIDAD
+P1 | -70.65  | -33.45  | 7.2 | 450
+P2 | -70.72  | -33.51  | 6.8 | 520
+
+DESPUÉS (puntos enriquecidos con cruce espacial):
+ID | X       | Y       | PH  | CONDUCTIVIDAD | COMUNA    | REGION        | CUENCA
+P1 | -70.65  | -33.45  | 7.2 | 450           | Santiago  | Metropolitana | Maipo
+P2 | -70.72  | -33.51  | 6.8 | 520           | Maipú     | Metropolitana | Maipo</pre>
+
+        <h2>🌊 Casos de Uso Comunes</h2>
+        <h3>Estudios Ambientales</h3>
+        <p>Asignar cada punto de monitoreo a su cuenca hidrográfica, área protegida o zona de influencia del proyecto.
+        </p>
+
+        <h3>Planificación Territorial</h3>
+        <p>Determinar qué predios están afectos a una nueva zonificación o área de restricción.</p>
+
+        <h3>Georreferenciación</h3>
+        <p>Agregar información administrativa (comuna, provincia, región) a puntos de interés.</p>
+
+        <h2>📥 Formatos de Exportación</h2>
+        <ul>
+            <li><strong>Shapefile (ZIP):</strong> Con todos los campos originales + campos del cruce</li>
+            <li><strong>GeoJSON:</strong> Formato web ligero</li>
+            <li><strong>CSV:</strong> Solo la tabla de atributos para Excel</li>
+            <li><strong>Excel:</strong> Tabla formateada lista para informes</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>¿Necesitas enriquecer tus datos geoespaciales?</h3>
+            <p>Prueba el Cruce Espacial gratis.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
         </div>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <a href="blog.html" style="color: #667eea;">← Volver al Blog</a>
+        </p>
     </article>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">¿Necesitas enriquecer tus datos geoespaciales?</h2>
-                <p class="cta-subtitle">Prueba el Cruce Espacial gratis</p>
-                <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">

@@ -7,74 +7,101 @@
     <meta name="description"
         content="Automatización ETL en GIS: Ahorrando horas de trabajo manual con Geo Spark Studio.">
     <title>Automatización ETL en GIS - Geo Spark Studio Blog</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="styles.css">
     <style>
-        .article-header {
-            padding: var(--spacing-xxl) 0;
-            background: var(--bg-main);
-            text-align: center;
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
-        .article-content {
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-xxl) var(--spacing-md);
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
+            padding: 3rem 1.5rem;
         }
 
-        .article-meta {
-            color: var(--text-medium);
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            font-size: 0.9rem;
+        .blog-content h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .article-body {
-            font-size: 1.125rem;
-            color: var(--text-dark);
+        .blog-content p {
+            color: #a0aec0;
             line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        .article-body h2 {
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-dark);
+        .blog-content ul {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
         }
 
-        .article-body p {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .article-body ul {
-            margin-bottom: var(--spacing-md);
-            padding-left: var(--spacing-lg);
-        }
-
-        .article-body li {
+        .blog-content li {
             margin-bottom: 0.5rem;
+            line-height: 1.6;
         }
 
-        .share-links {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
+        .blog-meta {
             display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -95,106 +122,88 @@
                     <li><a href="index.html#precios">Precios</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="http://localhost:8501" class="btn-link">Ingresar</a>
-                    <a href="http://localhost:8501" class="btn btn-primary">Comenzar Gratis</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Article Header -->
-    <header class="article-header">
+    <!-- Header -->
+    <header class="blog-header">
         <div class="container">
-            <h1 class="hero-title" style="font-size: 2.5rem;">Automatización ETL en GIS: Ahorrando horas de trabajo
-                manual</h1>
-            <div class="article-meta">
-                <span>📅 09 Dic 2025</span>
-                <span>👤 Estanislao Ramirez</span>
-                <span>⏱️ 5 min lectura</span>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 09 Diciembre 2025</span>
+                    <span>📖 5 min lectura</span>
+                    <span>🏷️ ETL, Automatización, GIS</span>
+                </div>
+                <h1 class="blog-title">Automatización ETL en GIS: Ahorrando Horas de Trabajo Manual</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Descubre cómo reducir el tiempo de preparación de datos de 4 horas a menos de 5 minutos
+                    con procesos ETL automatizados.
+                </p>
+                <img src="img/blog_etl_header.png" alt="ETL Automation GIS" class="blog-header-image">
             </div>
-            <img src="img/blog_etl_header.png" alt="ETL Automation GIS"
-                style="max-width: 100%; border-radius: 12px; margin-top: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
         </div>
     </header>
 
-    <!-- Article Content -->
-    <article class="article-content">
-        <div class="article-body">
-            <p>
-                En el mundo de los Sistemas de Información Geográfica (GIS), la preparación de datos suele consumir
-                hasta el <strong>80% del tiempo de un proyecto</strong>. Nombres de campos inconsistentes, proyecciones
-                incorrectas y errores de topología son el pan de cada día para los analistas geoespaciales.
-            </p>
+    <!-- Content -->
+    <article class="blog-content">
+        <h2>⏱️ El Problema de la Estandarización Manual</h2>
+        <p>
+            En el mundo de los Sistemas de Información Geográfica (GIS), la preparación de datos suele consumir
+            hasta el <strong>80% del tiempo de un proyecto</strong>. Nombres de campos inconsistentes, proyecciones
+            incorrectas y errores de topología son el pan de cada día para los analistas geoespaciales.
+        </p>
 
-            <h2>El Problema de la Estandarización Manual</h2>
-            <p>
-                Imagina que recibes shapefiles de 10 fuentes diferentes. Algunos usan "Longitud", otros "LONG", otros
-                "X". Unificar esto manualmente no solo es tedioso, sino propenso a errores humanos que pueden costar
-                caro en la etapa de análisis.
-            </p>
-            <p>
-                Los desafíos más comunes incluyen:
-            </p>
-            <ul>
-                <li>Inconsistencia en nombres y tipos de atributos.</li>
-                <li>Geometrías inválidas (self-intersections).</li>
-                <li>Sistemas de Coordenadas (CRS) mezclados.</li>
-            </ul>
+        <p>
+            Imagina que recibes shapefiles de 10 fuentes diferentes. Algunos usan "Longitud", otros "LONG", otros
+            "X". Unificar esto manualmente no solo es tedioso, sino propenso a errores humanos que pueden costar
+            caro en la etapa de análisis.
+        </p>
 
-            <h2>La Solución: ETL Automatizado</h2>
-            <p>
-                Con herramientas como <strong>Geo Spark Studio</strong>, el proceso de Extract, Transform, Load (ETL) se
-                vuelve transparente. Nuestra plataforma permite definir un esquema maestro (como el estándar SEA) y
-                automáticamente mapear, corregir y validar cualquier archivo de entrada (SHP, KML, Excel) contra ese
-                estándar.
-            </p>
-
-            <h2>Resultados Reales</h2>
-            <p>
-                Nuestros usuarios reportan una reducción del tiempo de procesamiento de 4 horas a menos de 5 minutos por
-                lote de archivos. Esto permite a los profesionales GIS enfocarse en lo que realmente importa: <strong>el
-                    análisis espacial y la toma de decisiones</strong>.
-            </p>
+        <div class="info-box">
+            <p><strong>💡 Los desafíos más comunes:</strong> Inconsistencia en nombres y tipos de atributos,
+                geometrías inválidas (self-intersections), y sistemas de coordenadas mezclados.</p>
         </div>
 
-        <div class="share-links">
-            <strong>Compartir:</strong>
-            <a href="#" class="btn-link">LinkedIn</a>
-            <a href="#" class="btn-link">Twitter</a>
-            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        <h2>⚡ La Solución: ETL Automatizado</h2>
+        <p>
+            Con herramientas como <strong>Geo Spark Studio</strong>, el proceso de Extract, Transform, Load (ETL) se
+            vuelve transparente. Nuestra plataforma permite definir un esquema maestro (como el estándar SEA) y
+            automáticamente mapear, corregir y validar cualquier archivo de entrada (SHP, KML, Excel) contra ese
+            estándar.
+        </p>
+
+        <h2>📊 Resultados Reales</h2>
+        <p>
+            Nuestros usuarios reportan una reducción del tiempo de procesamiento de 4 horas a menos de 5 minutos por
+            lote de archivos. Esto permite a los profesionales GIS enfocarse en lo que realmente importa: <strong>el
+                análisis espacial y la toma de decisiones</strong>.
+        </p>
+
+        <ul>
+            <li>✅ Reducción del 95% en tiempo de preparación de datos</li>
+            <li>✅ Eliminación de errores humanos en mapeo de campos</li>
+            <li>✅ Validación automática de geometrías</li>
+            <li>✅ Exportación directa a formato SEA</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>Automatiza tu Flujo de Trabajo</h3>
+            <p>Prueba la estandarización ETL automática gratis.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
         </div>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <a href="blog.html" style="color: #667eea;">← Volver al Blog</a>
+        </p>
     </article>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <span class="logo-icon">🗺️</span>
-                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Producto</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#caracteristicas">Características</a></li>
-                        <li><a href="index.html#precios">Precios</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Recursos</h4>
-                    <ul class="footer-links">
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Contacto</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:contacto@geotools.cl">contacto@geotools.cl</a></li>
-                    </ul>
-                </div>
-            </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
             </div>

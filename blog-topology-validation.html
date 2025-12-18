@@ -7,75 +7,107 @@
     <meta name="description"
         content="Por qué la Validación Topológica es crítica en tus datos GIS - Geo Spark Studio Blog.">
     <title>Validación Topológica GIS - Geo Spark Studio Blog</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .article-header {
-            padding: var(--spacing-xxl) 0;
-            background: var(--bg-main);
-            text-align: center;
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
-        .article-content {
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-xxl) var(--spacing-md);
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
+            padding: 3rem 1.5rem;
         }
 
-        .article-meta {
-            color: var(--text-medium);
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            font-size: 0.9rem;
+        .blog-content h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .article-body {
-            font-size: 1.125rem;
-            color: var(--text-dark);
+        .blog-content p {
+            color: #a0aec0;
             line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        .article-body h2 {
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-dark);
+        .blog-content ul {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
         }
 
-        .article-body p {
-            margin-bottom: var(--spacing-md);
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
         }
 
-        .article-body ul {
-            margin-bottom: var(--spacing-md);
-            padding-left: var(--spacing-lg);
-        }
-
-        .share-links {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
+        .blog-meta {
             display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation (Same as others) -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
@@ -90,97 +122,83 @@
                     <li><a href="index.html#precios">Precios</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="http://localhost:8501" class="btn-link">Ingresar</a>
-                    <a href="http://localhost:8501" class="btn btn-primary">Comenzar Gratis</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Header -->
-    <header class="article-header">
+    <header class="blog-header">
         <div class="container">
-            <h1 class="hero-title" style="font-size: 2.5rem;">Por qué la Validación Topológica es crítica en tus
-                proyectos</h1>
-            <div class="article-meta">
-                <span>📅 08 Dic 2025</span>
-                <span>👤 Estanislao Ramirez</span>
-                <span>⏱️ 4 min lectura</span>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 08 Diciembre 2025</span>
+                    <span>📖 4 min lectura</span>
+                    <span>🏷️ Topología, Validación, GIS</span>
+                </div>
+                <h1 class="blog-title">Por qué la Validación Topológica es Crítica en tus Proyectos</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Descubre cómo los errores geométricos invisibles pueden arruinar tus análisis espaciales
+                    y cómo detectarlos y corregirlos automáticamente.
+                </p>
+                <img src="images/blog-topology-validation.png" alt="Validación Topológica GIS"
+                    class="blog-header-image">
             </div>
-            <img src="images/blog-topology-validation.png" alt="Validación Topológica GIS"
-                style="max-width: 100%; border-radius: 12px; margin-top: 2rem; box-shadow: 0 8px 30px rgba(0,0,0,0.3);">
         </div>
     </header>
 
     <!-- Content -->
-    <article class="article-content">
-        <div class="article-body">
-            <p>
-                Un mapa bonito no siempre es un mapa útil. En el análisis espacial, la <strong>integridad
-                    topológica</strong> es fundamental. Un polígono que se cruza a sí mismo (self-intersection) o huecos
-                involuntarios entre parcelas pueden invalidar cálculos de área o rutas de navegación.
-            </p>
+    <article class="blog-content">
+        <h2>🔍 El Problema Oculto en tus Datos</h2>
+        <p>
+            Un mapa bonito no siempre es un mapa útil. En el análisis espacial, la <strong>integridad
+                topológica</strong> es fundamental. Un polígono que se cruza a sí mismo (self-intersection) o huecos
+            involuntarios entre parcelas pueden invalidar cálculos de área o rutas de navegación.
+        </p>
 
-            <h2>Errores Comunes Invisibles a Simple Vista</h2>
-            <p>
-                Muchos errores geométricos son microscópicos pero fatales para algoritmos de geoprocesamiento:
-            </p>
-            <ul>
-                <li><strong>Self-Intersections:</strong> Lazos en polígonos ("corbatas de moño").</li>
-                <li><strong>Slivers:</strong> Polígonos diminutos generados por superposiciones erróneas.</li>
-                <li><strong>Geometrías Nulas:</strong> Objetos sin coordenadas válidas.</li>
-            </ul>
+        <h2>⚠️ Errores Comunes Invisibles a Simple Vista</h2>
+        <p>
+            Muchos errores geométricos son microscópicos pero fatales para algoritmos de geoprocesamiento:
+        </p>
+        <ul>
+            <li><strong>Self-Intersections:</strong> Lazos en polígonos ("corbatas de moño").</li>
+            <li><strong>Slivers:</strong> Polígonos diminutos generados por superposiciones erróneas.</li>
+            <li><strong>Geometrías Nulas:</strong> Objetos sin coordenadas válidas.</li>
+            <li><strong>Vértices duplicados:</strong> Puntos repetidos que causan errores en cálculos.</li>
+        </ul>
 
-            <h2>Corrección Automática con Geo Spark</h2>
-            <p>
-                Nuestra herramienta de <strong>Validación Topológica</strong> no solo reporta estos errores, sino que
-                ofrece correcciones automáticas. Utilizamos técnicas avanzadas (como buffering de distancia cero) para
-                reparar geometrías inválidas sin intervención manual.
-            </p>
-            <p>
-                Asegurar la calidad de tus datos desde la ingesta garantiza que todos los procesos posteriores (cálculo
-                de áreas, intersecciones, buffers) sean precisos y confiables.
-            </p>
+        <div class="info-box">
+            <p><strong>💡 Dato:</strong> Más del 30% de los archivos geoespaciales que recibimos contienen
+                al menos un error topológico que puede afectar los resultados de análisis.</p>
         </div>
 
-        <div class="share-links">
-            <strong>Compartir:</strong>
-            <a href="#" class="btn-link">LinkedIn</a>
-            <a href="#" class="btn-link">Twitter</a>
-            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        <h2>✅ Corrección Automática con Geo Spark</h2>
+        <p>
+            Nuestra herramienta de <strong>Validación Topológica</strong> no solo reporta estos errores, sino que
+            ofrece correcciones automáticas. Utilizamos técnicas avanzadas (como buffering de distancia cero) para
+            reparar geometrías inválidas sin intervención manual.
+        </p>
+        <p>
+            Asegurar la calidad de tus datos desde la ingesta garantiza que todos los procesos posteriores (cálculo
+            de áreas, intersecciones, buffers) sean precisos y confiables.
+        </p>
+
+        <div class="cta-box">
+            <h3>Valida tus Datos Ahora</h3>
+            <p>Detecta y corrige errores topológicos en segundos con nuestra herramienta gratuita.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Probar Validador →</a>
         </div>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <a href="blog.html" style="color: #667eea;">← Volver al Blog</a>
+        </p>
     </article>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <span class="logo-icon">🗺️</span>
-                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Producto</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#caracteristicas">Características</a></li>
-                        <li><a href="index.html#precios">Precios</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Recursos</h4>
-                    <ul class="footer-links">
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Contacto</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:contacto@geotools.cl">contacto@geotools.cl</a></li>
-                    </ul>
-                </div>
-            </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
             </div>

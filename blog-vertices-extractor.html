@@ -9,131 +9,168 @@
     <meta name="keywords" content="vértices, polígonos, UTM, coordenadas, topografía, GIS, cuadro de coordenadas, SEA">
     <meta name="author" content="Geo Spark Studio">
     <title>Extractor de Vértices: Polígonos a Coordenadas UTM - Geo Spark Studio Blog</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .article-header {
-            padding: var(--spacing-xxl) 0;
-            background: var(--bg-main);
-            text-align: center;
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
-        .article-content {
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-xxl) var(--spacing-md);
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
+            padding: 3rem 1.5rem;
         }
 
-        .article-meta {
-            color: var(--text-medium);
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
+        .blog-content h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
+            color: #e2e8f0;
+            margin-top: 1.5rem;
+        }
+
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-content pre {
+            background: #2d3748;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            font-family: monospace;
             font-size: 0.9rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
         }
 
-        .article-body {
-            font-size: 1.125rem;
-            color: var(--text-dark);
-            line-height: 1.8;
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        .article-body h2 {
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-dark);
-        }
-
-        .article-body p {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .article-body ul,
-        .article-body ol {
-            margin-bottom: var(--spacing-md);
-            padding-left: var(--spacing-lg);
-        }
-
-        .article-body li {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .article-image {
-            width: 100%;
-            border-radius: var(--radius-md);
-            margin: var(--spacing-lg) 0;
-            box-shadow: var(--shadow-md);
-        }
-
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            margin: var(--spacing-md) 0;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(250, 112, 154, 0.1) 100%);
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             border-left: 4px solid #667eea;
-            padding: var(--spacing-md);
-            border-radius: var(--radius-sm);
-            margin: var(--spacing-md) 0;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
         }
 
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            margin: var(--spacing-md) 0;
-            font-size: 0.9rem;
-        }
-
-        .data-table th,
-        .data-table td {
-            border: 1px solid var(--border-color);
-            padding: 0.75rem;
-            text-align: left;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .data-table th {
-            background: #f1f5f9;
+            background: #334155;
+            color: #fff;
+            padding: 1rem;
+            text-align: left;
             font-weight: 600;
         }
 
-        .share-links {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
-            flex-wrap: wrap;
+        .data-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #334155;
+            color: #a0aec0;
         }
 
-        .tag {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
         }
     </style>
 </head>
@@ -162,57 +199,56 @@
     </nav>
 
     <!-- Header -->
-    <header class="article-header">
+    <header class="blog-header">
         <div class="container">
-            <div style="margin-bottom: 1rem;">
-                <span class="tag">✨ NUEVO</span>
-                <span class="tag">📍 Topografía</span>
-                <span class="tag">🗺️ GIS</span>
-            </div>
-            <h1 class="hero-title" style="font-size: 2.5rem;">Extractor de Vértices: De Polígonos a Cuadros de
-                Coordenadas UTM</h1>
-            <div class="article-meta">
-                <span>📅 17 Dic 2025</span>
-                <span>👤 Ignacio Ramirez</span>
-                <span>⏱️ 5 min lectura</span>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 17 Diciembre 2025</span>
+                    <span>📖 5 min lectura</span>
+                    <span>🏷️ Topografía, UTM, Vértices</span>
+                </div>
+                <h1 class="blog-title">Extractor de Vértices: De Polígonos a Cuadros de Coordenadas UTM</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Extrae automáticamente las coordenadas de cada vértice de tus polígonos
+                    y genera cuadros de coordenadas profesionales en segundos.
+                </p>
+                <img src="img/blog_vertices_extractor.png" alt="Extractor de Vértices" class="blog-header-image">
             </div>
         </div>
     </header>
 
     <!-- Content -->
-    <article class="article-content">
-        <img src="img/blog_vertices_extractor.png" alt="Extractor de Vértices - Ilustración" class="article-image">
+    <article class="blog-content">
+        <h2>📍 ¿Qué es un Cuadro de Coordenadas?</h2>
+        <p>
+            En trabajos topográficos, estudios ambientales y documentación técnica SEA, es común necesitar las
+            <strong>coordenadas exactas de cada vértice</strong> de un polígono. Ya sea para replanteo en terreno,
+            generación de cuadros de coordenadas o validación de deslindes, esta tarea puede ser tediosa si se hace
+            manualmente.
+        </p>
 
-        <div class="article-body">
-            <p>
-                En trabajos topográficos, estudios ambientales y documentación técnica SEA, es común necesitar las
-                <strong>coordenadas exactas de cada vértice</strong> de un polígono. Ya sea para replanteo en terreno,
-                generación de cuadros de coordenadas o validación de deslindes, esta tarea puede ser tediosa si se hace
-                manualmente.
-            </p>
+        <p>
+            Un cuadro de coordenadas es una tabla que lista cada punto (vértice) que define el contorno de un polígono,
+            incluyendo sus coordenadas en un sistema de referencia específico. Es un requisito común en:
+        </p>
+        <ul>
+            <li><strong>Estudios de Impacto Ambiental (EIA)</strong> para el SEA</li>
+            <li><strong>Planos topográficos</strong> y de subdivisión</li>
+            <li><strong>Escrituras</strong> y documentos legales</li>
+            <li><strong>Replanteo</strong> en terreno con GPS/Estación Total</li>
+            <li><strong>Contratos de arriendo</strong> de terrenos</li>
+        </ul>
 
-            <div class="highlight-box">
-                <strong>💡 La solución:</strong> El nuevo <em>Extractor de Vértices</em> de Geo Spark Studio automatiza
+        <div class="info-box">
+            <p><strong>💡 La solución:</strong> El Extractor de Vértices de Geo Spark Studio automatiza
                 este proceso, convirtiendo cualquier polígono en una tabla estructurada con coordenadas UTM en segundos.
-            </div>
-
-            <h2>¿Qué es un Cuadro de Coordenadas?</h2>
-            <p>
-                Un cuadro de coordenadas es una tabla que lista cada punto (vértice) que define el contorno de un
-                polígono,
-                incluyendo sus coordenadas en un sistema de referencia específico. Es un requisito común en:
             </p>
-            <ul>
-                <li><strong>Estudios de Impacto Ambiental (EIA)</strong> para el SEA</li>
-                <li><strong>Planos topográficos</strong> y de subdivisión</li>
-                <li><strong>Escrituras</strong> y documentos legales</li>
-                <li><strong>Replanteo</strong> en terreno con GPS/Estación Total</li>
-                <li><strong>Contratos de arriendo</strong> de terrenos</li>
-            </ul>
+        </div>
 
-            <h2>Ejemplo de Tabla de Vértices</h2>
-            <p>El Extractor genera una tabla con el siguiente formato:</p>
+        <h2>📋 Ejemplo de Tabla de Vértices</h2>
+        <p>El Extractor genera una tabla con el siguiente formato:</p>
 
+        <div class="table-container">
             <table class="data-table">
                 <thead>
                     <tr>
@@ -254,133 +290,77 @@
                     </tr>
                 </tbody>
             </table>
-
-            <h2>¿Cómo Funciona?</h2>
-            <ol>
-                <li><strong>Carga tu archivo</strong> de polígonos (SHP, KML, KMZ, GeoJSON)</li>
-                <li><strong>Selecciona el atributo</strong> que quieres incluir (nombre, código, etc.)</li>
-                <li><strong>Elige el sistema UTM</strong> o deja que se detecte automáticamente</li>
-                <li><strong>Descarga</strong> la tabla en CSV, Excel o TXT</li>
-            </ol>
-
-            <h2>Detección Automática de Zona UTM</h2>
-            <p>
-                Chile continental se ubica principalmente en las zonas UTM <strong>18S</strong> (norte) y
-                <strong>19S</strong> (centro-sur). El Extractor de Vértices detecta automáticamente la zona
-                correcta basándose en la ubicación de tus datos, asegurando coordenadas precisas en metros.
-            </p>
-
-            <div class="code-block">
-                CUADRO DE COORDENADAS
-                Sistema: UTM Zona 19S (EPSG:32719)
-                ============================================
-
-                POLÍGONO 1 - Parcela Norte
-                ----------------------------------------
-                N° ESTE (m) NORTE (m)
-                ----------------------------------------
-                1 345,678.123 6,234,567.456
-                2 345,892.789 6,234,589.012
-                3 345,901.234 6,234,432.678
-                4 345,654.321 6,234,410.987
-            </div>
-
-            <h2>Formatos de Exportación</h2>
-            <p>El Extractor ofrece tres formatos de salida:</p>
-            <ul>
-                <li><strong>CSV:</strong> Para análisis en Excel, Python, R o cualquier herramienta</li>
-                <li><strong>Excel (.xlsx):</strong> Tabla formateada lista para imprimir</li>
-                <li><strong>TXT:</strong> Cuadro de coordenadas clásico para documentación técnica</li>
-            </ul>
-
-            <h2>Casos de Uso Reales</h2>
-
-            <h3>📋 Documentación SEA</h3>
-            <p>
-                Los Estudios de Impacto Ambiental requieren cuadros de coordenadas para definir áreas de influencia
-                directa e indirecta. Con el Extractor, puedes generar estos cuadros en segundos.
-            </p>
-
-            <h3>🏗️ Replanteo en Terreno</h3>
-            <p>
-                Topógrafos pueden exportar las coordenadas y cargarlas directamente en estaciones totales o
-                GPS RTK para replantear polígonos en el terreno.
-            </p>
-
-            <h3>📰 Informes Técnicos</h3>
-            <p>
-                Incluye cuadros de coordenadas profesionales en tus informes con el formato TXT preformateado,
-                listo para copiar y pegar.
-            </p>
-
-            <div class="highlight-box">
-                <strong>🚀 Pruébalo Ahora:</strong> El Extractor de Vértices está disponible para todos los usuarios
-                de Geo Spark Studio. Encuentra la herramienta en el menú lateral bajo "📍 Extractor Vértices".
-            </div>
-
-            <h2>Conclusión</h2>
-            <p>
-                La extracción manual de vértices es una tarea repetitiva y propensa a errores. Con el
-                <strong>Extractor de Vértices</strong> de Geo Spark Studio, puedes automatizar este proceso,
-                ahorrando tiempo valioso y asegurando la precisión de tus coordenadas.
-            </p>
-            <p>
-                Ya sea que trabajes en topografía, consultoría ambiental, o simplemente necesites documentar
-                las coordenadas de tus polígonos, esta herramienta te simplificará el trabajo.
-            </p>
         </div>
 
-        <div class="share-links">
-            <strong>Compartir:</strong>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog-vertices-extractor.html"
-                target="_blank" class="btn-link">LinkedIn</a>
-            <a href="https://twitter.com/intent/tweet?url=https://ramirezmaps.github.io/geosparkstudio/blog-vertices-extractor.html&text=Nuevo: Extractor de Vértices para GIS"
-                target="_blank" class="btn-link">Twitter</a>
-            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        <h2>🔧 ¿Cómo Funciona?</h2>
+        <ol>
+            <li><strong>Carga tu archivo</strong> de polígonos (SHP, KML, KMZ, GeoJSON)</li>
+            <li><strong>Selecciona el atributo</strong> que quieres incluir (nombre, código, etc.)</li>
+            <li><strong>Elige el sistema UTM</strong> o deja que se detecte automáticamente</li>
+            <li><strong>Descarga</strong> la tabla en CSV, Excel o TXT</li>
+        </ol>
+
+        <h2>🗺️ Detección Automática de Zona UTM</h2>
+        <p>
+            Chile continental se ubica principalmente en las zonas UTM <strong>18S</strong> (norte) y
+            <strong>19S</strong> (centro-sur). El Extractor de Vértices detecta automáticamente la zona
+            correcta basándose en la ubicación de tus datos, asegurando coordenadas precisas en metros.
+        </p>
+
+        <pre>CUADRO DE COORDENADAS
+Sistema: UTM Zona 19S (EPSG:32719)
+============================================
+
+POLÍGONO 1 - Parcela Norte
+----------------------------------------
+N°   ESTE (m)       NORTE (m)
+----------------------------------------
+1    345,678.123    6,234,567.456
+2    345,892.789    6,234,589.012
+3    345,901.234    6,234,432.678
+4    345,654.321    6,234,410.987</pre>
+
+        <h2>📥 Formatos de Exportación</h2>
+        <ul>
+            <li><strong>CSV:</strong> Para análisis en Excel, Python, R o cualquier herramienta</li>
+            <li><strong>Excel (.xlsx):</strong> Tabla formateada lista para imprimir</li>
+            <li><strong>TXT:</strong> Cuadro de coordenadas clásico para documentación técnica</li>
+        </ul>
+
+        <h2>🎯 Casos de Uso Reales</h2>
+
+        <h3>📋 Documentación SEA</h3>
+        <p>
+            Los Estudios de Impacto Ambiental requieren cuadros de coordenadas para definir áreas de influencia
+            directa e indirecta. Con el Extractor, puedes generar estos cuadros en segundos.
+        </p>
+
+        <h3>🏗️ Replanteo en Terreno</h3>
+        <p>
+            Topógrafos pueden exportar las coordenadas y cargarlas directamente en estaciones totales o
+            GPS RTK para replantear polígonos en el terreno.
+        </p>
+
+        <h3>📰 Informes Técnicos</h3>
+        <p>
+            Incluye cuadros de coordenadas profesionales en tus informes con el formato TXT preformateado,
+            listo para copiar y pegar.
+        </p>
+
+        <div class="cta-box">
+            <h3>¿Necesitas extraer vértices de tus polígonos?</h3>
+            <p>Prueba el Extractor de Vértices gratis.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
         </div>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <a href="blog.html" style="color: #667eea;">← Volver al Blog</a>
+        </p>
     </article>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">¿Necesitas extraer vértices de tus polígonos?</h2>
-                <p class="cta-subtitle">Prueba el Extractor de Vértices gratis</p>
-                <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <span class="logo-icon">🗺️</span>
-                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Producto</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#caracteristicas">Características</a></li>
-                        <li><a href="index.html#precios">Precios</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Recursos</h4>
-                    <ul class="footer-links">
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-title">Contacto</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:contacto@geospark.cl">contacto@geospark.cl</a></li>
-                    </ul>
-                </div>
-            </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
             </div>
@@ -395,31 +375,6 @@
                 d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z" />
         </svg>
     </a>
-
-    <style>
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-            color: #fff;
-            border-radius: 50%;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
-        }
-    </style>
 </body>
 
 </html>

@@ -5,117 +5,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Cómo calcular áreas, perímetros y centroides de geometrías GIS con precisión. Tutorial de la Calculadora Geométrica de Geo Spark Studio.">
-    <meta name="keywords" content="área hectáreas, perímetro, centroide, cálculo GIS, superficies, geodesia, Chile">
-    <meta name="author" content="Geo Spark Studio">
+        content="Cómo calcular áreas, perímetros y centroides de geometrías GIS con precisión. Tutorial de la Calculadora Geométrica.">
     <title>Calculadora Geométrica: Áreas, Perímetros y Centroides - Geo Spark Studio Blog</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .article-header {
-            padding: var(--spacing-xxl) 0;
-            background: var(--bg-main);
-            text-align: center;
+        .blog-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
-        .article-content {
+        .blog-header-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-xxl) var(--spacing-md);
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
+            padding: 3rem 1.5rem;
         }
 
-        .article-meta {
-            color: var(--text-medium);
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-        }
-
-        .article-body {
-            font-size: 1.125rem;
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-        .article-body h2 {
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-dark);
-        }
-
-        .article-body p {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .article-body ul,
-        .article-body ol {
-            margin-bottom: var(--spacing-md);
-            padding-left: var(--spacing-lg);
-        }
-
-        .article-body li {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(250, 112, 154, 0.1) 100%);
-            border-left: 4px solid #667eea;
-            padding: var(--spacing-md);
-            border-radius: var(--radius-sm);
-            margin: var(--spacing-md) 0;
-        }
-
-        .tag {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.1);
+        .blog-content h2 {
             color: #667eea;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .share-links {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
+        .blog-content p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul,
+        .blog-content ol {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-content code {
+            background: #2d3748;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ffd700;
+        }
+
+        .blog-meta {
             display: flex;
-            gap: var(--spacing-md);
-            align-items: center;
+            gap: 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .info-box p {
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box p {
+            color: #fcd34d;
+            margin: 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
         }
 
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            margin: var(--spacing-md) 0;
-            font-size: 0.9rem;
-        }
-
-        .data-table th,
-        .data-table td {
-            border: 1px solid var(--border-color);
-            padding: 0.75rem;
-            text-align: left;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .data-table th {
-            background: #f1f5f9;
+            background: #334155;
+            color: #fff;
+            padding: 1rem;
+            text-align: left;
             font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #334155;
+            color: #a0aec0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -144,42 +179,41 @@
     </nav>
 
     <!-- Header -->
-    <header class="article-header">
+    <header class="blog-header">
         <div class="container">
-            <div style="margin-bottom: 1rem;">
-                <span class="tag">📐 Cálculos</span>
-                <span class="tag">🗺️ GIS</span>
-                <span class="tag">📊 Métricas</span>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span>📅 17 Diciembre 2024</span>
+                    <span>📖 4 min lectura</span>
+                    <span>🏷️ Cálculos, Áreas, Métricas</span>
+                </div>
+                <h1 class="blog-title">Calculadora Geométrica: Áreas, Perímetros y Centroides con Precisión</h1>
+                <p style="font-size: 1.2rem; color: #a0aec0;">
+                    Calcula automáticamente superficies en hectáreas, perímetros y coordenadas centrales
+                    de tus geometrías con precisión profesional.
+                </p>
+                <img src="images/blog-geometric-calculator.png" alt="Calculadora Geométrica GIS"
+                    class="blog-header-image">
             </div>
-            <h1 class="hero-title" style="font-size: 2.5rem;">Calculadora Geométrica: Áreas, Perímetros y Centroides con
-                Precisión</h1>
-            <div class="article-meta">
-                <span>📅 17 Dic 2024</span>
-                <span>👤 Ignacio Ramirez</span>
-                <span>⏱️ 4 min lectura</span>
-            </div>
-            <img src="images/blog-geometric-calculator.png" alt="Calculadora Geométrica GIS"
-                style="max-width: 100%; border-radius: 12px; margin-top: 2rem; box-shadow: 0 8px 30px rgba(0,0,0,0.3);">
         </div>
     </header>
 
     <!-- Content -->
-    <article class="article-content">
-        <div class="article-body">
-            <p>
-                Calcular el área de un predio, el perímetro de un bosque o el centroide de una zona de estudio son
-                tareas fundamentales en cualquier proyecto GIS. La <strong>Calculadora Geométrica</strong> de Geo
-                Spark Studio automatiza estos cálculos con precisión profesional.
-            </p>
+    <article class="blog-content">
+        <h2>📐 ¿Por Qué es Importante?</h2>
+        <p>
+            Calcular el área de un predio, el perímetro de un bosque o el centroide de una zona de estudio son
+            tareas fundamentales en cualquier proyecto GIS. La <strong>Calculadora Geométrica</strong> de Geo
+            Spark Studio automatiza estos cálculos con precisión profesional.
+        </p>
 
-            <div class="highlight-box">
-                <strong>💡 ¿Por qué es importante?</strong> Los cálculos geométricos precisos son esenciales para
-                informes técnicos, tasaciones, estudios ambientales y documentación legal de propiedades.
-            </div>
+        <div class="info-box">
+            <p><strong>💡 Importante:</strong> Los cálculos geométricos precisos son esenciales para
+                informes técnicos, tasaciones, estudios ambientales y documentación legal de propiedades.</p>
+        </div>
 
-            <h2>Métricas Calculadas</h2>
-            <p>La herramienta calcula automáticamente:</p>
-
+        <h2>📊 Métricas Calculadas</h2>
+        <div class="table-container">
             <table class="data-table">
                 <thead>
                     <tr>
@@ -205,78 +239,48 @@
                         <td>Líneas</td>
                     </tr>
                     <tr>
-                        <td><strong>Centroide X</strong></td>
-                        <td>coordenada Este</td>
-                        <td>Todos</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Centroide Y</strong></td>
-                        <td>coordenada Norte</td>
+                        <td><strong>Centroide X/Y</strong></td>
+                        <td>coordenadas</td>
                         <td>Todos</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
 
-            <h2>Cómo Funciona</h2>
-            <ol>
-                <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ o GeoJSON con polígonos o líneas</li>
-                <li><strong>Detección automática:</strong> El sistema identifica el CRS y reproyecta si es necesario
-                </li>
-                <li><strong>Cálculo inmediato:</strong> Las métricas aparecen en una tabla ordenada</li>
-                <li><strong>Exporta:</strong> Descarga el archivo con los nuevos campos calculados</li>
-            </ol>
+        <h2>🔧 Cómo Funciona</h2>
+        <ol>
+            <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ o GeoJSON con polígonos o líneas</li>
+            <li><strong>Detección automática:</strong> El sistema identifica el CRS y reproyecta si es necesario</li>
+            <li><strong>Cálculo inmediato:</strong> Las métricas aparecen en una tabla ordenada</li>
+            <li><strong>Exporta:</strong> Descarga el archivo con los nuevos campos calculados</li>
+        </ol>
 
-            <h2>Precisión de los Cálculos</h2>
-            <div class="highlight-box">
-                <strong>⚠️ Nota técnica:</strong> Para cálculos precisos en metros, los datos se proyectan
+        <div class="warning-box">
+            <p><strong>⚠️ Nota técnica:</strong> Para cálculos precisos en metros, los datos se proyectan
                 automáticamente a UTM (zona correspondiente) si vienen en WGS84 (lat/lon). Esto garantiza que
-                las áreas y perímetros sean correctos en unidades métricas.
-            </div>
-
-            <h2>Casos de Uso</h2>
-            <ul>
-                <li><strong>Tasaciones:</strong> Superficie exacta de predios para valorización</li>
-                <li><strong>Estudios ambientales:</strong> Área de intervención, zonas de influencia</li>
-                <li><strong>Planificación:</strong> Longitud de caminos, perímetro de áreas protegidas</li>
-                <li><strong>Informes SEA:</strong> Métricas requeridas en evaluación ambiental</li>
-            </ul>
-
-            <h2>Campos Calculados</h2>
-            <p>El resultado incluye los siguientes campos adicionales:</p>
-            <ul>
-                <li><code>AREA_M2</code> - Área en metros cuadrados</li>
-                <li><code>AREA_HA</code> - Área en hectáreas</li>
-                <li><code>PERIMETRO_M</code> - Perímetro en metros</li>
-                <li><code>CENTROIDE_X</code> - Coordenada X del centro</li>
-                <li><code>CENTROIDE_Y</code> - Coordenada Y del centro</li>
-            </ul>
-
-            <h2>Formatos de Exportación</h2>
-            <ul>
-                <li><strong>CSV:</strong> Tabla con todas las métricas para Excel</li>
-                <li><strong>Excel (.xlsx):</strong> Formateado listo para informes</li>
-                <li><strong>Shapefile:</strong> Con campos geométricos incluidos</li>
-            </ul>
+                las áreas y perímetros sean correctos en unidades métricas.</p>
         </div>
 
-        <div class="share-links">
-            <strong>Compartir:</strong>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog-geometric-calculator.html"
-                target="_blank" class="btn-link">LinkedIn</a>
-            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        <h2>📋 Campos Calculados</h2>
+        <p>El resultado incluye los siguientes campos adicionales:</p>
+        <ul>
+            <li><code>AREA_M2</code> - Área en metros cuadrados</li>
+            <li><code>AREA_HA</code> - Área en hectáreas</li>
+            <li><code>PERIMETRO_M</code> - Perímetro en metros</li>
+            <li><code>CENTROIDE_X</code> - Coordenada X del centro</li>
+            <li><code>CENTROIDE_Y</code> - Coordenada Y del centro</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>¿Necesitas calcular áreas y perímetros?</h3>
+            <p>Prueba la Calculadora Geométrica gratis.</p>
+            <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
         </div>
+
+        <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
+            <a href="blog.html" style="color: #667eea;">← Volver al Blog</a>
+        </p>
     </article>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">¿Necesitas calcular áreas y perímetros?</h2>
-                <p class="cta-subtitle">Prueba la Calculadora Geométrica gratis</p>
-                <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
