@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cómo convertir tablas CSV o Excel con coordenadas en geometrías geoespaciales (puntos, líneas, polígonos) - Geo Spark Studio Blog.">
+    <meta name="keywords"
+        content="CSV a geometría, Excel a GIS, puntos, líneas, polígonos, coordenadas, topografía, GIS">
+    <meta name="author" content="Geo Spark Studio">
+    <title>Generador de Geometrías: CSV/XLSX a Puntos, Líneas y Polígonos - Geo Spark Studio Blog</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-header {
+            padding: var(--spacing-xxl) 0;
+            background: var(--bg-main);
+            text-align: center;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-xxl) var(--spacing-md);
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .article-meta {
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .article-body {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-dark);
+        }
+
+        .article-body p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .article-body li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .article-image {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin: var(--spacing-lg) 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: var(--spacing-md) 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(250, 112, 154, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-md) 0;
+            font-size: 0.9rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #f1f5f9;
+            font-weight: 600;
+        }
+
+        .share-links {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#caracteristicas">Características</a></li>
+                    <li><a href="blog.html" style="color: #667eea;">Blog</a></li>
+                    <li><a href="index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="article-header">
+        <div class="container">
+            <div style="margin-bottom: 1rem;">
+                <span class="tag">✨ NUEVO</span>
+                <span class="tag">📐 Geometrías</span>
+                <span class="tag">🗺️ GIS</span>
+            </div>
+            <h1 class="hero-title" style="font-size: 2.5rem;">Generador de Geometrías: Convierte CSV/XLSX en Puntos,
+                Líneas y Polígonos</h1>
+            <div class="article-meta">
+                <span>📅 17 Dic 2025</span>
+                <span>👤 Ignacio Ramirez</span>
+                <span>⏱️ 6 min lectura</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="article-content">
+        <img src="img/blog_geometry_generator.png" alt="Generador de Geometrías - Ilustración" class="article-image">
+
+        <div class="article-body">
+            <p>
+                ¿Tienes una tabla de Excel o CSV con coordenadas de puntos topográficos y necesitas convertirla en
+                un archivo geoespacial? El nuevo <strong>Generador de Geometrías</strong> de Geo Spark Studio hace
+                exactamente eso: transforma tus tablas de coordenadas en geometrías GIS listas para usar.
+            </p>
+
+            <div class="highlight-box">
+                <strong>💡 El escenario:</strong> Recibes un levantamiento topográfico en Excel con coordenadas
+                Este/Norte de cada vértice. Necesitas crear un polígono SHP o KMZ para visualizarlo en GIS o Google
+                Earth. Con el <em>Generador de Geometrías</em>, esto toma menos de un minuto.
+            </div>
+
+            <h2>¿Qué Puedes Crear?</h2>
+            <p>El Generador soporta tres tipos de geometrías:</p>
+            <ul>
+                <li><strong>📍 Puntos:</strong> Cada fila de tu tabla = un punto independiente</li>
+                <li><strong>📏 Líneas:</strong> Filas con el mismo ID se conectan formando una línea</li>
+                <li><strong>🔳 Polígonos:</strong> Filas con el mismo ID forman un polígono cerrado</li>
+            </ul>
+
+            <h2>Estructura de la Tabla de Entrada</h2>
+            <p>Tu tabla debe tener al menos las siguientes columnas:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID_ELEMENTO</th>
+                        <th>VERTICE</th>
+                        <th>ESTE</th>
+                        <th>NORTE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>POLIG_1</td>
+                        <td>1</td>
+                        <td>345678.12</td>
+                        <td>6234567.45</td>
+                    </tr>
+                    <tr>
+                        <td>POLIG_1</td>
+                        <td>2</td>
+                        <td>345892.78</td>
+                        <td>6234589.01</td>
+                    </tr>
+                    <tr>
+                        <td>POLIG_1</td>
+                        <td>3</td>
+                        <td>345901.23</td>
+                        <td>6234432.67</td>
+                    </tr>
+                    <tr>
+                        <td>POLIG_2</td>
+                        <td>1</td>
+                        <td>346100.00</td>
+                        <td>6235000.00</td>
+                    </tr>
+                    <tr>
+                        <td>POLIG_2</td>
+                        <td>2</td>
+                        <td>346200.00</td>
+                        <td>6235100.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                <strong>ID_ELEMENTO:</strong> Identifica cada geometría (para líneas/polígonos)<br>
+                <strong>VERTICE:</strong> Orden de los puntos (opcional, pero recomendado)<br>
+                <strong>ESTE/NORTE:</strong> Coordenadas X e Y
+            </p>
+
+            <h2>¿Cómo Funciona?</h2>
+            <ol>
+                <li><strong>Carga tu archivo</strong> CSV o Excel con las coordenadas</li>
+                <li><strong>Selecciona las columnas:</strong> X (Este), Y (Norte), ID del elemento</li>
+                <li><strong>Elige el tipo de geometría</strong> a generar (Puntos, Líneas o Polígonos)</li>
+                <li><strong>Define el sistema de coordenadas</strong> (UTM 19S, WGS84, etc.)</li>
+                <li><strong>Genera y descarga</strong> en GeoJSON, Shapefile o KMZ</li>
+            </ol>
+
+            <h2>Sistemas de Coordenadas Soportados</h2>
+            <p>El generador incluye los CRS más comunes para Chile:</p>
+            <ul>
+                <li><strong>WGS 84 (EPSG:4326)</strong> - Latitud/Longitud global</li>
+                <li><strong>UTM Zona 18S (EPSG:32718)</strong> - Norte de Chile</li>
+                <li><strong>UTM Zona 19S (EPSG:32719)</strong> - Centro y Sur de Chile</li>
+                <li><strong>SIRGAS-Chile (EPSG:5361)</strong> - Sistema oficial chileno</li>
+                <li><strong>PSAD56 UTM 19S (EPSG:24879)</strong> - Datum antiguo</li>
+            </ul>
+
+            <div class="code-block">
+                Ejemplo de CSV para generar un polígono:
+                ======================================
+                ID_PREDIO,N,ESTE,NORTE
+                LOTE_A,1,345000.00,6123000.00
+                LOTE_A,2,345100.00,6123050.00
+                LOTE_A,3,345150.00,6122950.00
+                LOTE_A,4,345050.00,6122900.00
+                LOTE_B,1,346000.00,6124000.00
+                LOTE_B,2,346100.00,6124100.00
+                LOTE_B,3,346050.00,6123900.00
+            </div>
+
+            <h2>Casos de Uso Prácticos</h2>
+
+            <h3>🏗️ Levantamientos Topográficos</h3>
+            <p>
+                Convierte los datos de tu estación total o GPS en archivos GIS listos para CAD o visualización
+                en Google Earth.
+            </p>
+
+            <h3>📋 Documentación SEA</h3>
+            <p>
+                Genera los polígonos de áreas de influencia a partir de las tablas de coordenadas que
+                tipicamente se incluyen en los informes técnicos.
+            </p>
+
+            <h3>🗺️ Digitalización de Planos Antiguos</h3>
+            <p>
+                Tienes coordenadas de un plano antiguo en papel o PDF? Transcríbelas a Excel y genera el
+                archivo vectorial automáticamente.
+            </p>
+
+            <h3>📊 Datos de Campo</h3>
+            <p>
+                Combina puntos de muestreo, pozos, sondajes u otras ubicaciones registradas en Excel
+                en un solo archivo GIS para análisis espacial.
+            </p>
+
+            <div class="highlight-box">
+                <strong>🚀 Pruébalo Ahora:</strong> El Generador de Geometrías está disponible para todos los usuarios
+                de Geo Spark Studio. Encuéntralo en el menú lateral bajo "📐 Generador Geometrías".
+            </div>
+
+            <h2>Formatos de Exportación</h2>
+            <p>Las geometrías generadas se pueden descargar en:</p>
+            <ul>
+                <li><strong>GeoJSON:</strong> Formato web compatible con Leaflet, MapLibre, QGIS</li>
+                <li><strong>Shapefile (ZIP):</strong> Formato estándar para ArcGIS y SIG tradicionales</li>
+                <li><strong>KMZ:</strong> Para visualización en Google Earth</li>
+            </ul>
+
+            <h2>Conclusión</h2>
+            <p>
+                El <strong>Generador de Geometrías</strong> cierra el ciclo de trabajo con datos topográficos:
+                mientras el <em>Extractor de Vértices</em> convierte polígonos a tablas de coordenadas, el
+                Generador hace lo opuesto: convierte tablas en geometrías GIS.
+            </p>
+            <p>
+                Esta herramienta es ideal para topógrafos, consultores ambientales, y cualquier profesional
+                que trabaje con datos de campo que necesitan convertirse en información geoespacial.
+            </p>
+        </div>
+
+        <div class="share-links">
+            <strong>Compartir:</strong>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog-geometry-generator.html"
+                target="_blank" class="btn-link">LinkedIn</a>
+            <a href="https://twitter.com/intent/tweet?url=https://ramirezmaps.github.io/geosparkstudio/blog-geometry-generator.html&text=Nuevo: Generador de Geometrías - CSV a GIS"
+                target="_blank" class="btn-link">Twitter</a>
+            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        </div>
+    </article>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¿Tienes coordenadas en Excel que necesitas convertir?</h2>
+                <p class="cta-subtitle">Prueba el Generador de Geometrías gratis</p>
+                <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🗺️</span>
+                        <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#caracteristicas">Características</a></li>
+                        <li><a href="index.html#precios">Precios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contacto@geospark.cl">contacto@geospark.cl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/56956578733?text=Hola! Tengo una consulta sobre el Generador de Geometrías"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
+            <path
+                d="M16.004 0h-.01C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.91 15.91 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.584c-.39 1.098-1.924 2.012-3.172 2.278-.856.182-1.974.326-5.74-1.234-4.818-1.996-7.918-6.896-8.16-7.214-.232-.318-1.952-2.6-1.952-4.958s1.236-3.516 1.674-3.996c.39-.428.852-.536 1.136-.536.282 0 .564.002.812.016.26.014.608-.1.95.726.39.942 1.32 3.224 1.436 3.456.116.232.194.504.04.812-.156.31-.232.504-.464.776-.232.272-.488.608-.696.814-.232.232-.474.484-.204.948.27.464 1.2 1.98 2.578 3.208 1.77 1.578 3.264 2.068 3.726 2.3.464.232.734.194 1.004-.116.27-.31 1.156-1.35 1.464-1.814.31-.464.618-.388 1.042-.232.424.156 2.696 1.272 3.16 1.504.464.232.772.348.888.54.116.194.116 1.118-.274 2.216z" />
+        </svg>
+    </a>
+
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+    </style>
+</body>
+
+</html>
