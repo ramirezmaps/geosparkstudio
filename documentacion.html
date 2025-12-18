@@ -268,6 +268,9 @@
             <a href="#tutorial-etl">ETL Básico</a>
             <a href="#tutorial-crs">Transformar Coordenadas</a>
             <a href="#tutorial-buffer">Crear Buffers</a>
+            <a href="#tutorial-topology">Validador Topológico</a>
+            <a href="#tutorial-calculator">Calculadora Geométrica</a>
+            <a href="#tutorial-spatial-join">Cruce Espacial</a>
             <a href="#tutorial-vertices">Extractor Vértices</a>
             <a href="#tutorial-geometry-gen">Generador Geometrías ✨</a>
             <h3>Referencia</h3>
@@ -562,6 +565,108 @@ LOTE_B,3,346050.00,6123900.00</code></div>
                     <li><strong>Shapefile (ZIP):</strong> Formato estándar SIG para ArcGIS, QGIS</li>
                     <li><strong>KMZ:</strong> Para visualización en Google Earth</li>
                 </ul>
+            </section>
+
+            <section class="docs-section" id="tutorial-topology">
+                <h2>📖 Tutorial: Validador Topológico</h2>
+                <p>Detecta y repara errores topológicos en geometrías como self-intersecciones, anillos inválidos y más.
+                </p>
+
+                <div class="info-box">
+                    <strong>💡 Ideal para:</strong> Control de calidad antes de entregar capas al SEA, reparar
+                    shapefiles
+                    corruptos, validación de digitalización.
+                </div>
+
+                <h3>Errores que Detecta</h3>
+                <ul>
+                    <li><strong>Self-intersecciones:</strong> Polígonos que se cruzan a sí mismos</li>
+                    <li><strong>Anillos inválidos:</strong> Límites mal formados</li>
+                    <li><strong>Geometrías vacías:</strong> Features sin coordenadas</li>
+                    <li><strong>Duplicados:</strong> Puntos repetidos consecutivos</li>
+                </ul>
+
+                <h3>Cómo usar el Validador</h3>
+                <ol>
+                    <li>Selecciona <strong>"✅ Validador Topológico"</strong> en el menú lateral</li>
+                    <li>Carga un archivo de geometrías (SHP, KML, KMZ, GeoJSON)</li>
+                    <li>Haz clic en <strong>"Validar Geometrías"</strong></li>
+                    <li>Revisa el reporte de errores encontrados</li>
+                    <li>Activa <strong>"Reparar automáticamente"</strong> si deseas corregirlos</li>
+                    <li>Descarga el archivo reparado</li>
+                </ol>
+
+                <div class="info-box warning">
+                    <strong>⚠️ Nota:</strong> La reparación automática usa el método Buffer(0) que resuelve la mayoría
+                    de self-intersecciones sin alterar significativamente la geometría original.
+                </div>
+            </section>
+
+            <section class="docs-section" id="tutorial-calculator">
+                <h2>📖 Tutorial: Calculadora Geométrica</h2>
+                <p>Calcula áreas, perímetros y centroides de geometrías con precisión profesional.</p>
+
+                <div class="info-box">
+                    <strong>💡 Ideal para:</strong> Cálculo de superficies prediales, medición de longitudes de caminos,
+                    obtención de coordenadas centrales.
+                </div>
+
+                <h3>Métricas Calculadas</h3>
+                <ul>
+                    <li><strong>Área:</strong> En metros cuadrados (m²) y hectáreas (ha)</li>
+                    <li><strong>Perímetro:</strong> En metros lineales</li>
+                    <li><strong>Centroide X:</strong> Coordenada Este del centro</li>
+                    <li><strong>Centroide Y:</strong> Coordenada Norte del centro</li>
+                </ul>
+
+                <h3>Cómo usar la Calculadora</h3>
+                <ol>
+                    <li>Selecciona <strong>"📐 Calculadora Geométrica"</strong> en el menú lateral</li>
+                    <li>Carga un archivo de polígonos o líneas</li>
+                    <li>La herramienta detecta automáticamente el CRS</li>
+                    <li>Si está en WGS84, se reproyecta a UTM para cálculos precisos</li>
+                    <li>Revisa la tabla con las métricas calculadas</li>
+                    <li>Exporta como CSV o Excel con los campos adicionales</li>
+                </ol>
+
+                <div class="info-box warning">
+                    <strong>⚠️ Importante:</strong> Para cálculos precisos, los datos se proyectan automáticamente a
+                    UTM. Los resultados son en metros y hectáreas.
+                </div>
+            </section>
+
+            <section class="docs-section" id="tutorial-spatial-join">
+                <h2>📖 Tutorial: Cruce Espacial (Spatial Join)</h2>
+                <p>Une atributos de una capa a otra basándose en relaciones espaciales como intersección o contención.
+                </p>
+
+                <div class="info-box">
+                    <strong>💡 Ideal para:</strong> Asignar comunas/regiones a puntos, enriquecer datos con información
+                    territorial, análisis point-in-polygon.
+                </div>
+
+                <h3>Tipos de Cruce</h3>
+                <ul>
+                    <li><strong>Intersección:</strong> Features que se tocan o superponen</li>
+                    <li><strong>Contención:</strong> Puntos dentro de polígonos (point-in-polygon)</li>
+                    <li><strong>Más cercano:</strong> Une con el feature más cercano</li>
+                </ul>
+
+                <h3>Cómo usar el Cruce Espacial</h3>
+                <ol>
+                    <li>Selecciona <strong>"🔗 Cruce Espacial"</strong> en el menú lateral</li>
+                    <li>Carga la <strong>capa base</strong> (ej: puntos de muestreo)</li>
+                    <li>Carga la <strong>capa de cruce</strong> (ej: polígonos de comunas)</li>
+                    <li>Selecciona el tipo de relación espacial</li>
+                    <li>Elige qué campos transferir de la capa de cruce</li>
+                    <li>Ejecuta y descarga el resultado enriquecido</li>
+                </ol>
+
+                <div class="info-box success">
+                    <strong>✨ Ejemplo práctico:</strong> Tienes 1000 puntos GPS y quieres saber en qué comuna está cada
+                    uno. Carga tus puntos + capa de comunas → Cruce por contención → Descarga tus puntos con la columna
+                    COMUNA agregada.
+                </div>
             </section>
 
             <section class="docs-section" id="onboarding">

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cómo crear buffers y zonas de influencia alrededor de geometrías GIS. Tutorial completo del Generador de Buffers de Geo Spark Studio.">
+    <meta name="keywords"
+        content="buffer GIS, zonas influencia, análisis espacial, áreas de protección, geoespacial, Chile">
+    <meta name="author" content="Geo Spark Studio">
+    <title>Generador de Buffers: Zonas de Influencia para Análisis Espacial - Geo Spark Studio Blog</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-header {
+            padding: var(--spacing-xxl) 0;
+            background: var(--bg-main);
+            text-align: center;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-xxl) var(--spacing-md);
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .article-meta {
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .article-body {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-dark);
+        }
+
+        .article-body p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .article-body li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .article-image {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin: var(--spacing-lg) 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(250, 112, 154, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .share-links {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#caracteristicas">Características</a></li>
+                    <li><a href="blog.html" style="color: #667eea;">Blog</a></li>
+                    <li><a href="index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="article-header">
+        <div class="container">
+            <div style="margin-bottom: 1rem;">
+                <span class="tag">⭕ Buffers</span>
+                <span class="tag">🗺️ GIS</span>
+                <span class="tag">📐 Análisis</span>
+            </div>
+            <h1 class="hero-title" style="font-size: 2.5rem;">Generador de Buffers: Crea Zonas de Influencia para
+                Análisis Espacial</h1>
+            <div class="article-meta">
+                <span>📅 17 Dic 2024</span>
+                <span>👤 Ignacio Ramirez</span>
+                <span>⏱️ 5 min lectura</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="article-content">
+        <div class="article-body">
+            <p>
+                Los <strong>buffers</strong> o zonas de influencia son una de las operaciones más utilizadas en análisis
+                espacial. Permiten crear áreas alrededor de puntos, líneas o polígonos a una distancia determinada,
+                siendo esenciales para estudios de impacto, planificación territorial y análisis ambiental.
+            </p>
+
+            <div class="highlight-box">
+                <strong>💡 ¿Qué es un buffer?</strong> Es un área que rodea una geometría a una distancia específica.
+                Por ejemplo, un buffer de 500 metros alrededor de un río crea un polígono que representa la "zona
+                de protección" del curso de agua.
+            </div>
+
+            <h2>¿Cuándo Usar Buffers?</h2>
+            <ul>
+                <li><strong>Estudios ambientales:</strong> Zonas de influencia de proyectos, áreas de protección</li>
+                <li><strong>Planificación urbana:</strong> Radios de cobertura de servicios, equipamiento</li>
+                <li><strong>Análisis de riesgo:</strong> Zonas de seguridad alrededor de instalaciones</li>
+                <li><strong>Normativa SEA:</strong> Áreas de influencia requeridas en evaluación ambiental</li>
+            </ul>
+
+            <h2>Cómo Funciona el Generador de Buffers</h2>
+            <ol>
+                <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ o GeoJSON</li>
+                <li><strong>Define la distancia:</strong> En metros o kilómetros</li>
+                <li><strong>Previsualiza:</strong> Ve el resultado en el mapa interactivo</li>
+                <li><strong>Exporta:</strong> Descarga en Shapefile, GeoJSON o KMZ</li>
+            </ol>
+
+            <h2>Tipos de Buffer</h2>
+            <p>El generador soporta buffers para diferentes tipos de geometría:</p>
+            <ul>
+                <li><strong>Puntos:</strong> Crea círculos alrededor de cada punto</li>
+                <li><strong>Líneas:</strong> Crea corredores a lo largo de la línea (ej: servidumbre de paso)</li>
+                <li><strong>Polígonos:</strong> Expande o contrae el límite del polígono</li>
+            </ul>
+
+            <h2>Consideraciones Técnicas</h2>
+            <div class="highlight-box">
+                <strong>⚠️ Importante:</strong> Para que las distancias sean precisas en metros, los datos deben
+                estar en un sistema de coordenadas proyectado (como UTM) y no en coordenadas geográficas (lat/lon).
+                El generador reproyecta automáticamente si es necesario.
+            </div>
+
+            <h2>Ejemplo Práctico</h2>
+            <p>
+                <strong>Caso:</strong> Necesitas crear una zona de influencia de 1 km alrededor de un proyecto minero
+                para el estudio de impacto ambiental.
+            </p>
+            <ol>
+                <li>Carga el polígono del área del proyecto (SHP o KML)</li>
+                <li>Ingresa 1000 metros (o 1 km) como distancia</li>
+                <li>Genera el buffer y visualiza en el mapa</li>
+                <li>Descarga el resultado en formato Shapefile para incluir en el informe SEA</li>
+            </ol>
+
+            <h2>Formatos de Exportación</h2>
+            <ul>
+                <li><strong>Shapefile (ZIP):</strong> Estándar para ArcGIS y QGIS</li>
+                <li><strong>GeoJSON:</strong> Formato web, ligero</li>
+                <li><strong>KMZ:</strong> Para Google Earth</li>
+            </ul>
+        </div>
+
+        <div class="share-links">
+            <strong>Compartir:</strong>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog-buffer-generator.html"
+                target="_blank" class="btn-link">LinkedIn</a>
+            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        </div>
+    </article>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¿Necesitas crear zonas de influencia?</h2>
+                <p class="cta-subtitle">Prueba el Generador de Buffers gratis</p>
+                <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

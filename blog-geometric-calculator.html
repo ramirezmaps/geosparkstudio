@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cómo calcular áreas, perímetros y centroides de geometrías GIS con precisión. Tutorial de la Calculadora Geométrica de Geo Spark Studio.">
+    <meta name="keywords" content="área hectáreas, perímetro, centroide, cálculo GIS, superficies, geodesia, Chile">
+    <meta name="author" content="Geo Spark Studio">
+    <title>Calculadora Geométrica: Áreas, Perímetros y Centroides - Geo Spark Studio Blog</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-header {
+            padding: var(--spacing-xxl) 0;
+            background: var(--bg-main);
+            text-align: center;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-xxl) var(--spacing-md);
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .article-meta {
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .article-body {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-dark);
+        }
+
+        .article-body p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .article-body li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(250, 112, 154, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .share-links {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-md) 0;
+            font-size: 0.9rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #f1f5f9;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo" style="text-decoration: none;">
+                    <span class="logo-icon">🗺️</span>
+                    <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#caracteristicas">Características</a></li>
+                    <li><a href="blog.html" style="color: #667eea;">Blog</a></li>
+                    <li><a href="index.html#precios">Precios</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
+                    <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary">Comenzar Gratis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="article-header">
+        <div class="container">
+            <div style="margin-bottom: 1rem;">
+                <span class="tag">📐 Cálculos</span>
+                <span class="tag">🗺️ GIS</span>
+                <span class="tag">📊 Métricas</span>
+            </div>
+            <h1 class="hero-title" style="font-size: 2.5rem;">Calculadora Geométrica: Áreas, Perímetros y Centroides con
+                Precisión</h1>
+            <div class="article-meta">
+                <span>📅 17 Dic 2024</span>
+                <span>👤 Ignacio Ramirez</span>
+                <span>⏱️ 4 min lectura</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="article-content">
+        <div class="article-body">
+            <p>
+                Calcular el área de un predio, el perímetro de un bosque o el centroide de una zona de estudio son
+                tareas fundamentales en cualquier proyecto GIS. La <strong>Calculadora Geométrica</strong> de Geo
+                Spark Studio automatiza estos cálculos con precisión profesional.
+            </p>
+
+            <div class="highlight-box">
+                <strong>💡 ¿Por qué es importante?</strong> Los cálculos geométricos precisos son esenciales para
+                informes técnicos, tasaciones, estudios ambientales y documentación legal de propiedades.
+            </div>
+
+            <h2>Métricas Calculadas</h2>
+            <p>La herramienta calcula automáticamente:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Unidad</th>
+                        <th>Aplica a</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Área</strong></td>
+                        <td>m² y hectáreas</td>
+                        <td>Polígonos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perímetro</strong></td>
+                        <td>metros</td>
+                        <td>Polígonos y líneas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Longitud</strong></td>
+                        <td>metros</td>
+                        <td>Líneas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Centroide X</strong></td>
+                        <td>coordenada Este</td>
+                        <td>Todos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Centroide Y</strong></td>
+                        <td>coordenada Norte</td>
+                        <td>Todos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Cómo Funciona</h2>
+            <ol>
+                <li><strong>Carga tu archivo:</strong> SHP, KML, KMZ o GeoJSON con polígonos o líneas</li>
+                <li><strong>Detección automática:</strong> El sistema identifica el CRS y reproyecta si es necesario
+                </li>
+                <li><strong>Cálculo inmediato:</strong> Las métricas aparecen en una tabla ordenada</li>
+                <li><strong>Exporta:</strong> Descarga el archivo con los nuevos campos calculados</li>
+            </ol>
+
+            <h2>Precisión de los Cálculos</h2>
+            <div class="highlight-box">
+                <strong>⚠️ Nota técnica:</strong> Para cálculos precisos en metros, los datos se proyectan
+                automáticamente a UTM (zona correspondiente) si vienen en WGS84 (lat/lon). Esto garantiza que
+                las áreas y perímetros sean correctos en unidades métricas.
+            </div>
+
+            <h2>Casos de Uso</h2>
+            <ul>
+                <li><strong>Tasaciones:</strong> Superficie exacta de predios para valorización</li>
+                <li><strong>Estudios ambientales:</strong> Área de intervención, zonas de influencia</li>
+                <li><strong>Planificación:</strong> Longitud de caminos, perímetro de áreas protegidas</li>
+                <li><strong>Informes SEA:</strong> Métricas requeridas en evaluación ambiental</li>
+            </ul>
+
+            <h2>Campos Calculados</h2>
+            <p>El resultado incluye los siguientes campos adicionales:</p>
+            <ul>
+                <li><code>AREA_M2</code> - Área en metros cuadrados</li>
+                <li><code>AREA_HA</code> - Área en hectáreas</li>
+                <li><code>PERIMETRO_M</code> - Perímetro en metros</li>
+                <li><code>CENTROIDE_X</code> - Coordenada X del centro</li>
+                <li><code>CENTROIDE_Y</code> - Coordenada Y del centro</li>
+            </ul>
+
+            <h2>Formatos de Exportación</h2>
+            <ul>
+                <li><strong>CSV:</strong> Tabla con todas las métricas para Excel</li>
+                <li><strong>Excel (.xlsx):</strong> Formateado listo para informes</li>
+                <li><strong>Shapefile:</strong> Con campos geométricos incluidos</li>
+            </ul>
+        </div>
+
+        <div class="share-links">
+            <strong>Compartir:</strong>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ramirezmaps.github.io/geosparkstudio/blog-geometric-calculator.html"
+                target="_blank" class="btn-link">LinkedIn</a>
+            <a href="blog.html" class="btn btn-outline" style="margin-left: auto;">← Volver al Blog</a>
+        </div>
+    </article>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¿Necesitas calcular áreas y perímetros?</h2>
+                <p class="cta-subtitle">Prueba la Calculadora Geométrica gratis</p>
+                <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geo Spark Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
