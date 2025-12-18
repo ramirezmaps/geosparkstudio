@@ -494,6 +494,76 @@ N°    ESTE (m)        NORTE (m)
 3     345,901.234     6,234,432.678</code></div>
             </section>
 
+            <section class="docs-section" id="tutorial-geometry-gen">
+                <h2>📖 Tutorial: Generador de Geometrías</h2>
+                <p>Convierte tablas CSV o Excel con coordenadas en geometrías geoespaciales (puntos, líneas o
+                    polígonos).</p>
+
+                <div class="info-box">
+                    <strong>💡 Ideal para:</strong> Levantamientos topográficos, digitalización de planos antiguos,
+                    datos de campo en Excel, importación desde GPS.
+                </div>
+
+                <h3>Tipos de Geometría</h3>
+                <ul>
+                    <li><strong>📍 Puntos:</strong> Cada fila de la tabla = un punto independiente</li>
+                    <li><strong>📏 Líneas:</strong> Filas con el mismo ID se conectan formando una línea</li>
+                    <li><strong>🔳 Polígonos:</strong> Filas con el mismo ID forman un polígono cerrado</li>
+                </ul>
+
+                <h3>Estructura de la Tabla de Entrada</h3>
+                <p>Tu tabla debe tener al menos estas columnas:</p>
+                <ul>
+                    <li><strong>X / ESTE / LON:</strong> Coordenada X (Este o Longitud)</li>
+                    <li><strong>Y / NORTE / LAT:</strong> Coordenada Y (Norte o Latitud)</li>
+                    <li><strong>ID (opcional):</strong> Para líneas/polígonos, identifica cada elemento</li>
+                    <li><strong>ORDEN (opcional):</strong> Define el orden de los vértices</li>
+                </ul>
+
+                <div class="code-block"><code>Ejemplo de tabla para generar polígonos:
+ID_PREDIO,VERTICE,ESTE,NORTE
+LOTE_A,1,345000.00,6123000.00
+LOTE_A,2,345100.00,6123050.00
+LOTE_A,3,345150.00,6122950.00
+LOTE_A,4,345050.00,6122900.00
+LOTE_B,1,346000.00,6124000.00
+LOTE_B,2,346100.00,6124100.00
+LOTE_B,3,346050.00,6123900.00</code></div>
+
+                <h3>Cómo usar el Generador</h3>
+                <ol>
+                    <li>Selecciona <strong>"📐 Generador Geometrías"</strong> en el menú lateral</li>
+                    <li>Carga tu archivo CSV o Excel con coordenadas</li>
+                    <li>Elige el tipo de geometría: Puntos, Líneas o Polígonos</li>
+                    <li>Mapea las columnas X, Y, ID (la herramienta detecta automáticamente)</li>
+                    <li>Selecciona el sistema de coordenadas (UTM, WGS84, SIRGAS)</li>
+                    <li>Haz clic en <strong>"🔨 Generar Geometrías"</strong></li>
+                    <li>Visualiza el resultado en el mapa interactivo</li>
+                    <li>Descarga en GeoJSON, Shapefile o KMZ</li>
+                </ol>
+
+                <h3>Sistemas de Coordenadas Soportados</h3>
+                <ul>
+                    <li><strong>WGS 84 (EPSG:4326):</strong> Coordenadas en grados (Lat/Lon)</li>
+                    <li><strong>UTM Zona 18S (EPSG:32718):</strong> Norte de Chile</li>
+                    <li><strong>UTM Zona 19S (EPSG:32719):</strong> Centro y Sur de Chile</li>
+                    <li><strong>SIRGAS-Chile (EPSG:5361):</strong> Sistema oficial chileno</li>
+                    <li><strong>PSAD56 (EPSG:24879):</strong> Datum antiguo</li>
+                </ul>
+
+                <div class="info-box warning">
+                    <strong>⚠️ Importante:</strong> La herramienta detecta automáticamente si tus coordenadas son
+                    geográficas (grados) o proyectadas (metros UTM) y sugiere el CRS apropiado.
+                </div>
+
+                <h3>Formatos de Exportación</h3>
+                <ul>
+                    <li><strong>GeoJSON:</strong> Formato web, compatible con Leaflet, MapLibre, QGIS</li>
+                    <li><strong>Shapefile (ZIP):</strong> Formato estándar SIG para ArcGIS, QGIS</li>
+                    <li><strong>KMZ:</strong> Para visualización en Google Earth</li>
+                </ul>
+            </section>
+
             <section class="docs-section" id="onboarding">
                 <h2>Crear Cuenta y Configurar Perfil</h2>
                 <h3>Registro</h3>
