@@ -21,7 +21,7 @@ landing_page/config.js
 ### Paso 2: Cambiar el precio en la línea 8
 
 ```javascript
-const PRECIO_PRO = "$10.990";  // ← CAMBIA ESTE VALOR
+const PRECIO_PRO = "$12.990";  // ← CAMBIA ESTE VALOR
 ```
 
 **Ejemplo:** Para cambiar a $14.990:
