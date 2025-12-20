@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Cómo convertir tablas CSV o Excel con coordenadas en geometrías geoespaciales (puntos, líneas, polígonos) - Geo Spark Studio Blog.">
-    <meta name="keywords"
-        content="CSV a geometría, Excel a GIS, puntos, líneas, polígonos, coordenadas, topografía, GIS">
+        content="Cómo extraer vértices de polígonos y generar cuadros de coordenadas UTM para trabajos topográficos - Geo Spark Studio Blog.">
+    <meta name="keywords" content="vértices, polígonos, UTM, coordenadas, topografía, GIS, cuadro de coordenadas, SEA">
     <meta name="author" content="Geo Spark Studio">
-    <title>Generador de Geometrías: CSV/XLSX a Puntos, Líneas y Polígonos - Geo Spark Studio Blog</title>
+    <title>Extractor de Vértices: Polígonos a Coordenadas UTM - Geo Spark Studio Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <style>
-        body { background: #0f172a; }
+        body {
+            background: #0f172a;
+        }
+
         .blog-header {
             padding-top: 120px;
             padding-bottom: 60px;
@@ -95,7 +97,7 @@
         }
 
         .info-box {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.25) 100%);
             border-left: 4px solid #667eea;
             padding: 1rem 1.5rem;
             border-radius: 0 8px 8px 0;
@@ -103,7 +105,7 @@
         }
 
         .info-box p {
-            color: #e2e8f0;
+            color: #1e293b;
             margin: 0;
         }
 
@@ -182,15 +184,15 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html" class="logo" style="text-decoration: none;">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
                     <span class="logo-icon">🗺️</span>
                     <span class="logo-text">Geo Spark <span class="logo-highlight">Studio</span></span>
                 </a>
                 <ul class="nav-menu">
-                    <li><a href="index.html#inicio">Inicio</a></li>
-                    <li><a href="index.html#caracteristicas">Características</a></li>
-                    <li><a href="blog.html" style="color: #667eea;">Blog</a></li>
-                    <li><a href="index.html#precios">Precios</a></li>
+                    <li><a href="../index.html#inicio">Inicio</a></li>
+                    <li><a href="../index.html#caracteristicas">Características</a></li>
+                    <li><a href="./" style="color: #667eea;">Blog</a></li>
+                    <li><a href="../index.html#precios">Precios</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="https://geosparkstudio.streamlit.app" class="btn-link">Ingresar</a>
@@ -206,162 +208,158 @@
             <div class="blog-content">
                 <div class="blog-meta">
                     <span>📅 17 Diciembre 2025</span>
-                    <span>📖 6 min lectura</span>
-                    <span>🏷️ Geometrías, CSV, Topografía</span>
+                    <span>📖 5 min lectura</span>
+                    <span>🏷️ Topografía, UTM, Vértices</span>
                 </div>
-                <h1 class="blog-title">Generador de Geometrías: Convierte CSV/XLSX en Puntos, Líneas y Polígonos</h1>
+                <h1 class="blog-title">Extractor de Vértices: De Polígonos a Cuadros de Coordenadas UTM</h1>
                 <p style="font-size: 1.2rem; color: #a0aec0;">
-                    Transforma tus tablas de coordenadas en archivos GIS listos para usar.
-                    El puente perfecto entre Excel y los Sistemas de Información Geográfica.
+                    Extrae automáticamente las coordenadas de cada vértice de tus polígonos
+                    y genera cuadros de coordenadas profesionales en segundos.
                 </p>
-                <img src="img/blog_geometry_generator.png" alt="Generador de Geometrías" class="blog-header-image">
+                <img src="../assets/images/blog_vertices_extractor.png" alt="Extractor de Vértices"
+                    class="blog-header-image">
             </div>
         </div>
     </header>
 
     <!-- Content -->
     <article class="blog-content">
-        <h2>📐 ¿Qué Problema Resuelve?</h2>
+        <h2>📍 ¿Qué es un Cuadro de Coordenadas?</h2>
         <p>
-            ¿Tienes una tabla de Excel o CSV con coordenadas de puntos topográficos y necesitas convertirla en
-            un archivo geoespacial? El nuevo <strong>Generador de Geometrías</strong> de Geo Spark Studio hace
-            exactamente eso: transforma tus tablas de coordenadas en geometrías GIS listas para usar.
+            En trabajos topográficos, estudios ambientales y documentación técnica SEA, es común necesitar las
+            <strong>coordenadas exactas de cada vértice</strong> de un polígono. Ya sea para replanteo en terreno,
+            generación de cuadros de coordenadas o validación de deslindes, esta tarea puede ser tediosa si se hace
+            manualmente.
         </p>
 
-        <div class="info-box">
-            <p><strong>💡 El escenario:</strong> Recibes un levantamiento topográfico en Excel con coordenadas
-                Este/Norte de cada vértice. Necesitas crear un polígono SHP o KMZ para visualizarlo en GIS o Google
-                Earth. Con el Generador de Geometrías, esto toma menos de un minuto.</p>
-        </div>
-
-        <h2>🎯 ¿Qué Puedes Crear?</h2>
-        <p>El Generador soporta tres tipos de geometrías:</p>
+        <p>
+            Un cuadro de coordenadas es una tabla que lista cada punto (vértice) que define el contorno de un polígono,
+            incluyendo sus coordenadas en un sistema de referencia específico. Es un requisito común en:
+        </p>
         <ul>
-            <li><strong>📍 Puntos:</strong> Cada fila de tu tabla = un punto independiente</li>
-            <li><strong>📏 Líneas:</strong> Filas con el mismo ID se conectan formando una línea</li>
-            <li><strong>🔳 Polígonos:</strong> Filas con el mismo ID forman un polígono cerrado</li>
+            <li><strong>Estudios de Impacto Ambiental (EIA)</strong> para el SEA</li>
+            <li><strong>Planos topográficos</strong> y de subdivisión</li>
+            <li><strong>Escrituras</strong> y documentos legales</li>
+            <li><strong>Replanteo</strong> en terreno con GPS/Estación Total</li>
+            <li><strong>Contratos de arriendo</strong> de terrenos</li>
         </ul>
 
-        <h2>📋 Estructura de la Tabla de Entrada</h2>
-        <p>Tu tabla debe tener al menos las siguientes columnas:</p>
+        <div class="info-box">
+            <p><strong>💡 La solución:</strong> El Extractor de Vértices de Geo Spark Studio automatiza
+                este proceso, convirtiendo cualquier polígono en una tabla estructurada con coordenadas UTM en segundos.
+            </p>
+        </div>
+
+        <h2>📋 Ejemplo de Tabla de Vértices</h2>
+        <p>El Extractor genera una tabla con el siguiente formato:</p>
 
         <div class="table-container">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>ID_ELEMENTO</th>
-                        <th>VERTICE</th>
-                        <th>ESTE</th>
-                        <th>NORTE</th>
+                        <th>POLYGON_ID</th>
+                        <th>VERTICE_N</th>
+                        <th>ESTE_UTM</th>
+                        <th>NORTE_UTM</th>
+                        <th>TIPO</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>POLIG_1</td>
                         <td>1</td>
-                        <td>345678.12</td>
-                        <td>6234567.45</td>
+                        <td>1</td>
+                        <td>345,678.123</td>
+                        <td>6,234,567.456</td>
+                        <td>EXTERIOR</td>
                     </tr>
                     <tr>
-                        <td>POLIG_1</td>
+                        <td>1</td>
                         <td>2</td>
-                        <td>345892.78</td>
-                        <td>6234589.01</td>
+                        <td>345,892.789</td>
+                        <td>6,234,589.012</td>
+                        <td>EXTERIOR</td>
                     </tr>
                     <tr>
-                        <td>POLIG_1</td>
-                        <td>3</td>
-                        <td>345901.23</td>
-                        <td>6234432.67</td>
-                    </tr>
-                    <tr>
-                        <td>POLIG_2</td>
                         <td>1</td>
-                        <td>346100.00</td>
-                        <td>6235000.00</td>
+                        <td>3</td>
+                        <td>345,901.234</td>
+                        <td>6,234,432.678</td>
+                        <td>EXTERIOR</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>4</td>
+                        <td>345,654.321</td>
+                        <td>6,234,410.987</td>
+                        <td>EXTERIOR</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <p>
-            <strong>ID_ELEMENTO:</strong> Identifica cada geometría (para líneas/polígonos)<br>
-            <strong>VERTICE:</strong> Orden de los puntos (opcional, pero recomendado)<br>
-            <strong>ESTE/NORTE:</strong> Coordenadas X e Y
-        </p>
-
         <h2>🔧 ¿Cómo Funciona?</h2>
         <ol>
-            <li><strong>Carga tu archivo</strong> CSV o Excel con las coordenadas</li>
-            <li><strong>Selecciona las columnas:</strong> X (Este), Y (Norte), ID del elemento</li>
-            <li><strong>Elige el tipo de geometría</strong> a generar (Puntos, Líneas o Polígonos)</li>
-            <li><strong>Define el sistema de coordenadas</strong> (UTM 19S, WGS84, etc.)</li>
-            <li><strong>Genera y descarga</strong> en GeoJSON, Shapefile o KMZ</li>
+            <li><strong>Carga tu archivo</strong> de polígonos (SHP, KML, KMZ, GeoJSON)</li>
+            <li><strong>Selecciona el atributo</strong> que quieres incluir (nombre, código, etc.)</li>
+            <li><strong>Elige el sistema UTM</strong> o deja que se detecte automáticamente</li>
+            <li><strong>Descarga</strong> la tabla en CSV, Excel o TXT</li>
         </ol>
 
-        <h2>🗺️ Sistemas de Coordenadas Soportados</h2>
-        <p>El generador incluye los CRS más comunes para Chile:</p>
+        <h2>🗺️ Detección Automática de Zona UTM</h2>
+        <p>
+            Chile continental se ubica principalmente en las zonas UTM <strong>18S</strong> (norte) y
+            <strong>19S</strong> (centro-sur). El Extractor de Vértices detecta automáticamente la zona
+            correcta basándose en la ubicación de tus datos, asegurando coordenadas precisas en metros.
+        </p>
+
+        <pre>CUADRO DE COORDENADAS
+Sistema: UTM Zona 19S (EPSG:32719)
+============================================
+
+POLÍGONO 1 - Parcela Norte
+----------------------------------------
+N°   ESTE (m)       NORTE (m)
+----------------------------------------
+1    345,678.123    6,234,567.456
+2    345,892.789    6,234,589.012
+3    345,901.234    6,234,432.678
+4    345,654.321    6,234,410.987</pre>
+
+        <h2>📥 Formatos de Exportación</h2>
         <ul>
-            <li><strong>WGS 84 (EPSG:4326)</strong> - Latitud/Longitud global</li>
-            <li><strong>UTM Zona 18S (EPSG:32718)</strong> - Centro y sur de Chile</li>
-            <li><strong>UTM Zona 19S (EPSG:32719)</strong> - Centro, norte y extremo austral</li>
-            <li><strong>SIRGAS-Chile (EPSG:5361)</strong> - Sistema oficial chileno</li>
-            <li><strong>PSAD56 UTM 19S (EPSG:24879)</strong> - Datum antiguo</li>
+            <li><strong>CSV:</strong> Para análisis en Excel, Python, R o cualquier herramienta</li>
+            <li><strong>Excel (.xlsx):</strong> Tabla formateada lista para imprimir</li>
+            <li><strong>TXT:</strong> Cuadro de coordenadas clásico para documentación técnica</li>
         </ul>
 
-        <pre>Ejemplo de CSV para generar un polígono:
-======================================
-ID_PREDIO,N,ESTE,NORTE
-LOTE_A,1,345000.00,6123000.00
-LOTE_A,2,345100.00,6123050.00
-LOTE_A,3,345150.00,6122950.00
-LOTE_A,4,345050.00,6122900.00
-LOTE_B,1,346000.00,6124000.00
-LOTE_B,2,346100.00,6124100.00
-LOTE_B,3,346050.00,6123900.00</pre>
-
-        <h2>🎯 Casos de Uso Prácticos</h2>
-
-        <h3>🏗️ Levantamientos Topográficos</h3>
-        <p>
-            Convierte los datos de tu estación total o GPS en archivos GIS listos para CAD o visualización
-            en Google Earth.
-        </p>
+        <h2>🎯 Casos de Uso Reales</h2>
 
         <h3>📋 Documentación SEA</h3>
         <p>
-            Genera los polígonos de áreas de influencia a partir de las tablas de coordenadas que
-            típicamente se incluyen en los informes técnicos.
+            Los Estudios de Impacto Ambiental requieren cuadros de coordenadas para definir áreas de influencia
+            directa e indirecta. Con el Extractor, puedes generar estos cuadros en segundos.
         </p>
 
-        <h3>🗺️ Digitalización de Planos Antiguos</h3>
+        <h3>🏗️ Replanteo en Terreno</h3>
         <p>
-            ¿Tienes coordenadas de un plano antiguo en papel o PDF? Transcríbelas a Excel y genera el
-            archivo vectorial automáticamente.
+            Topógrafos pueden exportar las coordenadas y cargarlas directamente en estaciones totales o
+            GPS RTK para replantear polígonos en el terreno.
         </p>
 
-        <h3>📊 Datos de Campo</h3>
+        <h3>📰 Informes Técnicos</h3>
         <p>
-            Combina puntos de muestreo, pozos, sondajes u otras ubicaciones registradas en Excel
-            en un solo archivo GIS para análisis espacial.
+            Incluye cuadros de coordenadas profesionales en tus informes con el formato TXT preformateado,
+            listo para copiar y pegar.
         </p>
-
-        <h2>📥 Formatos de Exportación</h2>
-        <p>Las geometrías generadas se pueden descargar en:</p>
-        <ul>
-            <li><strong>GeoJSON:</strong> Formato web compatible con Leaflet, MapLibre, QGIS</li>
-            <li><strong>Shapefile (ZIP):</strong> Formato estándar para ArcGIS y SIG tradicionales</li>
-            <li><strong>KMZ:</strong> Para visualización en Google Earth</li>
-        </ul>
 
         <div class="cta-box">
-            <h3>¿Tienes coordenadas en Excel que necesitas convertir?</h3>
-            <p>Prueba el Generador de Geometrías gratis.</p>
+            <h3>¿Necesitas extraer vértices de tus polígonos?</h3>
+            <p>Prueba el Extractor de Vértices gratis.</p>
             <a href="https://geosparkstudio.streamlit.app" class="btn btn-primary btn-large">Comenzar Ahora →</a>
         </div>
 
         <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
-            <a href="blog.html" style="color: #667eea;">← Volver al Blog</a>
+            <a href="./" style="color: #667eea;">← Volver al Blog</a>
         </p>
     </article>
 
@@ -375,7 +373,7 @@ LOTE_B,3,346050.00,6123900.00</pre>
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/56956578733?text=Hola! Tengo una consulta sobre el Generador de Geometrías"
+    <a href="https://wa.me/56956578733?text=Hola! Tengo una consulta sobre el Extractor de Vértices"
         class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
             <path
