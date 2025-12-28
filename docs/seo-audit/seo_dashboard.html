@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Off-Page Dashboard | Geo Spark Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --dark-lighter: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            --shadow: 0 10px 40px rgba(0,0,0,0.3);
+            --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--dark-light);
+            border-radius: 20px;
+            border: 1px solid var(--dark-lighter);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .header .site-url {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: var(--dark-lighter);
+            border-radius: 50px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+        
+        .header .date {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        /* Score Principal */
+        .main-score {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .score-card {
+            background: var(--dark-light);
+            border-radius: 24px;
+            padding: 3rem 4rem;
+            text-align: center;
+            border: 2px solid var(--dark-lighter);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .score-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-warning);
+        }
+        
+        .score-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .score-value {
+            font-size: 6rem;
+            font-weight: 800;
+            background: var(--gradient-warning);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        
+        .score-max {
+            font-size: 2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+        
+        .score-status {
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(245, 158, 11, 0.2);
+            border-radius: 50px;
+            color: #fbbf24;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .score-bar {
+            margin-top: 2rem;
+            height: 12px;
+            background: var(--dark-lighter);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .score-bar-fill {
+            height: 100%;
+            width: 45%;
+            background: var(--gradient-warning);
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+        
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .kpi-card {
+            background: var(--dark-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--dark-lighter);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .kpi-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .kpi-icon.primary { background: rgba(99, 102, 241, 0.2); }
+        .kpi-icon.success { background: rgba(16, 185, 129, 0.2); }
+        .kpi-icon.warning { background: rgba(245, 158, 11, 0.2); }
+        .kpi-icon.danger { background: rgba(239, 68, 68, 0.2); }
+        
+        .kpi-trend {
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .kpi-trend.up { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .kpi-trend.down { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .kpi-trend.neutral { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .kpi-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .kpi-target {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--dark-lighter);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+        
+        .kpi-target-label { color: var(--text-muted); }
+        .kpi-target-value { color: var(--primary); font-weight: 600; }
+        
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--dark-lighter);
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .chart-card {
+            background: var(--dark-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--dark-lighter);
+        }
+        
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Anchor Text Distribution */
+        .anchor-distribution {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .anchor-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .anchor-label {
+            width: 120px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .anchor-bar-container {
+            flex: 1;
+            height: 24px;
+            background: var(--dark-lighter);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .anchor-bar {
+            height: 100%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding-left: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .anchor-bar.brand { background: var(--gradient-success); }
+        .anchor-bar.url { background: var(--gradient-primary); }
+        .anchor-bar.generic { background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); }
+        .anchor-bar.keyword { background: var(--gradient-warning); }
+        .anchor-bar.partial { background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%); }
+        .anchor-bar.image { background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%); }
+        
+        .anchor-percentage {
+            width: 50px;
+            text-align: right;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Authority Distribution */
+        .authority-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .authority-segment {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .authority-label {
+            width: 150px;
+            font-size: 0.9rem;
+        }
+        
+        .authority-label .range {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        
+        .authority-bar-container {
+            flex: 1;
+            height: 30px;
+            background: var(--dark-lighter);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .authority-bar {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .authority-bar.high { background: var(--gradient-success); }
+        .authority-bar.medium { background: var(--gradient-primary); }
+        .authority-bar.low { background: var(--gradient-warning); }
+        
+        /* Risk Indicators */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .risk-card {
+            background: var(--dark-light);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border-left: 4px solid;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .risk-card.critical { border-color: #ef4444; }
+        .risk-card.high { border-color: #f59e0b; }
+        .risk-card.medium { border-color: #6366f1; }
+        .risk-card.low { border-color: #10b981; }
+        
+        .risk-icon {
+            font-size: 1.5rem;
+        }
+        
+        .risk-content {
+            flex: 1;
+        }
+        
+        .risk-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .risk-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .risk-level {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .risk-level.critical { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .risk-level.high { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .risk-level.medium { background: rgba(99, 102, 241, 0.2); color: #818cf8; }
+        .risk-level.low { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        
+        /* Action Items */
+        .actions-section {
+            margin-bottom: 3rem;
+        }
+        
+        .action-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .action-item {
+            background: var(--dark-light);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--dark-lighter);
+            transition: border-color 0.3s;
+        }
+        
+        .action-item:hover {
+            border-color: var(--primary);
+        }
+        
+        .action-priority {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .action-priority.p1 { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .action-priority.p2 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .action-priority.p3 { background: rgba(99, 102, 241, 0.2); color: #818cf8; }
+        
+        .action-content {
+            flex: 1;
+        }
+        
+        .action-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .action-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .action-meta {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .action-tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            background: var(--dark-lighter);
+            color: var(--text-muted);
+        }
+        
+        /* Targets Table */
+        .targets-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .targets-table th,
+        .targets-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--dark-lighter);
+        }
+        
+        .targets-table th {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .targets-table td {
+            font-weight: 500;
+        }
+        
+        .target-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .target-bar-bg {
+            flex: 1;
+            height: 8px;
+            background: var(--dark-lighter);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .target-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .target-bar-fill.low { background: var(--gradient-danger); }
+        .target-bar-fill.medium { background: var(--gradient-warning); }
+        .target-bar-fill.high { background: var(--gradient-success); }
+        
+        /* Footer */
+        .dashboard-footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .dashboard-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Tooltip Note */
+        .data-note {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .data-note-icon {
+            font-size: 1.5rem;
+        }
+        
+        .data-note-content {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .data-note-content strong {
+            color: var(--text);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .score-value {
+                font-size: 4rem;
+            }
+            
+            .score-card {
+                padding: 2rem;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📊 Dashboard SEO Off-Page</h1>
+            <p class="subtitle">Auditoría del Perfil de Backlinks</p>
+            <span class="site-url">ramirezmaps.github.io/geosparkstudio</span>
+            <p class="date">Actualizado: 17 de Diciembre de 2024</p>
+        </header>
+        
+        <!-- Data Note -->
+        <div class="data-note">
+            <span class="data-note-icon">ℹ️</span>
+            <div class="data-note-content">
+                <strong>Nota:</strong> Este dashboard muestra estimaciones basadas en análisis público. 
+                Para datos precisos, conectar con Ahrefs, SEMrush o Moz API.
+            </div>
+        </div>
+        
+        <!-- Main Score -->
+        <div class="main-score">
+            <div class="score-card">
+                <div class="score-label">Score de Salud del Perfil</div>
+                <div class="score-value">45 <span class="score-max">/ 100</span></div>
+                <span class="score-status">⚠️ Desarrollo Temprano</span>
+                <div class="score-bar">
+                    <div class="score-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KPI Grid -->
+        <div class="section-header">
+            <h2>📈 Métricas Principales</h2>
+        </div>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon primary">🔗</div>
+                    <span class="kpi-trend neutral">~ Nuevo</span>
+                </div>
+                <div class="kpi-value">&lt; 50</div>
+                <div class="kpi-label">Dominios Referentes</div>
+                <div class="kpi-target">
+                    <span class="kpi-target-label">Meta 3 meses:</span>
+                    <span class="kpi-target-value">100</span>
+                </div>
+            </div>
+            
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon warning">📊</div>
+                    <span class="kpi-trend neutral">~ Pendiente</span>
+                </div>
+                <div class="kpi-value">&lt; 20</div>
+                <div class="kpi-label">Domain Authority (Est.)</div>
+                <div class="kpi-target">
+                    <span class="kpi-target-label">Meta 3 meses:</span>
+                    <span class="kpi-target-value">25</span>
+                </div>
+            </div>
+            
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon success">🛡️</div>
+                    <span class="kpi-trend up">✓ Bajo</span>
+                </div>
+                <div class="kpi-value">&lt; 5%</div>
+                <div class="kpi-label">Enlaces Tóxicos (Est.)</div>
+                <div class="kpi-target">
+                    <span class="kpi-target-label">Objetivo:</span>
+                    <span class="kpi-target-value">&lt; 3%</span>
+                </div>
+            </div>
+            
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <div class="kpi-icon danger">🚀</div>
+                    <span class="kpi-trend down">↓ Bajo</span>
+                </div>
+                <div class="kpi-value">&lt; 100</div>
+                <div class="kpi-label">Backlinks Totales</div>
+                <div class="kpi-target">
+                    <span class="kpi-target-label">Meta 3 meses:</span>
+                    <span class="kpi-target-value">300</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts -->
+        <div class="section-header">
+            <h2>📊 Distribución del Perfil</h2>
+        </div>
+        <div class="charts-grid">
+            <!-- Anchor Text Distribution -->
+            <div class="chart-card">
+                <h3 class="chart-title">Distribución de Anchor Text (Objetivo)</h3>
+                <div class="anchor-distribution">
+                    <div class="anchor-row">
+                        <span class="anchor-label">Marca</span>
+                        <div class="anchor-bar-container">
+                            <div class="anchor-bar brand" style="width: 35%;">35%</div>
+                        </div>
+                        <span class="anchor-percentage">35%</span>
+                    </div>
+                    <div class="anchor-row">
+                        <span class="anchor-label">URL Desnuda</span>
+                        <div class="anchor-bar-container">
+                            <div class="anchor-bar url" style="width: 20%;">20%</div>
+                        </div>
+                        <span class="anchor-percentage">20%</span>
+                    </div>
+                    <div class="anchor-row">
+                        <span class="anchor-label">Genérico</span>
+                        <div class="anchor-bar-container">
+                            <div class="anchor-bar generic" style="width: 20%;">20%</div>
+                        </div>
+                        <span class="anchor-percentage">20%</span>
+                    </div>
+                    <div class="anchor-row">
+                        <span class="anchor-label">Keyword Exacta</span>
+                        <div class="anchor-bar-container">
+                            <div class="anchor-bar keyword" style="width: 5%;">5%</div>
+                        </div>
+                        <span class="anchor-percentage">5%</span>
+                    </div>
+                    <div class="anchor-row">
+                        <span class="anchor-label">Keyword Parcial</span>
+                        <div class="anchor-bar-container">
+                            <div class="anchor-bar partial" style="width: 15%;">15%</div>
+                        </div>
+                        <span class="anchor-percentage">15%</span>
+                    </div>
+                    <div class="anchor-row">
+                        <span class="anchor-label">Imagen/Otros</span>
+                        <div class="anchor-bar-container">
+                            <div class="anchor-bar image" style="width: 5%;">5%</div>
+                        </div>
+                        <span class="anchor-percentage">5%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Authority Distribution -->
+            <div class="chart-card">
+                <h3 class="chart-title">Distribución por Autoridad (Objetivo)</h3>
+                <div class="authority-chart">
+                    <div class="authority-segment">
+                        <div class="authority-label">
+                            Alta Autoridad
+                            <div class="range">DA 60+</div>
+                        </div>
+                        <div class="authority-bar-container">
+                            <div class="authority-bar high" style="width: 20%;">20%</div>
+                        </div>
+                    </div>
+                    <div class="authority-segment">
+                        <div class="authority-label">
+                            Autoridad Media
+                            <div class="range">DA 30-59</div>
+                        </div>
+                        <div class="authority-bar-container">
+                            <div class="authority-bar medium" style="width: 45%;">45%</div>
+                        </div>
+                    </div>
+                    <div class="authority-segment">
+                        <div class="authority-label">
+                            Baja Autoridad
+                            <div class="range">DA &lt;30</div>
+                        </div>
+                        <div class="authority-bar-container">
+                            <div class="authority-bar low" style="width: 35%;">35%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Risk Indicators -->
+        <div class="section-header">
+            <h2>🚨 Indicadores de Riesgo</h2>
+        </div>
+        <div class="risk-grid">
+            <div class="risk-card critical">
+                <span class="risk-icon">🔴</span>
+                <div class="risk-content">
+                    <div class="risk-title">Bajo Perfil de Backlinks</div>
+                    <div class="risk-description">Insuficientes enlaces para competir en SERPs</div>
+                </div>
+                <span class="risk-level critical">Crítico</span>
+            </div>
+            
+            <div class="risk-card high">
+                <span class="risk-icon">🟠</span>
+                <div class="risk-content">
+                    <div class="risk-title">Sin Estrategia de Link Building</div>
+                    <div class="risk-description">No hay evidencia de campaña activa</div>
+                </div>
+                <span class="risk-level high">Alto</span>
+            </div>
+            
+            <div class="risk-card medium">
+                <span class="risk-icon">🟡</span>
+                <div class="risk-content">
+                    <div class="risk-title">Hosting en GitHub Pages</div>
+                    <div class="risk-description">Autoridad compartida con github.io</div>
+                </div>
+                <span class="risk-level medium">Medio</span>
+            </div>
+            
+            <div class="risk-card low">
+                <span class="risk-icon">🟢</span>
+                <div class="risk-content">
+                    <div class="risk-title">Perfil Limpio</div>
+                    <div class="risk-description">Sin evidencia de enlaces tóxicos</div>
+                </div>
+                <span class="risk-level low">Bajo</span>
+            </div>
+        </div>
+        
+        <!-- Priority Actions -->
+        <div class="section-header">
+            <h2>🎯 Acciones Prioritarias</h2>
+        </div>
+        <div class="actions-section">
+            <div class="action-list">
+                <div class="action-item">
+                    <div class="action-priority p1">1</div>
+                    <div class="action-content">
+                        <div class="action-title">Obtener análisis completo de backlinks</div>
+                        <div class="action-description">Suscribirse a Ahrefs o SEMrush para datos precisos</div>
+                    </div>
+                    <div class="action-meta">
+                        <span class="action-tag">Inmediato</span>
+                        <span class="action-tag">Herramientas</span>
+                    </div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-priority p1">2</div>
+                    <div class="action-content">
+                        <div class="action-title">Configurar Google Search Console</div>
+                        <div class="action-description">Verificar propiedad y acceder a datos de enlaces de Google</div>
+                    </div>
+                    <div class="action-meta">
+                        <span class="action-tag">Inmediato</span>
+                        <span class="action-tag">Setup</span>
+                    </div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-priority p2">3</div>
+                    <div class="action-content">
+                        <div class="action-title">Desarrollar estrategia de link building</div>
+                        <div class="action-description">Crear plan documentado con oportunidades identificadas</div>
+                    </div>
+                    <div class="action-meta">
+                        <span class="action-tag">1-2 semanas</span>
+                        <span class="action-tag">Estrategia</span>
+                    </div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-priority p2">4</div>
+                    <div class="action-content">
+                        <div class="action-title">Crear contenido linkeable</div>
+                        <div class="action-description">Desarrollar guías, herramientas y recursos únicos para el nicho GIS</div>
+                    </div>
+                    <div class="action-meta">
+                        <span class="action-tag">1-3 meses</span>
+                        <span class="action-tag">Contenido</span>
+                    </div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-priority p3">5</div>
+                    <div class="action-content">
+                        <div class="action-title">Considerar dominio propio</div>
+                        <div class="action-description">Migrar de GitHub Pages a dominio dedicado para mejor autoridad</div>
+                    </div>
+                    <div class="action-meta">
+                        <span class="action-tag">Mediano plazo</span>
+                        <span class="action-tag">Infraestructura</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Targets Table -->
+        <div class="section-header">
+            <h2>📅 Metas y Progreso</h2>
+        </div>
+        <div class="chart-card">
+            <table class="targets-table">
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Actual</th>
+                        <th>Meta 3M</th>
+                        <th>Meta 6M</th>
+                        <th>Meta 12M</th>
+                        <th>Progreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dominios Referentes</td>
+                        <td>&lt; 50</td>
+                        <td>100</td>
+                        <td>200</td>
+                        <td>400</td>
+                        <td>
+                            <div class="target-progress">
+                                <div class="target-bar-bg">
+                                    <div class="target-bar-fill low" style="width: 12%;"></div>
+                                </div>
+                                <span>12%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Domain Authority</td>
+                        <td>&lt; 20</td>
+                        <td>25</td>
+                        <td>30</td>
+                        <td>40</td>
+                        <td>
+                            <div class="target-progress">
+                                <div class="target-bar-bg">
+                                    <div class="target-bar-fill medium" style="width: 50%;"></div>
+                                </div>
+                                <span>50%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Backlinks Totales</td>
+                        <td>&lt; 100</td>
+                        <td>300</td>
+                        <td>700</td>
+                        <td>1,500</td>
+                        <td>
+                            <div class="target-progress">
+                                <div class="target-bar-bg">
+                                    <div class="target-bar-fill low" style="width: 7%;"></div>
+                                </div>
+                                <span>7%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enlaces DA 50+</td>
+                        <td>0-2</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td>20</td>
+                        <td>
+                            <div class="target-progress">
+                                <div class="target-bar-bg">
+                                    <div class="target-bar-fill low" style="width: 10%;"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <p>Dashboard SEO Off-Page | Geo Spark Studio</p>
+            <p>Última actualización: 17 de Diciembre de 2024</p>
+            <p><a href="AUDITORIA_SEO_OFFPAGE.md">Ver Informe Completo →</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // Animation for progress bars
+        document.addEventListener('DOMContentLoaded', function() {
+            const bars = document.querySelectorAll('.anchor-bar, .authority-bar, .target-bar-fill, .score-bar-fill');
+            
+            bars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease-out';
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+        });
+        
+        // Update date to current
+        const dateElements = document.querySelectorAll('.date, .dashboard-footer p:nth-child(2)');
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = now.toLocaleDateString('es-ES', options);
+    </script>
+</body>
+</html>
